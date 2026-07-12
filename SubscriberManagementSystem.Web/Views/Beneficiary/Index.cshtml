@@ -1,0 +1,99 @@
+﻿@model SubscriberManagementSystem.Web.ViewModel.Beneficiaries.IndexBeneficiaryVM;
+@using SubscriberManagementSystem.Web.Resources;
+@using System.Globalization
+
+@{
+    var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
+    ViewData["Title"] = Global.Beneficiaries;
+}
+
+<div class="card card-custom">
+    <div class="card-header">
+        <div class="card-title fw-bolder fs-2">
+            <span class="card-icon">
+                <i class="bi bi-people-fill fs-3"></i>
+            </span>
+            <span class="span-title">
+                @Global.Beneficiaries
+            </span>
+        </div>
+    </div>
+    <div class="card-body">
+        <!--begin::Wrapper-->
+        <form id="SearchForm" onsubmit="return(false);">
+            <div class="d-flex flex-stack mb-5">
+                <!--begin::Search-->
+                <div class="d-flex align-items-center position-relative my-1">
+                    <span class="svg-icon svg-icon-2 position-absolute ms-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
+                            <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
+                        </svg>
+                    </span>
+                    <input id="searchInput" name="Keyword" type="text" placeholder="@Global.Search" class="form-control form-control-solid me-3 w-250px ps-15 fs-4" />
+                    
+                    <select name="BeneficiaryTypeId" class="form-select w-200px fs-4 me-5" data-control="select2" data-dropdown-css-class="fs-4">
+                        <option value="">@Global.BeneficiaryType</option>
+                        @foreach (var item in Model.BeneficiaryTypes)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+
+                    <select name="IsActiveSearch" class="form-select fs-4 me-5 w-150px" data-control="select2" data-dropdown-css-class="fs-4" data-hide-search="true">
+                        <option value="">@Global.Status</option>
+                        <option value="true" selected>@Global.Active</option>
+                        <option value="false">@Global.Inactive</option>
+                    </select>
+
+                </div>
+                <!--end::Search-->
+                <!--begin::Toolbar-->
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btnSearch btn btn-sm btn-icon btn-success fs-5 me-2">
+                        <span class="svg-icon svg-icon-2 fs-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
+                                <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <!-- Button create-->
+                    <a href ="javascript:;" class="btnAdd btn btn-sm btn-icon btn-primary fs-5">
+                        <i class="bi bi-plus fs-1"></i>
+                    </a>
+                </div>
+                <!--end::Toolbar-->
+            </div>
+        </form>
+        <!--end::Wrapper-->
+        <!--begin::DataTable-->
+        <table id="Beneficiaries" class="table table-hover table-striped table-rounded border gy-5 gs-5 dataTable">
+            <thead>
+                <tr class="fw-bold fs-6 text-gray-800 border-bottom border-gray-200">
+                    <th class="fw-bolder fs-4">#</th>
+                    <th class="fw-bolder fs-4">@Global.Name</th>
+                    <th class="fw-bolder fs-4">@Global.BeneficiaryType</th>
+                    <th class="fw-bolder fs-4">@Global.IDNumber</th>
+                    <th class="fw-bolder fs-4">@Global.PhoneNumber</th>
+                    <th class="fw-bolder fs-4">@Global.DOB</th>
+@*                     <th class="fw-bolder fs-4">@Global.Camp</th>
+ *@                    <th class="fw-bolder fs-4">@Global.Actions</th>
+                </tr>
+            </thead>
+            <tbody class="fs-5">
+            </tbody>
+        </table>
+        <!--end::DataTable-->
+    </div>
+</div>
+
+
+@section scripts
+    {
+    <script src="~/js/Beneficiaries.js"></script>
+}
+
+@section onReadyScript{
+    beneficiaries.init();
+}

@@ -1,0 +1,172 @@
+﻿@* @using SubscriberManagementSystem.Data.Models;
+@using SubscriberManagementSystem.Infrastructure.Services.Pages;
+@using SubscriberManagementSystem.Web.Resources;
+@using Microsoft.AspNetCore.Html;
+@using System.Globalization;
+
+@inject IPagesService _pagesService
+
+@{
+    var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
+
+    var pages = await _pagesService.GetPagesListForMenu();
+    string currentUrl = CleanUrl(Context.Request.Path.ToString()); // get currentUrl without leading slash
+
+    Func<Page, bool> isPageActive = page =>
+    {
+        if (page == null || string.IsNullOrWhiteSpace(page.Link))
+        {
+            return false;
+        }
+
+        var pageUrl = CleanUrl(page.Link);
+
+        return currentUrl.Equals(pageUrl);
+    };
+
+    string CleanUrl(string url)
+    {
+        url = url.Trim('/').ToLower();
+
+        if(url.Contains("index"))
+            url = url.Substring(0, url.LastIndexOf('/'));
+
+        if (url.Contains("beneficiary/createedit") || url.Contains("service/createedit"))
+            url = url.Substring(0, url.IndexOf('/'));
+
+        return url;
+    }
+}
+
+<!--begin::Aside-->
+<div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
+    <!--begin::Brand-->
+    <div class="aside-logo flex-column-auto" id="kt_aside_logo">
+        <!--begin::Logo-->
+        <a href="~/Home">
+            <h1 alt="Logo" class="h-25px logo" style="color:white">@Global.SubscriberManagementSystem</h1>
+        </a>
+        <!--end::Logo-->
+        <!--begin::Aside toggler-->
+        <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-toggle" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="aside-minimize">
+            <!--begin::Svg Icon | path: icons/duotune/arrows/arr079.svg-->
+            <span class="svg-icon svg-icon-1 rotate-180">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path opacity="0.5" d="M14.2657 11.4343L18.45 7.25C18.8642 6.83579 18.8642 6.16421 18.45 5.75C18.0358 5.33579 17.3642 5.33579 16.95 5.75L11.4071 11.2929C11.0166 11.6834 11.0166 12.3166 11.4071 12.7071L16.95 18.25C17.3642 18.6642 18.0358 18.6642 18.45 18.25C18.8642 17.8358 18.8642 17.1642 18.45 16.75L14.2657 12.5657C13.9533 12.2533 13.9533 11.7467 14.2657 11.4343Z" fill="currentColor" />
+                    <path d="M8.2657 11.4343L12.45 7.25C12.8642 6.83579 12.8642 6.16421 12.45 5.75C12.0358 5.33579 11.3642 5.33579 10.95 5.75L5.40712 11.2929C5.01659 11.6834 5.01659 12.3166 5.40712 12.7071L10.95 18.25C11.3642 18.6642 12.0358 18.6642 12.45 18.25C12.8642 17.8358 12.8642 17.1642 12.45 16.75L8.2657 12.5657C7.95328 12.2533 7.95328 11.7467 8.2657 11.4343Z" fill="currentColor" />
+                </svg>
+            </span>
+            <!--end::Svg Icon-->
+        </div>
+        <!--end::Aside toggler-->
+    </div>
+    <!--end::Brand-->
+    <!--begin::Aside menu-->
+    <div class="aside-menu flex-column-fluid">
+        <!--begin::Aside Menu-->
+        <div class="hover-scroll-overlay-y my-5 my-lg-5" id="kt_aside_menu_wrapper" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer" data-kt-scroll-wrappers="#kt_aside_menu" data-kt-scroll-offset="0">
+            <!--begin::Menu-->
+            <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true" data-kt-menu-expand="false">
+
+                <!--menu Search -->
+                <div class="menu-item">
+                    <form class="menu-link pt-0" onsubmit="return false;" style="padding-bottom: inherit;">
+                        <span class="menu-icon">
+                            <span class="svg-icon svg-icon-1 position-absolute">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
+                                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
+                                </svg>
+                            </span>
+                        </span>
+                        <span class="menu-title fw-bolder align-items-center fs-3">
+                            <input type="text" id="inputMenuSearch" class="fs-3 form-control form-control-solid text-white bg-opacity-0 border-transparent" placeholder="@Global.Search" />
+                        </span>
+                    </form>
+                    <div class="menu-content  pt-0">
+                        <div class="separator border-2"></div>
+                    </div>
+                </div>
+
+                <!-- Dynamic menu items -->
+                @foreach (var parentPage in pages.Where(p => p.ParentId == 1))
+                {
+                    var hasSubpages = pages.Any(p => p.ParentId == parentPage.Id);
+                    var isParentActive = pages.Any(p => p.ParentId == parentPage.Id && isPageActive(p)); // Check if any child page is active
+
+                    if (!hasSubpages)
+                    {
+                        <div id="menu-item-@parentPage.Id" class="menu-item sidebar-menu-item">
+                            <a href="~/@parentPage.Link" class="menu-link @(isPageActive(parentPage) ? "active" : "")">
+                                <span class="menu-icon">
+                                    <i class="@parentPage.Icon fs-2"></i>
+                                </span>
+                                <span class="menu-title fw-bolder align-items-center fs-3">@(isRTL ? parentPage.Name : parentPage.NameEn)</span>
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div id="menu-item-@parentPage.Id" data-kt-menu-trigger="click" class="menu-item menu-accordion sidebar-menu-item @(isParentActive ? "show" : "")">
+                            <span class="menu-link">
+                                <span class="menu-icon">
+                                    <i class="@parentPage.Icon fs-3"></i>
+                                </span>
+                                <span class="menu-title fw-bolder align-items-center fs-3">@(isRTL ? parentPage.Name : parentPage.NameEn)</span>
+                                <span class="menu-arrow"></span>
+                            </span>
+                            <div class="menu-sub menu-sub-accordion">
+                                @foreach (var subPage in pages.Where(p => p.ParentId == parentPage.Id))
+                                {
+                                    var childPages = pages.Where(p => p.ParentId == subPage.Id).ToList();
+                                    var isSubActive = pages.Any(p => p.ParentId == subPage.Id && isPageActive(p)); // Check if any child page is active
+
+                                    if (childPages.Any())
+                                    {
+                                        <div id="menu-item-@subPage.Id" data-kt-menu-trigger="click" class="menu-item menu-accordion sidebar-menu-item @(isSubActive ? "show" : "")">
+                                            <span class="menu-link">
+                                                <span class="menu-icon">
+                                                    <i class="@subPage.Icon fs-3"></i>
+                                                </span>
+                                                <span class="menu-title fw-bolder align-items-center fs-3">@(isRTL ? subPage.Name : subPage.NameEn)</span>
+                                                <span class="menu-arrow"></span>
+                                            </span>
+                                            <div class="menu-sub menu-sub-accordion">
+                                                @foreach (var childPage in childPages)
+                                                {
+                                                    <div id="menu-item-@childPage.Id" class="menu-item sidebar-menu-item">
+                                                        <a href="~/@childPage.Link" class="menu-link @(isPageActive(childPage) ? "active" : "")">
+                                                            <span class="menu-icon">
+                                                                <i class="@childPage.Icon fs-2"></i>
+                                                            </span>
+                                                            <span class="menu-title fw-bolder align-items-center fs-4">@(isRTL ? childPage.Name : childPage.NameEn)</span>
+                                                        </a>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div id="menu-item-@subPage.Id" class="menu-item sidebar-menu-item">
+                                            <a href="~/@subPage.Link" class="menu-link @(isPageActive(subPage) ? "active" : "")">
+                                                <span class="menu-icon">
+                                                    <i class="@subPage.Icon fs-3"></i>
+                                                </span>
+                                                <span class="menu-title fw-bolder align-items-center fs-4">@(isRTL ? subPage.Name : subPage.NameEn)</span>
+                                            </a>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <!--end::Menu-->
+        </div>
+        <!--end::Aside Menu-->
+    </div>
+    <!--end::Aside menu-->
+</div>
+<!--end::Aside--> *@

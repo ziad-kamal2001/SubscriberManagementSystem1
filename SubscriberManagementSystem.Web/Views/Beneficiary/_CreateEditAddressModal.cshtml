@@ -1,0 +1,184 @@
+﻿@* @model SubscriberManagementSystem.Web.ViewModel.Beneficiaries.CreateEditAddressVM;
+@using SubscriberManagementSystem.Web.Resources;
+
+<div class="modal-header">
+    <h5 class="modal-title fw-bolder fs-3">
+        <span class="card-icon me-2">
+            <i class="bi bi-geo fs-4"></i>
+        </span>
+        @if (Model.BeneficiaryInformation.Id > 0)
+        {
+            @Global.EditAddress
+        }
+        else
+        {
+            @Global.AddAddress
+        }
+    </h5>
+
+    <!--begin::Close-->
+    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+        <span class="svg-icon svg-icon-2x">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+            </svg>
+        </span>
+    </div>
+    <!--end::Close-->
+</div>
+
+<div class="modal-body">
+    <form id="form">
+        <!--begin::Validation Alert-->
+        @await Html.PartialAsync("_ValidationAlert")
+        <!--end::Validation Alert-->
+
+        <input name="Id" type="hidden" asp-for="BeneficiaryInformation.Id" />
+        <input id="addressBeneficiaryId" name="BeneficiaryId" type="hidden" asp-for="BeneficiaryInformation.BeneficiaryId" />
+       
+        <div class="row form-group mb-4">
+            <div class="col-md-4 text-center">
+                <label class="control-label mt-2 fs-5">@Global.Country</label>
+            </div>
+            <div class="col-md-8">
+                <select id="CountryId" name="CountryId" asp-for="BeneficiaryInformation.CountryId" class="form-select form-select-solid me-3 select2-modal" data-control="select2" data-dropdown-parent="#modal" data-dropdown-css-class="fs-4">
+                    <option value="" disabled selected>@Global.Country</option>
+                    @foreach (var item in Model.Countries)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row form-group mb-4">
+            <div class="col-md-4 text-center">
+                <label class="control-label mt-2 fs-5">@Global.City</label>
+            </div>
+            <div class="col-md-8">
+                <select id="CityId" name="CityId" asp-for="BeneficiaryInformation.CityId" class="form-select form-select-solid me-3 select2-modal" data-control="select2" data-dropdown-parent="#modal" data-dropdown-css-class="fs-4">
+                    <option value="" disabled selected>@Global.City</option>
+                    @foreach (var item in Model.Cities)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label fs-4">@Global.Province</label>
+            </div>
+            <div class="col-md-8">
+                <select id="ProvinceId" name="ProvinceId" asp-for="BeneficiaryInformation.ProvinceId" class="form-select form-select-solid me-3 select2-modal" data-control="select2" data-dropdown-parent="#modal" data-dropdown-css-class="fs-4">
+                    <option value="" disabled selected>@Global.Province</option>
+                    @foreach (var item in Model.Provinces)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label mt-2 fs-4">@Global.Address</label>
+            </div>
+            <div class="col-md-8">
+                <textarea name="Address" asp-for="BeneficiaryInformation.Address" type="text" placeholder="@Global.Address" class="form-control form-control-solid"></textarea>
+            </div>
+        </div>
+
+        <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label mt-2 fs-4">@Global.AddressType</label>
+            </div>
+            <div class="col-md-8">
+                <select name="AddressTypeId" asp-for="BeneficiaryInformation.AddressTypeId" class="form-select form-select-solid me-3 select2-modal" data-control="select2" data-dropdown-parent="#modal" data-dropdown-css-class="fs-4">
+                    <option value="" disabled selected>@Global.AddressType</option>
+                    @foreach (var item in Model.AddressTypes)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label mt-2 fs-4">@Global.DefaultAddress</label>
+            </div>
+            <div class="col-md-8">
+                <div class="form-check form-check-custom form-check-solid form-check-sm">
+                    <input id="isDefaultAddress" name="IsDefaultAddress" asp-for="BeneficiaryInformation.IsDefaultAddress" class="form-check-input" type="checkbox" />
+                    <label class="form-check-label fs-4" for="isDefaultAddress">
+                        @Global.Default
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label mt-2 fs-4">@Global.ZipCode</label>
+            </div>
+            <div class="col-md-8">
+                <input name="ZipCode" asp-for="BeneficiaryInformation.ZipCode" type="text" placeholder="@Global.ZipCode" class="form-control form-control-solid" />
+            </div>
+        </div>
+
+        <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label mt-2 fs-4">@Global.POBox</label>
+            </div>
+            <div class="col-md-8">
+                <input name="POBox" asp-for="BeneficiaryInformation.POBox" type="text" placeholder="@Global.POBox" class="form-control form-control-solid" />
+            </div>
+        </div> *@
+
+        @*<div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label mt-2 fs-4">Map</label>
+            </div>
+            <div class="col-md-8">
+                <div id="map"></div>
+            </div>
+        </div>
+
+        <input type="hidden" id="Latitude" name="Latitude" />
+        <input type="hidden" id="Longitude" name="Longitude" />*@
+
+@*         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary fw-bolder fs-4" data-bs-dismiss="modal">@Global.Close</button>
+            <button type="submit" class="btn btn-primary btnSubmit fw-bolder fs-4">@Global.Save</button>
+        </div>
+    </form>
+</div> *@
+@*<!-- Google Maps API script tag -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7s6xI3SqDy35fCWubK5F51sFAGxMcn38&libraries=places&callback=initMap" async defer></script>
+
+<script>
+    // Define the initMap function
+    function initMap() {
+        // Your map initialization code here
+        var mapOptions = {
+            center: { lat: 0, lng: 0 },
+            zoom: 10
+        };
+
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        google.maps.event.addListener(map, "click", function (event) {
+            var latitude = event.latLng.lat();
+            var longitude = event.latLng.lng();
+
+            $("#Latitude").val(latitude);
+            $("#Longitude").val(longitude);
+        });
+    }
+
+    // Initialize the map by calling initMap
+    initMap();
+</script>*@
