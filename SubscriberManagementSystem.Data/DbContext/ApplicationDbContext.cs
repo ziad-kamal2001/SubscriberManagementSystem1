@@ -16,7 +16,7 @@ namespace SubscriberManagementSystem.Data.DbContext
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //SeedHelper.Seed(builder);
+            SeedHelper.Seed(builder);
 
             base.OnModelCreating(builder);
             builder.Entity<UserType>().HasQueryFilter(x => !x.IsDeleted);
