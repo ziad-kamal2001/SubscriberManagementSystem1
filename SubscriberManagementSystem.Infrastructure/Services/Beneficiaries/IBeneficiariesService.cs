@@ -15,6 +15,7 @@ namespace SubscriberManagementSystem.Infrastructure.Services.Beneficiaries
         Task<OperationResult> CreateEditAsync(Beneficiary input);
         Task<OperationResult> DeleteAsync(int id);
         Task<List<Constant>> GetGendersAsync();
+        Task<List<Constant>> GetBeneficiaryTypesAsync();
 
     }
 }

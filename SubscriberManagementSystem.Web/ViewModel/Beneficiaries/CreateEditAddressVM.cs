@@ -9,6 +9,6 @@ namespace SubscriberManagementSystem.Web.ViewModel.Beneficiaries
         public List<Constant> AddressTypes { get; set; }
 
         public Wive Wives { get; set; }
-
+        public List<Constant> BeneficiaryTypes { get; internal set; }
     }
 }

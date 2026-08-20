@@ -59,7 +59,7 @@ namespace SubscriberManagementSystem.Web.Controllers
         {
             return View(new IndexBeneficiaryVM
             {
-                //BeneficiaryTypes = await _beneficiariesService.GetBeneficiaryTypesAsync()
+                BeneficiaryTypes = await _beneficiariesService.GetBeneficiaryTypesAsync()
 
             });
         }
@@ -77,7 +77,7 @@ namespace SubscriberManagementSystem.Web.Controllers
             return View(new CreateEditBeneficiaryVM
             {
                 Beneficiary = beneficiary,
-                //BeneficiaryTypes = await _beneficiariesService.GetBeneficiaryTypesAsync(),
+                BeneficiaryTypes = await _beneficiariesService.GetBeneficiaryTypesAsync(),
                 Genders = await _beneficiariesService.GetGendersAsync(),
 
             });
@@ -148,6 +148,8 @@ namespace SubscriberManagementSystem.Web.Controllers
         {
             return PartialView("_CreateEditAddressModal", new CreateEditAddressVM
             {
+                BeneficiaryTypes = await _beneficiariesService.GetBeneficiaryTypesAsync(),
+
                 BeneficiaryInformation = await _beneficiaryInformationsService.GetByIdOrDefaultAsync(id),
                 //AddressTypes = await _beneficiaryInformationsService.GetAddressTypeAsync()
             });
@@ -174,18 +176,6 @@ namespace SubscriberManagementSystem.Web.Controllers
         {
             return await _beneficiaryInformationsService.DeleteAsync(id);
         }
-
-
-
-
-
         #endregion
-
-
-
-
-
-
-
     }
 }

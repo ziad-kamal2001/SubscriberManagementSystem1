@@ -104,7 +104,18 @@ namespace SubscriberManagementSystem.Web.Resources {
                 return ResourceManager.GetString("Account", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to الزوجة.
+        /// </summary>
+        public static string Wives
+        {
+            get
+            {
+                return ResourceManager.GetString("Wives", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to تدمير كلي.
         /// </summary>

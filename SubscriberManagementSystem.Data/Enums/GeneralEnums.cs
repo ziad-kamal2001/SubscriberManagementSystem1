@@ -14,6 +14,7 @@ namespace SubscriberManagementSystem.Data.Enums
         WorkStatus = 8,
         TheHealthCondition = 11,
         Accommodation = 14,
+        BeneficiaryType = 17,
 
         // Gender
         Male = 2,   
@@ -44,6 +45,9 @@ namespace SubscriberManagementSystem.Data.Enums
 
         Management = 1, //Modules
         BeneficiariesManagement = 2,
+        // Parent Page Ids
+        UserPageId = 3,
+        UserTypePageId = 4,
 
     }
 }

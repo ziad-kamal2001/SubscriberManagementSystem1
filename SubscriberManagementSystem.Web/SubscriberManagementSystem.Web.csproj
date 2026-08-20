@@ -26,9 +26,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SubscriberManagementSystem.Data\SubscriberManagementSystem.Data.csproj" />
     <ProjectReference Include="..\SubscriberManagementSystem.Infrastructure\SubscriberManagementSystem.Infrastructure.csproj" />
   </ItemGroup>
 

@@ -17,7 +17,8 @@ namespace SubscriberManagementSystem.Data.SeedHeper
             SeedPageCategories(builder);
             SeedModules(builder);
             SeedConstants(builder);
-            PagesSeed.Seed(builder);
+            //PagesSeed.Seed(builder);
+            builder.Seed(new List<Page>());
         }
 
         private static void SeedPageCategories(ModelBuilder builder)
@@ -64,9 +65,12 @@ namespace SubscriberManagementSystem.Data.SeedHeper
 
                 new Constant { Id = 14, Name = " الاقامة مكان" }, // Accommodation
                 new Constant { Id = 15, Name = "داخلي", ParentId = 14 },//Indoor
-                new Constant { Id = 16, Name = "خارجي", ParentId = 14 }//Outdoor
+                new Constant { Id = 16, Name = "خارجي", ParentId = 14 },//Outdoor
 
-                
+                new Constant { Id = 17, Name = "نوع المستفيد" }, // BeneficiaryType
+                new Constant { Id = 18, Name = "زبون", ParentId = 17 },
+                new Constant { Id = 19, Name = "مورد", ParentId = 17 },
+                new Constant { Id = 20, Name = "مزود خدمة", ParentId = 17 }
 
             );
         }

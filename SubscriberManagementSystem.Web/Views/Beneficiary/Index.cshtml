@@ -32,13 +32,13 @@
                     </span>
                     <input id="searchInput" name="Keyword" type="text" placeholder="@Global.Search" class="form-control form-control-solid me-3 w-250px ps-15 fs-4" />
                     
-                    <select name="BeneficiaryTypeId" class="form-select w-200px fs-4 me-5" data-control="select2" data-dropdown-css-class="fs-4">
+              @*       <select name="BeneficiaryTypeId" class="form-select w-200px fs-4 me-5" data-control="select2" data-dropdown-css-class="fs-4">
                         <option value="">@Global.BeneficiaryType</option>
                         @foreach (var item in Model.BeneficiaryTypes)
                         {
                             <option value="@item.Id">@item.Name</option>
                         }
-                    </select>
+                    </select> *@
 
                     <select name="IsActiveSearch" class="form-select fs-4 me-5 w-150px" data-control="select2" data-dropdown-css-class="fs-4" data-hide-search="true">
                         <option value="">@Global.Status</option>

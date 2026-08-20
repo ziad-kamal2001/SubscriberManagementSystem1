@@ -954,4 +954,7 @@
   <data name="TotalDestruction" xml:space="preserve">
     <value>تدمير كلي</value>
   </data>
+  <data name="Wives" xml:space="preserve">
+    <value>الزوجة</value>
+  </data>
 </root>

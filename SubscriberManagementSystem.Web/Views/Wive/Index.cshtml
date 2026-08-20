@@ -1,16 +1,19 @@
-﻿@using SubscriberManagementSystem.Web.Resources;
+﻿@model SubscriberManagementSystem.Web.ViewModel.Wives.IndexWiveVM;
+@using SubscriberManagementSystem.Web.Resources;
+@using System.Globalization
 
 @{
-    ViewData["Title"] = Global.BeneficiariesTypes;
+    var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
+    ViewData["Title"] = Global.Wives;
 }
 
 <div class="card card-custom">
     <div class="card-header">
         <div class="card-title fw-bolder fs-2">
             <span class="card-icon">
-                <i class="bi bi-people-fill fs-3"></i>
+                <i class="bi bi-book fs-3"></i>
             </span>
-            @Global.BeneficiariesTypes
+            @Global.Wives
         </div>
     </div>
     <div class="card-body">
@@ -26,11 +29,21 @@
                         </svg>
                     </span>
                     <input id="searchInput" name="Keyword" type="text" placeholder="@Global.Search" class="form-control form-control-solid me-3 w-250px ps-15 fs-4" />
+                    
+           
+
+                 
+                    <select name="IsActiveSearch" class="form-select fs-4 me-5 w-150px" data-control="select2" data-dropdown-css-class="fs-4" data-hide-search="true">
+                        <option value="">@Global.Status</option>
+                        <option value="true" selected>@Global.Active</option>
+                        <option value="false">@Global.Expired</option>
+                    </select>
+
                 </div>
                 <!--end::Search-->
                 <!--begin::Toolbar-->
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btnSearch btn btn-sm btn-icon btn-success fs-5 me-2">
+                    <button type="submit" class="btnSearch btn btn-sm btn-icon btn-success fs-5">
                         <span class="svg-icon svg-icon-2 fs-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
@@ -38,28 +51,20 @@
                             </svg>
                         </span>
                     </button>
-                    <!-- Button create modal -->
-                    <button type="button" class="openModal btnAdd btn btn-sm btn-icon btn-primary fs-5">
-                        <i class="bi bi-plus fs-1"></i>
-                    </button>
                 </div>
                 <!--end::Toolbar-->
             </div>
         </form>
         <!--end::Wrapper-->
         <!--begin::DataTable-->
-        <table id="BeneficiaryTypes" class="table table-hover table-striped table-rounded border gy-5 gs-5 dataTable">
+        <table id="Wives" class="table table-hover table-striped table-rounded border gy-5 gs-5 dataTable">
             <thead>
                 <tr class="fw-bold fs-6 text-gray-800 border-bottom border-gray-200">
-                    <th class="fw-bolder fs-4">
-                        #
-                    </th>
-                    <th class="fw-bolder fs-4">
-                        @Global.Name
-                    </th>
-                    <th class="fw-bolder fs-4">
-                        @Global.Actions
-                    </th>
+                    <th class="fw-bolder fs-4">#</th>
+                    <th class="fw-bolder fs-4">@Global.Name</th>
+                    <th class="fw-bolder fs-4">@Global.IDNumber</th>
+                    <th class="fw-bolder fs-4">@Global.DOB</th>
+                    <th class="fw-bolder fs-4">@Global.Status</th>
                 </tr>
             </thead>
             <tbody class="fs-5">
@@ -71,10 +76,10 @@
 
 
 @section scripts
-{
-    <script src="~/js/BeneficiaryTypes.js"></script>
+    {
+    <script src="~/js/Wives.js"></script>
 }
 
 @section onReadyScript{
-    beneficiaryTypes.init();
+    Wives.init();
 }

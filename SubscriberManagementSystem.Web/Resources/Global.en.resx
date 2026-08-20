@@ -955,4 +955,7 @@
   <data name="TotalDestruction" xml:space="preserve">
     <value>TotalDestruction</value>
   </data>
+  <data name="Wives" xml:space="preserve">
+    <value>Wives</value>
+  </data>
 </root>

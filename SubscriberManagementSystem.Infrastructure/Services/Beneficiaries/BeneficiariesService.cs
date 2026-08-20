@@ -124,7 +124,11 @@ namespace SubscriberManagementSystem.Infrastructure.Services.Beneficiaries
             }
             return result;
         }
-
+        public async Task<List<Constant>> GetBeneficiaryTypesAsync()
+        {
+            return await _context.Constants.Where(c => c.ParentId == (int)GeneralEnums.BeneficiaryType)
+                .Select(c => new Constant { Id = c.Id, Name = c.Name }).ToListAsync();
+        }
         public async Task<OperationResult> DeleteAsync(int id)
         {
             var result = new OperationResult();

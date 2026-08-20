@@ -16,32 +16,32 @@ namespace SubscriberManagementSystem.Data.SeedHeper.PageSeed
         {
             var toolPages = new List<Page>()
             {
-            //    new Page()
-            //    {
-            //        Name = "عرض بيانات جدول المستخدمين",
-            //        NameEn = "Display User DataTable",
-            //        Icon = null,
-            //        Link ="User/GetAll",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.UserPageId, // User Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "اظهار واجهة اضافة  تعديل مستخدم",
-            //        NameEn = "Display Create Edit User Page",
-            //        Icon = null,
-            //        Link ="User/CreateEditModal",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.UserPageId, // User Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
+                new Page()
+                {
+                    Name = "عرض بيانات جدول المستخدمين",
+                    NameEn = "Display User DataTable",
+                    Icon = null,
+                    Link ="User/GetAll",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.UserPageId, // User Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "اظهار واجهة اضافة  تعديل مستخدم",
+                    NameEn = "Display Create Edit User Page",
+                    Icon = null,
+                    Link ="User/CreateEditModal",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.UserPageId, // User Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
             //    new Page()
             //    {
             //        Name = "اضافة تعديل مستخدم",

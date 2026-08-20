@@ -17,7 +17,6 @@ namespace SubscriberManagementSystem.Data.DbContext
         protected override void OnModelCreating(ModelBuilder builder)
         {
             SeedHelper.Seed(builder);
-
             base.OnModelCreating(builder);
             builder.Entity<UserType>().HasQueryFilter(x => !x.IsDeleted);
             builder.Entity<Page>().HasQueryFilter(x => !x.IsDeleted);
@@ -33,12 +32,12 @@ namespace SubscriberManagementSystem.Data.DbContext
                .HasForeignKey(u => u.UserTypeId)
                .IsRequired(false);
             builder.Entity<Children>()
-    .HasOne(c => c.Gender)
-    .WithMany()
-    .HasForeignKey(c => c.GenderId)
-    .OnDelete(DeleteBehavior.NoAction);
+               .HasOne(c => c.Gender)
+               .WithMany()
+               .HasForeignKey(c => c.GenderId)
+               .OnDelete(DeleteBehavior.NoAction);
         }
-        
+         
 
         public DbSet<User> Users { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
