@@ -45,11 +45,21 @@ namespace SubscriberManagementSystem.Data.SeedHeper
 
             // seed user
             builder.Entity<User>().HasData(adminUser);
-            
+            // seed UserPermissions for admin user type
+            var userPermissions = new List<UserPermission>();
 
+            int userPermissionId = 1; // Start ID for UserPermissions
+            foreach (var page in Pages)
+            {
+                userPermissions.Add(new UserPermission
+                {
+                    Id = userPermissionId++,
+                    UserTypeId = 1, // General Manager
+                    PageId = page.Id
+                });
+            }
 
-
+            builder.Entity<UserPermission>().HasData(userPermissions);
         }
     }
-
 }

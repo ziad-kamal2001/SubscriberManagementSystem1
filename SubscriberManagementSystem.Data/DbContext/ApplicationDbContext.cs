@@ -41,6 +41,7 @@ namespace SubscriberManagementSystem.Data.DbContext
 
         public DbSet<User> Users { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
+        public DbSet<UserPermission> UserPermissions { get; set; }
         public DbSet<Constant> Constants { get; set; }
         public DbSet<Module> Modules { get; set; }
         public DbSet<Children> Childrens { get; set; }
