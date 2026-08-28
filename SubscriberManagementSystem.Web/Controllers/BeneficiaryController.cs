@@ -78,8 +78,7 @@ namespace SubscriberManagementSystem.Web.Controllers
             {
                 Beneficiary = beneficiary,
                 BeneficiaryTypes = await _beneficiariesService.GetBeneficiaryTypesAsync(),
-                Genders = await _beneficiariesService.GetGendersAsync(),
-
+                Genders = await _beneficiariesService.GetGendersAsync()
             });
         }
 
