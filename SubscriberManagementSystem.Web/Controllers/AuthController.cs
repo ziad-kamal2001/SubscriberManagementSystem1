@@ -190,8 +190,8 @@ namespace SubscriberManagementSystem.Web.Controllers
 		[HttpGet]
 		public IActionResult EmailChanged() => View();
         
-		[HttpGet]
-        public IActionResult NotFound() => View();
+		//[HttpGet]
+  //      public IActionResult NotFound() => View();
 
     }
 }

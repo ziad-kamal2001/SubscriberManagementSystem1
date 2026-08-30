@@ -1,7 +1,15 @@
 {
   "profiles": {
-    "SubscriberManagementSystem.Web": {
-      "commandName": "Project"
+    "WSL": {
+      "commandName": "WSL2",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "distributionName": ""
+    },
+    "Profile 1": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\Ziadk\\source\\repos\\SubscriberManagementSystem\\SubscriberManagementSystem.Web"
     },
     "IIS Express": {
       "commandName": "IISExpress",

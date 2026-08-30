@@ -59,5 +59,6 @@ namespace SubscriberManagementSystem.Web.Middleware
         {
             return endpoint?.Metadata?.GetMetadata<IAllowAnonymous>() != null;
         }
+
     }
 }

@@ -3,11 +3,8 @@ using SubscriberManagementSystem.Infrastructure.Services.Beneficiaries;
 using SubscriberManagementSystem.Infrastructure.Services.BeneficiaryInformations;
 using SubscriberManagementSystem.Infrastructure.Services.Constants;
 using SubscriberManagementSystem.Infrastructure.Services.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SubscriberManagementSystem.Infrastructure.Services.Wives;
+using SubscriberManagementSystem.Infrastructure.Services.Childrens;
 
 namespace SubscriberManagementSystem.Infrastructure.Extentions
 {
@@ -19,8 +16,8 @@ namespace SubscriberManagementSystem.Infrastructure.Extentions
             services.AddTransient<IBeneficiaryInformationsService, BeneficiaryInformationsService>();
             services.AddTransient<IConstantsService, ConstantsService>();
             services.AddTransient<IUsersService, UsersService>();
-            //services.AddTransient<IClaimsService, ClaimsService>();
-            //services.AddTransient<IClaimsService, ClaimsService>();
+            services.AddTransient<IWivesService, WivesService>();
+            services.AddTransient<IChildrensService, ChildrensService>();
 
             return services;
         }

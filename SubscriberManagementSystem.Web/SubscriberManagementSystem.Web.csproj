@@ -30,7 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SubscriberManagementSystem.Data\SubscriberManagementSystem.Data.csproj" />
     <ProjectReference Include="..\SubscriberManagementSystem.Infrastructure\SubscriberManagementSystem.Infrastructure.csproj" />
   </ItemGroup>
 

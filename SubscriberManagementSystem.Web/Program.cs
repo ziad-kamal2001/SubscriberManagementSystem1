@@ -9,6 +9,8 @@ using SubscriberManagementSystem.Infrastructure.Extentions;
 using SubscriberManagementSystem.Infrastructure.AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddRazorPages();
 
 // Add services to the container.
@@ -25,29 +27,30 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = false;
     options.Password.RequireLowercase = false;
-
-}).AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddDefaultTokenProviders()
-    ;
-
+})
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.AddControllersWithViews();
 
-// Moved up: must be configured before Build()
+// Must be configured before Build()
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = new PathString("/Auth/login");
     options.LogoutPath = new PathString("/Auth/logout");
     //options.AccessDeniedPath = new PathString("/Auth/Accessdenied");
 });
+
 builder.Services.AddTransient<IClaimsService, ClaimsService>();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 builder.Services.RegisterServices();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseMigrationsEndPoint();
 }
 else
@@ -57,9 +60,10 @@ else
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseRouting();
 
-app.UseAuthentication();  
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
@@ -68,7 +72,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-
 app.MapRazorPages()
    .WithStaticAssets();
 
