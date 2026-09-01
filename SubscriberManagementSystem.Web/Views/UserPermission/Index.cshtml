@@ -1,0 +1,52 @@
+﻿@model SubscriberManagementSystem.Infrastructure.Services.UserPermissions.Dto.UserPermissionsDto
+@using SubscriberManagementSystem.Web.Resources;
+
+@{
+    ViewData["Title"] = Global.UserPermissions;
+}
+
+<div class="card card-custom">
+    <div class="card-header">
+        <div class="card-title fw-bolder fs-2">
+            <span class="card-icon">
+                <i class="bi bi-check-lg fs-2"></i>
+            </span>
+            @Global.UserPermissions
+        </div>
+    </div>
+    <div class="card-body">
+        <form id="permissionsForm" onsubmit="return(false);">
+              <div class="d-flex flex-stack mb-5">
+                    <div class="d-flex align-items-center position-relative my-1">
+                        <div class="col-md-6 text-center">
+                            <label class="control-label mb-2 fs-4 w-200px">@Global.UserType</label>
+                        </div>
+                        <select id="userTypeSelect" class="form-select w-200px" data-hide-search="true" data-control="select2" data-dropdown-css-class="fs-4">
+                            <option value="">@Global.SelectUserType</option>
+                            @foreach (var userType in Model.UserTypes)
+                            {
+                                <option value="@userType.Id">@userType.Name</option>
+                            }
+                        </select>
+                    </div>
+                    
+                    <div class="d-flex justify-content-end">
+                    <button class="btn btn-primary btnSubmit fw-bolder fs-4">@Global.Save</button>
+                    </div>
+              </div>
+            
+            <div id="pagesContainer">
+                @Html.Partial("_PagesTree", Model.Pages)
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/js/UserPermissions.js"></script>
+}
+
+@section onReadyScript{
+    userPermissions.init();
+}

@@ -1,0 +1,129 @@
+﻿@using SubscriberManagementSystem.Data.Models
+@using System.Globalization;
+@using SubscriberManagementSystem.Web.Resources;
+
+@model List<Page>
+
+@{
+    var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
+}
+
+<div class="page-tree">
+    @if (Model.Any())
+    {
+        @foreach (var parentPage in Model.Where(p => p.ParentId == 1))
+        {
+            <div class="mb-2 panel">
+                <!--begin::Heading-->
+                <div class="d-flex align-items-center collapsible py-1 toggle collapsed mb-0" style="border: 1px solid #ddd; background-color :#f5f5f5">
+                    <div class="d-flex flex-stack justify-content-between align-items-center w-100">
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-custom form-check-sm me-5 ms-5">
+                                <input class="form-check-input cbMP" child="#collapse_@parentPage.Id" type="checkbox" data-page-id="@parentPage.Id">
+                            </div>
+                            <h4 class="text-gray-700 fw-bolder cursor-pointer mb-0" data-bs-toggle="collapse" data-bs-target="#collapse_@parentPage.Id">
+                                <span class="menu-icon me-1">
+                                    <i class="@parentPage.Icon fs-4"></i>
+                                </span>
+                                @(isRTL ? parentPage.Name : parentPage.NameEn)
+                            </h4>
+                        </div>
+
+                        <div class="d-flex justify-content-end" data-bs-toggle="collapse" data-bs-target="#collapse_@parentPage.Id">
+                            <!--begin::Icon-->
+                            <div class="btn btn-sm btn-icon mw-20px btn-active-color-primary me-5">
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen036.svg-->
+                                <span class="svg-icon toggle-on svg-icon-primary svg-icon-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor" />
+                                        <rect x="6.0104" y="10.9247" width="12" height="2" rx="1" fill="currentColor" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen035.svg-->
+                                <span class="svg-icon toggle-off svg-icon-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor" />
+                                        <rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="currentColor" />
+                                        <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="currentColor" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </div>
+                            <!--end::Icon-->
+                        </div>
+                    </div>
+                </div>
+                <!--end::Heading-->
+                <!--begin::Body-->
+                <div id="collapse_@parentPage.Id" class="collapse row m-0 pb-10 fs-6" style="border: 1px solid #ddd;border-top: 0px;">
+                    @{
+                        var subpage = Model.Where(p => p.ParentId == parentPage.Id).ToList();
+                        if (subpage.Any())
+                        {
+                            RenderSubPages(subpage, isRTL);
+                        }
+                    }
+                </div>
+                <!--end::Body-->
+            </div>
+        }
+
+    }
+    else
+    {
+        <div class="d-flex flex-column flex-center">
+            <img src="assets/media/illustrations/dozzy-1/24.png" class="mw-400px">
+            <div class="fs-1 fw-bolder text-dark">@Global.NoPermissionsFound</div>
+            <div class="fs-4">@Global.NoPermissionsFoundMessage</div>
+        </div>
+    }
+</div>
+
+@{
+    void RenderSubPages(List<Page> pagesList, bool isRTL)
+    {
+        foreach (var subPage in pagesList.Where(p => p.CategoryId !=3 ))
+        {
+
+            <div class="col-md-4 mt-5 mb-5 mainList">
+                <div class="form-check form-check-custom form-check-solid form-check-sm mb-4">
+                    <input class="form-check-input cbML" child="#cbML_@subPage.Id" type="checkbox" data-page-id="@subPage.Id" />
+                    <label class="form-check-label text-gray-700 fs-4 ms-5" for="IsActive">
+                        @(isRTL ? subPage.Name : subPage.NameEn)
+                    </label>
+                </div>
+                @{
+                    var tools = Model.Where(p => p.ParentId == subPage.Id && p.CategoryId == 3).ToList();
+                    if (tools.Any())
+                    {
+                        <div class="accordion-item p-0" id="cbML_@subPage.Id">
+                            <h2 id="accordion_header_@subPage.Id" class="accordion-header">
+                                <button class="accordion-button fw-bolder btn btn-primary rounded-0 fs-3 fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordion_body_@subPage.Id" aria-expanded="false" aria-controls="accordion_body_@subPage.Id">
+                                    Tools
+                                </button>
+                            </h2>
+                            <div id="accordion_body_@subPage.Id" class="accordion-collapse border border-primary border-active active rounded-0 collapse" aria-labelledby="accordion_header_@subPage.Id">
+                                <div class="accordion-body">
+                                    @foreach(var tool in tools){
+                                        <div class="form-check form-check-custom form-check-solid form-check-sm mb-4">
+                                            <input class="form-check-input cbChiled" type="checkbox" data-page-id="@tool.Id" />
+                                            <label class="form-check-label text-gray-700 fs-4 ms-5" for="IsActive">
+                                                @(isRTL ? tool.Name : tool.NameEn)
+                                            </label>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            var childPages = Model.Where(p => p.ParentId == subPage.Id).ToList();
+            if (childPages.Any())
+            {
+                RenderSubPages(childPages, isRTL);
+            }
+        }
+    }
+}

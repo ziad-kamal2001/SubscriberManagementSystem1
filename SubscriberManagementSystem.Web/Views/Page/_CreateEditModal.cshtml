@@ -1,0 +1,165 @@
+﻿@model SubscriberManagementSystem.Web.ViewModel.Pages.CreateEditPageVM
+@using SubscriberManagementSystem.Web.Resources;
+
+<div class="modal-header">
+    <div class="modal-title fw-bolder fs-3">
+        <span class="card-icon me-2">
+            <i class="bi bi-window-stack fs-4"></i>
+        </span>
+        @if(Model.Page.Id > 0)
+        {
+            
+            @Global.EditPage
+        }
+        else
+        {
+            @Global.AddPage
+        }
+    </div>
+
+    <!--begin::Close-->
+    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+        <span class="svg-icon svg-icon-2x">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+            </svg>
+        </span>
+    </div>
+    <!--end::Close-->
+</div>
+<div class="modal-body">
+    <form id="form">
+        <!--begin::Validation Alert-->
+        @await Html.PartialAsync("_ValidationAlert")
+        <!--end::Validation Alert-->
+
+        <input type="hidden" asp-for="Page.Id" name="Id" />
+
+        <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label fw-bolder mt-2 fs-4">@Global.Name</label>
+            </div>
+            <div class="col-md-8">
+                <input name="Name" asp-for="Page.Name" type="text" placeholder="@Global.Name" class="form-control form-control-solid" />
+            </div>
+        </div>
+
+        <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label fw-bolder mt-2 fs-4">@Global.NameEn</label>
+            </div>
+            <div class="col-md-8">
+                <input name="NameEn" asp-for="Page.NameEn" type="text" placeholder="@Global.NameEn" class="form-control form-control-solid" />
+            </div>
+        </div>
+
+        <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label fw-bolder mt-2 fs-4">@Global.Link</label>
+            </div>
+            <div class="col-md-8">
+                <input name="Link" asp-for="Page.Link" type="text" placeholder="@Global.Link" class="form-control form-control-solid" />
+            </div>
+        </div>
+
+        <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label fw-bolder mt-2 fs-4">@Global.Icon</label>
+            </div>
+            <div class="col-md-8">
+                <input name="Icon" asp-for="Page.Icon" type="text" placeholder="@Global.Icon" class="form-control form-control-solid" />
+            </div>
+        </div>
+
+        <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+            </div>
+            <div class="col-md-8">
+                <div class="form-check form-check-custom form-check-sm mb-5">
+                    <input name="InMenu" asp-for="Page.InMenu" class="form-check-input" type="checkbox" id="InMenu">
+                    <label class="form-check-label fs-4" for="InMenu">
+                        In Menu
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+            </div>
+            <div class="col-md-8">
+                <div class="form-check form-check-custom form-check-sm mb-5">
+                    <input name="IsAjax" asp-for="Page.IsAjax" class="form-check-input" type="checkbox" id="IsAjax">
+                    <label class="form-check-label fs-4" for="IsAjax">
+                        Is Ajax
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label fw-bolder  mt-2 fs-4">@Global.Status</label>
+            </div>
+            <div class="col-md-8">
+                <div class="form-check form-check-custom form-check-sm mb-5">
+                    <input name="IsActive" asp-for="Page.IsActive" class="form-check-input" type="checkbox" id="IsActive">
+                    <label class="form-check-label fs-4" for="IsActive">
+                        @Global.IsActive
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label fw-bolder mt-2 fs-4">@Global.PageType</label>
+            </div>
+            <div class="col-md-8">
+                <select name="ParentId" asp-for="Page.ParentId" class="form-select form-select-solid me-3 select2-modal" data-control="select2" data-dropdown-parent="#modal" data-dropdown-css-class="fs-4">
+                    <option value="" selected>@Global.PageType</option>
+                    @foreach (var item in Model.Parents)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+         <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label fw-bolder mt-2 fs-4">@Global.Category</label>
+            </div>
+            <div class="col-md-8">
+                <select name="CategoryId" asp-for="Page.CategoryId" class="form-select form-select-solid me-3">
+                    <option value="">@Global.Category</option>
+                    @foreach (var item in Model.Categories)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+        
+        <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label fw-bolder mt-2 fs-4">@Global.Module</label>
+            </div>
+            <div class="col-md-8">
+                <select name="ModuleId" asp-for="Page.ModuleId" class="form-select form-select-solid me-3 select2-modal" data-control="select2" data-dropdown-parent="#modal" data-dropdown-css-class="fs-4">
+                    <option value="" selected >@Global.Module</option>
+                    @foreach (var item in Model.Modules)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+        </div>        
+        
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary fw-bolder fs-4" data-bs-dismiss="modal">@Global.Close</button>
+            <button type="submit" class="btn btn-primary btnSubmit fw-bolder fs-4">@Global.Save</button>
+        </div>
+    </form>
+</div>

@@ -122,33 +122,32 @@ namespace SubscriberManagementSystem.Infrastructure.Services.Pages
             return await _context.PageCategories.ToListAsync();
         }
 
-        //public async Task<List<Page>> GetPagesListForMenu()
-        //{
-        //    var userId = await GetCurrentUserIdAsync();
+        public async Task<List<Page>> GetPagesListForMenu()
+        {
+            var userId = await GetCurrentUserIdAsync();
 
-        //    var pages = await (from user in _context.Users
-        //                       //join userPermission in _context.UserPermissions on user.UserTypeId equals userPermission.UserTypeId
-        //                       join page in _context.Pages on userPermission.PageId equals page.Id
-        //                       join module in _context.Modules on page.ModuleId equals module.Id into pageModules
-        //                       from module in pageModules.DefaultIfEmpty()
-        //                       where user.Id == userId
-        //                       && page.Id != 1
-        //                       && page.CategoryId != (int)GeneralEnums.Tool
-        //                       && page.InMenu
-        //                       && (module == null || module.Status) // Check if module is null or its status is true
-        //                       select new Page
-        //                       {
-        //                           Id = page.Id,
-        //                           Name = page.Name,
-        //                           NameEn = page.NameEn,
-        //                           Link = page.Link,
-        //                           Icon = page.Icon,
-        //                           ParentId = page.ParentId
-        //                       }).ToListAsync();
+            var pages = await (from user in _context.Users
+                               join userPermission in _context.UserPermissions on user.UserTypeId equals userPermission.UserTypeId
+                               join page in _context.Pages on userPermission.PageId equals page.Id
+                               join module in _context.Modules on page.ModuleId equals module.Id into pageModules
+                               from module in pageModules.DefaultIfEmpty()
+                               where user.Id == userId
+                               && page.Id != 1
+                               && page.CategoryId != (int)GeneralEnums.Tool
+                               && page.InMenu
+                               && (module == null || module.Status) // Check if module is null or its status is true
+                               select new Page
+                               {
+                                   Id = page.Id,
+                                   Name = page.Name,
+                                   NameEn = page.NameEn,
+                                   Link = page.Link,
+                                   Icon = page.Icon,
+                                   ParentId = page.ParentId
+                               }).ToListAsync();
 
-        //    return pages;
-        //}
-
+            return pages;
+        }
 
     }
 }

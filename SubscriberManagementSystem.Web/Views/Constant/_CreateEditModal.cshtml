@@ -1,0 +1,85 @@
+﻿@model SubscriberManagementSystem.Web.ViewModel.Constants.CreateEditConstantVM
+@using SubscriberManagementSystem.Web.Resources;
+
+<div class="modal-header">
+    <div class="modal-title fw-bolder fs-3">
+        <span class="card-icon me-2">
+            <i class="bi fa-anchor fs-4"></i>
+        </span>
+        @if(Model.Constant.Id > 0)
+        {
+            @Global.EditConstant
+        }
+        else
+        {
+            @Global.AddConstant
+        }
+    </div>
+
+    <!--begin::Close-->
+    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+        <span class="svg-icon svg-icon-2x">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+            </svg>
+        </span>
+    </div>
+    <!--end::Close-->
+</div>
+<div class="modal-body">
+    <form id="form">
+        <!--begin::Validation Alert-->
+        @await Html.PartialAsync("_ValidationAlert")
+        <!--end::Validation Alert-->
+
+        <input type="hidden" asp-for="Constant.Id" name="Id" />
+
+        <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label fw-bolder mt-2 fs-4">@Global.Name</label>
+            </div>
+            <div class="col-md-8">
+                <input name="Name" asp-for="Constant.Name" type="text" placeholder="@Global.Name" class="form-control form-control-solid" />
+            </div>
+        </div>
+
+         <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label fw-bolder mt-2 fs-4">@Global.NameParent</label>
+            </div>
+            <div class="col-md-8">
+                <select name="ParentId" asp-for="Constant.ParentId" class="form-select form-select-solid me-3 select2-modal" data-control="select2" data-dropdown-parent="#modal" data-dropdown-css-class="fs-4">
+                    <option value="" selected>@Global.NameParent</option>
+                    @foreach (var item in Model.Parents)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label fw-bolder mt-2 fs-4">@Global.Comment</label>
+            </div>
+            <div class="col-md-8">
+                <input name="Comment" asp-for="Constant.Comment" type="text" placeholder="@Global.Comment" class="form-control form-control-solid" />
+            </div>
+        </div>
+       
+        <div class="row form-group mb-5">
+            <div class="col-md-4 text-center">
+                <label class="control-label fw-bolder mt-2 fs-4">@Global.Icon</label>
+            </div>
+            <div class="col-md-8">
+                <input name="Icon" asp-for="Constant.Icon" type="text" placeholder="@Global.Icon" class="form-control form-control-solid" />
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary fw-bolder fs-4" data-bs-dismiss="modal">@Global.Close</button>
+            <button type="submit" class="btn btn-primary btnSubmit fw-bolder fs-4">@Global.Save</button>
+        </div>
+    </form>
+</div>
