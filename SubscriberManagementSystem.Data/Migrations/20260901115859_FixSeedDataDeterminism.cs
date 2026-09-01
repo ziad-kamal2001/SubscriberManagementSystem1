@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SubscriberManagementSystem.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class _Initdata : Migration
+    public partial class FixSeedDataDeterminism : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -612,8 +612,8 @@ namespace SubscriberManagementSystem.Data.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedOn", "DeletedBy", "IsDeleted", "Name", "UpdatedBy", "UpdatedOn" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2026, 9, 1, 14, 7, 20, 597, DateTimeKind.Local).AddTicks(8643), null, false, "مدير النظام", null, null },
-                    { 2, null, new DateTime(2026, 9, 1, 14, 7, 20, 600, DateTimeKind.Local).AddTicks(380), null, false, "مستخدم", null, null }
+                    { 1, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "مدير النظام", null, null },
+                    { 2, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "مستخدم", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -645,7 +645,7 @@ namespace SubscriberManagementSystem.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Avatar", "ConcurrencyStamp", "CreatedBy", "CreatedOn", "DeletedBy", "Email", "EmailConfirmed", "GenderId", "IsActive", "IsDeleted", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UpdatedBy", "UpdatedOn", "UserName", "UserTypeId" },
-                values: new object[] { "D3E20CBB-2AD1-4D55-9A1E-4CEEC5B4CDE3", 0, "default_avatar.png", "d0840ed3-4ab0-49c9-afb2-86a80f96dd86", null, new DateTime(2026, 9, 1, 14, 7, 20, 600, DateTimeKind.Local).AddTicks(1330), null, "admin@fast.com", false, 2, true, false, false, null, "Fast Admin", null, "ADMIN@FAST.COM", "AQAAAAIAAYagAAAAEALPXo0djcdEdnFUCCnSoiw/YG1jql8WNeGoa6QmIaJ7PzjIHc8Pff2UGKH3PnPa/A==", "", false, "05a46bc0-5e87-4662-ae8c-ad801e609cb8", false, null, null, "admin@fast.com", 1 });
+                values: new object[] { "D3E20CBB-2AD1-4D55-9A1E-4CEEC5B4CDE3", 0, "default_avatar.png", "00000000-0000-0000-0000-000000000001", null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@fast.com", false, 2, true, false, false, null, "Fast Admin", null, "ADMIN@FAST.COM", "AQAAAAIAAYagAAAAEALPXo0djcdEdnFUCCnSoiw/YG1jql8WNeGoa6QmIaJ7PzjIHc8Pff2UGKH3PnPa/A==", "", false, "00000000-0000-0000-0000-000000000002", false, null, null, "admin@fast.com", 1 });
 
             migrationBuilder.InsertData(
                 table: "Pages",

@@ -1618,8 +1618,8 @@ namespace SubscriberManagementSystem.Data.Migrations
                             Id = "D3E20CBB-2AD1-4D55-9A1E-4CEEC5B4CDE3",
                             AccessFailedCount = 0,
                             Avatar = "default_avatar.png",
-                            ConcurrencyStamp = "d0840ed3-4ab0-49c9-afb2-86a80f96dd86",
-                            CreatedOn = new DateTime(2026, 9, 1, 14, 7, 20, 600, DateTimeKind.Local).AddTicks(1330),
+                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000001",
+                            CreatedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@fast.com",
                             EmailConfirmed = false,
                             GenderId = 2,
@@ -1631,7 +1631,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEALPXo0djcdEdnFUCCnSoiw/YG1jql8WNeGoa6QmIaJ7PzjIHc8Pff2UGKH3PnPa/A==",
                             PhoneNumber = "",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "05a46bc0-5e87-4662-ae8c-ad801e609cb8",
+                            SecurityStamp = "00000000-0000-0000-0000-000000000002",
                             TwoFactorEnabled = false,
                             UserName = "admin@fast.com",
                             UserTypeId = 1
@@ -2023,14 +2023,14 @@ namespace SubscriberManagementSystem.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2026, 9, 1, 14, 7, 20, 597, DateTimeKind.Local).AddTicks(8643),
+                            CreatedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "مدير النظام"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedOn = new DateTime(2026, 9, 1, 14, 7, 20, 600, DateTimeKind.Local).AddTicks(380),
+                            CreatedOn = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "مستخدم"
                         });

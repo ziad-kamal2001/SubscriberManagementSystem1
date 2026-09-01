@@ -13,18 +13,18 @@ namespace SubscriberManagementSystem.Data.SeedHeper
 {
     public static class UserSeed
     {
-
         public static void Seed(this ModelBuilder builder, List<Page> Pages)
         {
+            var seedDate = new DateTime(2026, 1, 1); // static, deterministic
+
             // seed User Type
             builder.Entity<UserType>().HasData(
-                new UserType { Id = 1, Name = "مدير النظام" },
-                new UserType { Id = 2, Name = "مستخدم" }
+                new UserType { Id = 1, Name = "مدير النظام", CreatedOn = seedDate },
+                new UserType { Id = 2, Name = "مستخدم", CreatedOn = seedDate }
             );
 
             var adminUserId = "D3E20CBB-2AD1-4D55-9A1E-4CEEC5B4CDE3";
 
-            // create admin user
             var adminUser = new User
             {
                 Id = adminUserId,
@@ -33,28 +33,26 @@ namespace SubscriberManagementSystem.Data.SeedHeper
                 UserName = "admin@fast.com",
                 PhoneNumber = "",
                 NormalizedUserName = "ADMIN@FAST.COM",
-                UserTypeId = 1, // Assuming 1 is the ID for General Manager
+                UserTypeId = 1,
                 GenderId = (int)GeneralEnums.Male,
                 IsActive = true,
-                Avatar = "default_avatar.png"
+                Avatar = "default_avatar.png",
+                CreatedOn = seedDate,
+                PasswordHash = "AQAAAAIAAYagAAAAEALPXo0djcdEdnFUCCnSoiw/YG1jql8WNeGoa6QmIaJ7PzjIHc8Pff2UGKH3PnPa/A==",
+                ConcurrencyStamp = "00000000-0000-0000-0000-000000000001",
+                SecurityStamp = "00000000-0000-0000-0000-000000000002"
             };
 
-
-            // set user password hash 
-            adminUser.PasswordHash = "AQAAAAIAAYagAAAAEALPXo0djcdEdnFUCCnSoiw/YG1jql8WNeGoa6QmIaJ7PzjIHc8Pff2UGKH3PnPa/A==";
-
-            // seed user
             builder.Entity<User>().HasData(adminUser);
-            // seed UserPermissions for admin user type
-            var userPermissions = new List<UserPermission>();
 
-            int userPermissionId = 1; // Start ID for UserPermissions
+            var userPermissions = new List<UserPermission>();
+            int userPermissionId = 1;
             foreach (var page in Pages)
             {
                 userPermissions.Add(new UserPermission
                 {
                     Id = userPermissionId++,
-                    UserTypeId = 1, // General Manager
+                    UserTypeId = 1,
                     PageId = page.Id
                 });
             }
