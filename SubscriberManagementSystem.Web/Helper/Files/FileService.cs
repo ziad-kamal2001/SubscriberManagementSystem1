@@ -60,7 +60,7 @@ namespace SubscriberManagementSystem.Web.Helper.Files
                 // Reduce the image quality using Magick.NET
                 using (var image = new MagickImage(filePath))
                 {
-                    image.Quality = imageQuality;
+                    image.Quality = (uint)imageQuality;
                     image.Write(filePath);
                 }
             }

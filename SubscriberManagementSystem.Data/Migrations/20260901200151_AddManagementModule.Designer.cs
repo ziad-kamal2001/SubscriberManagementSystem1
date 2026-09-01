@@ -12,8 +12,8 @@ using SubscriberManagementSystem.Data.DbContext;
 namespace SubscriberManagementSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260901115859_FixSeedDataDeterminism")]
-    partial class FixSeedDataDeterminism
+    [Migration("20260901200151_AddManagementModule")]
+    partial class AddManagementModule
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -601,7 +601,19 @@ namespace SubscriberManagementSystem.Data.Migrations
                         new
                         {
                             Id = 2,
-                            Name = "إدارة المستفيدين",
+                            Name = "إدارة العملاء",
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "إدارة الخدمات",
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "المالية",
                             Status = true
                         });
                 });
@@ -808,6 +820,184 @@ namespace SubscriberManagementSystem.Data.Migrations
                         new
                         {
                             Id = 12,
+                            CategoryId = 1,
+                            Icon = "bi bi-people",
+                            InMenu = true,
+                            IsActive = true,
+                            IsAjax = false,
+                            IsDeleted = false,
+                            ModuleId = 2,
+                            Name = "إدارة العملاء",
+                            NameEn = "Beneficiaries Management",
+                            ParentId = 1
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CategoryId = 2,
+                            Icon = "bi bi-people-fill",
+                            InMenu = true,
+                            IsActive = true,
+                            IsAjax = false,
+                            IsDeleted = false,
+                            Link = "Beneficiary/Index",
+                            ModuleId = 2,
+                            Name = "المستفيدين",
+                            NameEn = "Beneficiaries",
+                            ParentId = 12
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CategoryId = 2,
+                            Icon = "bi bi-people-fill",
+                            InMenu = true,
+                            IsActive = true,
+                            IsAjax = false,
+                            IsDeleted = false,
+                            Link = "Beneficiary/BeneficiaryTypes",
+                            ModuleId = 2,
+                            Name = "أنواع المستفيدين",
+                            NameEn = "Beneficiaries Types",
+                            ParentId = 12
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CategoryId = 2,
+                            Icon = "bi bi-bookmarks",
+                            InMenu = true,
+                            IsActive = true,
+                            IsAjax = false,
+                            IsDeleted = false,
+                            Link = "AttachmentType/Index",
+                            ModuleId = 2,
+                            Name = "أنواع المرفقات",
+                            NameEn = "Attachments Types",
+                            ParentId = 12
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CategoryId = 1,
+                            Icon = "bi bi-stickies-fill",
+                            InMenu = true,
+                            IsActive = true,
+                            IsAjax = false,
+                            IsDeleted = false,
+                            ModuleId = 3,
+                            Name = "إدارة الخدمات",
+                            NameEn = "Services Management",
+                            ParentId = 1
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CategoryId = 2,
+                            Icon = "bi bi-sticky-fill",
+                            InMenu = true,
+                            IsActive = true,
+                            IsAjax = false,
+                            IsDeleted = false,
+                            Link = "Service/Index",
+                            ModuleId = 3,
+                            Name = "الخدمات",
+                            NameEn = "Services",
+                            ParentId = 16
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CategoryId = 2,
+                            Icon = "bi bi-stickies-fill",
+                            InMenu = true,
+                            IsActive = true,
+                            IsAjax = false,
+                            IsDeleted = false,
+                            Link = "Service/ServiceGroups",
+                            ModuleId = 3,
+                            Name = "مجموعات الخدمات",
+                            NameEn = "Services Groups",
+                            ParentId = 16
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CategoryId = 2,
+                            Icon = "bi bi-person-check",
+                            InMenu = true,
+                            IsActive = true,
+                            IsAjax = false,
+                            IsDeleted = false,
+                            Link = "Representative/Index",
+                            ModuleId = 3,
+                            Name = "المندوبين",
+                            NameEn = "Representatives",
+                            ParentId = 16
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CategoryId = 2,
+                            Icon = "bi bi-person-check",
+                            InMenu = true,
+                            IsActive = true,
+                            IsAjax = false,
+                            IsDeleted = false,
+                            Link = "RepresentativeCategory/Index",
+                            ModuleId = 3,
+                            Name = "فئات المندوب",
+                            NameEn = "Representative Categories",
+                            ParentId = 16
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CategoryId = 2,
+                            Icon = "bi bi-person-check",
+                            InMenu = true,
+                            IsActive = true,
+                            IsAjax = false,
+                            IsDeleted = false,
+                            Link = "ResponsibleAgency/Index",
+                            ModuleId = 3,
+                            Name = " الجهات ",
+                            NameEn = "Responsible Agencies",
+                            ParentId = 16
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CategoryId = 2,
+                            Icon = "bi bi-person-check",
+                            InMenu = true,
+                            IsActive = true,
+                            IsAjax = false,
+                            IsDeleted = false,
+                            Link = "ResponsibleAgency/AgencyTypes",
+                            ModuleId = 3,
+                            Name = " أنواع الجهات  ",
+                            NameEn = "Responsible Agencies Types",
+                            ParentId = 16
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CategoryId = 2,
+                            Icon = "bi bi-person-check",
+                            InMenu = true,
+                            IsActive = true,
+                            IsAjax = false,
+                            IsDeleted = false,
+                            Link = "RequestCase/Index",
+                            ModuleId = 3,
+                            Name = " حالات الطلب ",
+                            NameEn = "Request Cases",
+                            ParentId = 16
+                        },
+                        new
+                        {
+                            Id = 24,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -821,7 +1011,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 13,
+                            Id = 25,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -835,7 +1025,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 14,
+                            Id = 26,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -849,7 +1039,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 15,
+                            Id = 27,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -863,7 +1053,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 16,
+                            Id = 28,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -877,7 +1067,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 17,
+                            Id = 29,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -891,7 +1081,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 18,
+                            Id = 30,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -905,7 +1095,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 19,
+                            Id = 31,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -919,7 +1109,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 20,
+                            Id = 32,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -933,7 +1123,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 21,
+                            Id = 33,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -947,7 +1137,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 22,
+                            Id = 34,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -961,7 +1151,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 23,
+                            Id = 35,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -975,7 +1165,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 24,
+                            Id = 36,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -989,7 +1179,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 25,
+                            Id = 37,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1003,7 +1193,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 26,
+                            Id = 38,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1017,7 +1207,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 27,
+                            Id = 39,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1031,7 +1221,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 28,
+                            Id = 40,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1045,7 +1235,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 29,
+                            Id = 41,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1059,7 +1249,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 30,
+                            Id = 42,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1073,7 +1263,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 31,
+                            Id = 43,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1087,7 +1277,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 32,
+                            Id = 44,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1101,7 +1291,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 33,
+                            Id = 45,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1115,7 +1305,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 34,
+                            Id = 46,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1129,7 +1319,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 35,
+                            Id = 47,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1143,7 +1333,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 36,
+                            Id = 48,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1157,7 +1347,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 37,
+                            Id = 49,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1171,7 +1361,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 38,
+                            Id = 50,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1185,7 +1375,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 39,
+                            Id = 51,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1199,7 +1389,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 40,
+                            Id = 52,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1213,7 +1403,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 41,
+                            Id = 53,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1227,7 +1417,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 42,
+                            Id = 54,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1241,7 +1431,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 43,
+                            Id = 55,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1255,7 +1445,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 44,
+                            Id = 56,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1269,7 +1459,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 45,
+                            Id = 57,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1283,7 +1473,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 46,
+                            Id = 58,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1297,7 +1487,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 47,
+                            Id = 59,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1311,7 +1501,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 48,
+                            Id = 60,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1325,7 +1515,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 49,
+                            Id = 61,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1339,7 +1529,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 50,
+                            Id = 62,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1353,7 +1543,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 51,
+                            Id = 63,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1367,7 +1557,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 52,
+                            Id = 64,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1381,7 +1571,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 53,
+                            Id = 65,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1395,7 +1585,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = 54,
+                            Id = 66,
                             CategoryId = 3,
                             InMenu = false,
                             IsActive = true,
@@ -1980,6 +2170,78 @@ namespace SubscriberManagementSystem.Data.Migrations
                         {
                             Id = 53,
                             PageId = 54,
+                            UserTypeId = 1
+                        },
+                        new
+                        {
+                            Id = 54,
+                            PageId = 55,
+                            UserTypeId = 1
+                        },
+                        new
+                        {
+                            Id = 55,
+                            PageId = 56,
+                            UserTypeId = 1
+                        },
+                        new
+                        {
+                            Id = 56,
+                            PageId = 57,
+                            UserTypeId = 1
+                        },
+                        new
+                        {
+                            Id = 57,
+                            PageId = 58,
+                            UserTypeId = 1
+                        },
+                        new
+                        {
+                            Id = 58,
+                            PageId = 59,
+                            UserTypeId = 1
+                        },
+                        new
+                        {
+                            Id = 59,
+                            PageId = 60,
+                            UserTypeId = 1
+                        },
+                        new
+                        {
+                            Id = 60,
+                            PageId = 61,
+                            UserTypeId = 1
+                        },
+                        new
+                        {
+                            Id = 61,
+                            PageId = 62,
+                            UserTypeId = 1
+                        },
+                        new
+                        {
+                            Id = 62,
+                            PageId = 63,
+                            UserTypeId = 1
+                        },
+                        new
+                        {
+                            Id = 63,
+                            PageId = 64,
+                            UserTypeId = 1
+                        },
+                        new
+                        {
+                            Id = 64,
+                            PageId = 65,
+                            UserTypeId = 1
+                        },
+                        new
+                        {
+                            Id = 65,
+                            PageId = 66,
                             UserTypeId = 1
                         });
                 });

@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -8,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SubscriberManagementSystem.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class FixSeedDataDeterminism : Migration
+    public partial class AddManagementModule : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -594,7 +595,9 @@ namespace SubscriberManagementSystem.Data.Migrations
                 values: new object[,]
                 {
                     { 1, "الادارة", true },
-                    { 2, "إدارة المستفيدين", true }
+                    { 2, "إدارة العملاء", true },
+                    { 3, "إدارة الخدمات", true },
+                    { 4, "المالية", true }
                 });
 
             migrationBuilder.InsertData(
@@ -653,7 +656,9 @@ namespace SubscriberManagementSystem.Data.Migrations
                 values: new object[,]
                 {
                     { 2, 2, "bi bi-house-fill", true, true, false, false, "Home/Index", null, "الرئيسية", "Home", 1 },
-                    { 3, 1, "bi bi-list-ul", true, true, false, false, null, 1, "الإدارة", "Management", 1 }
+                    { 3, 1, "bi bi-list-ul", true, true, false, false, null, 1, "الإدارة", "Management", 1 },
+                    { 12, 1, "bi bi-people", true, true, false, false, null, 2, "إدارة العملاء", "Beneficiaries Management", 1 },
+                    { 16, 1, "bi bi-stickies-fill", true, true, false, false, null, 3, "إدارة الخدمات", "Services Management", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -670,7 +675,17 @@ namespace SubscriberManagementSystem.Data.Migrations
                     { 9, 2, "bi bi-view-list", true, true, false, false, "Management/Modules", 1, "وحدات النظام", "Governorates and Cities", 3 },
                     { 10, 2, "bi bi-window-stack", true, true, false, false, "Page/Index", 1, "الصفحات", "Pages", 3 },
                     { 11, 2, "fa fa-anchor", true, true, false, false, "Constant/Index", 1, "الثوابت", "Constants", 3 },
-                    { 46, 3, null, false, true, true, false, "Beneficiary/DeleteContact", 1, "حذف جهات اتصال المستفيد", "Delete beneficiary Addresses", 2 }
+                    { 13, 2, "bi bi-people-fill", true, true, false, false, "Beneficiary/Index", 2, "المستفيدين", "Beneficiaries", 12 },
+                    { 14, 2, "bi bi-people-fill", true, true, false, false, "Beneficiary/BeneficiaryTypes", 2, "أنواع المستفيدين", "Beneficiaries Types", 12 },
+                    { 15, 2, "bi bi-bookmarks", true, true, false, false, "AttachmentType/Index", 2, "أنواع المرفقات", "Attachments Types", 12 },
+                    { 17, 2, "bi bi-sticky-fill", true, true, false, false, "Service/Index", 3, "الخدمات", "Services", 16 },
+                    { 18, 2, "bi bi-stickies-fill", true, true, false, false, "Service/ServiceGroups", 3, "مجموعات الخدمات", "Services Groups", 16 },
+                    { 19, 2, "bi bi-person-check", true, true, false, false, "Representative/Index", 3, "المندوبين", "Representatives", 16 },
+                    { 20, 2, "bi bi-person-check", true, true, false, false, "RepresentativeCategory/Index", 3, "فئات المندوب", "Representative Categories", 16 },
+                    { 21, 2, "bi bi-person-check", true, true, false, false, "ResponsibleAgency/Index", 3, " الجهات ", "Responsible Agencies", 16 },
+                    { 22, 2, "bi bi-person-check", true, true, false, false, "ResponsibleAgency/AgencyTypes", 3, " أنواع الجهات  ", "Responsible Agencies Types", 16 },
+                    { 23, 2, "bi bi-person-check", true, true, false, false, "RequestCase/Index", 3, " حالات الطلب ", "Request Cases", 16 },
+                    { 58, 3, null, false, true, true, false, "Beneficiary/DeleteContact", 1, "حذف جهات اتصال المستفيد", "Delete beneficiary Addresses", 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -679,7 +694,9 @@ namespace SubscriberManagementSystem.Data.Migrations
                 values: new object[,]
                 {
                     { 2, 2, 1 },
-                    { 3, 3, 1 }
+                    { 3, 3, 1 },
+                    { 11, 12, 1 },
+                    { 15, 16, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -690,15 +707,34 @@ namespace SubscriberManagementSystem.Data.Migrations
                     { 5, 2, "bi bi-person-fill", true, true, false, false, "User/Index", 1, "المستخدمين", "Users", 4 },
                     { 6, 2, "bi bi-people", true, true, false, false, "UserType/Index", 1, "أنواع المستخدمين", "User Types", 4 },
                     { 7, 2, "bi bi-check-lg", true, true, false, false, "UserPermission/Index", 1, "صلاحيات المستخدم", "User Permissions", 4 },
-                    { 26, 3, null, false, true, true, false, "Management/SwitchStatus", 1, "تبديل حالات وحدات النظام", "Switching states of system Modules", 9 },
-                    { 27, 3, null, false, true, true, false, "Page/GetAll", 1, "عرض بيانات جدول الصفحات", "Display Pages DataTable", 10 },
-                    { 28, 3, null, false, true, true, false, "Page/CreateEditModal", 1, "عرض واجهة إضافة  تعديل صفحة", "Display Create Edit Page interface", 10 },
-                    { 29, 3, null, false, true, true, false, "Page/CreateEdit", 1, "إضافة تعديل صفحة", "Create Edit Page", 10 },
-                    { 30, 3, null, false, true, true, false, "Page/Delete", 1, "حذف صفحة", "Delete Page", 10 },
-                    { 31, 3, null, false, true, true, false, "Constant/GetAll", 1, "عرض بيانات جدول الثوابت", "Display Constant DataTable", 11 },
-                    { 32, 3, null, false, true, true, false, "Constant/CreateEditModal", 1, "عرض واجهة إضافة تعديل ثوابت", "Display Create Edit Constant Page", 11 },
-                    { 33, 3, null, false, true, true, false, "Constant/CreateEdit", 1, "إضافة تعديل ثوابت", "Create Edit Constant", 11 },
-                    { 34, 3, null, false, true, true, false, "Constant/Delete", 1, "حذف ثابت", "Delete Constant", 11 }
+                    { 38, 3, null, false, true, true, false, "Management/SwitchStatus", 1, "تبديل حالات وحدات النظام", "Switching states of system Modules", 9 },
+                    { 39, 3, null, false, true, true, false, "Page/GetAll", 1, "عرض بيانات جدول الصفحات", "Display Pages DataTable", 10 },
+                    { 40, 3, null, false, true, true, false, "Page/CreateEditModal", 1, "عرض واجهة إضافة  تعديل صفحة", "Display Create Edit Page interface", 10 },
+                    { 41, 3, null, false, true, true, false, "Page/CreateEdit", 1, "إضافة تعديل صفحة", "Create Edit Page", 10 },
+                    { 42, 3, null, false, true, true, false, "Page/Delete", 1, "حذف صفحة", "Delete Page", 10 },
+                    { 43, 3, null, false, true, true, false, "Constant/GetAll", 1, "عرض بيانات جدول الثوابت", "Display Constant DataTable", 11 },
+                    { 44, 3, null, false, true, true, false, "Constant/CreateEditModal", 1, "عرض واجهة إضافة تعديل ثوابت", "Display Create Edit Constant Page", 11 },
+                    { 45, 3, null, false, true, true, false, "Constant/CreateEdit", 1, "إضافة تعديل ثوابت", "Create Edit Constant", 11 },
+                    { 46, 3, null, false, true, true, false, "Constant/Delete", 1, "حذف ثابت", "Delete Constant", 11 },
+                    { 47, 3, null, false, true, true, false, "Beneficiary/GetAll", 2, "عرض بيانات جدول المستفيدين", "Display Beneficiaries DataTable", 13 },
+                    { 48, 3, null, false, true, true, false, "Beneficiary/CreateEdit", 2, "عرض واجهة إضافة تعديل المستفيدين", "Display Create Edit Beneficiaries Page", 13 },
+                    { 49, 3, null, false, true, true, false, "Beneficiary/SubmitCreateEdit", 2, "ضافة تعديل المستفيدين", "Create Edit Beneficiaries", 13 },
+                    { 50, 3, null, false, true, true, false, "Beneficiary/Delete", 2, "حذف مستفيد", "Delete Beneficiary", 13 },
+                    { 51, 3, null, false, true, true, false, "Beneficiary/GetAddresses", 2, "عرض بيانات جدول عناوين المستفيد", "Display beneficiary Addresses DataTable", 13 },
+                    { 52, 3, null, false, true, true, false, "Beneficiary/CreateEditAddressModal", 2, "عرض واجهة إضافة تعديل عناوين المستفيد", "Display Create Edit beneficiary Addresses Page", 13 },
+                    { 53, 3, null, false, true, true, false, "Beneficiary/CreateEditAddress", 2, "إضافة تعديل عناوين المستفيد", "Create Edit beneficiary Addresses", 13 },
+                    { 54, 3, null, false, true, true, false, "Beneficiary/DeleteAddress", 2, "حذف عناوين المستفيد", "Delete beneficiary Addresses", 13 },
+                    { 55, 3, null, false, true, true, false, "Beneficiary/GetContacts", 2, "عرض بيانات جدول جهات اتصال المستفيد", "Display beneficiary Addresses DataTable", 13 },
+                    { 56, 3, null, false, true, true, false, "Beneficiary/CreateEditContactModal", 2, "عرض واجهة إضافة تعديل جهات اتصال المستفيد", "Display Create Edit beneficiary Addresses Page", 13 },
+                    { 57, 3, null, false, true, true, false, "Beneficiary/CreateEditContact", 2, "إضافة تعديل جهات اتصال المستفيد", "Create Edit beneficiary Addresses", 13 },
+                    { 59, 3, null, false, true, true, false, "Beneficiary/GetAttachments", 2, "عرض المرفقات", "Display Attachments", 13 },
+                    { 60, 3, null, false, true, true, false, "Beneficiary/UploadAttachment", 2, "تحميل مرفق", "Upload Attachment", 13 },
+                    { 61, 3, null, false, true, true, false, "Beneficiary/SaveAttachment", 2, "حفظ المرفقات", "Save Attachment", 13 },
+                    { 62, 3, null, false, true, true, false, "Beneficiary/DeleteAttachment", 2, "حذف المرفقات", "Delete Attachment", 13 },
+                    { 63, 3, null, false, true, true, false, "Beneficiary/GetBeneficiaryTypes", 2, "عرض بيانات جدول أنواع المستفيد ", "Display Beneficiary Types DataTable", 14 },
+                    { 64, 3, null, false, true, true, false, "Beneficiary/CreateEditBeneficiaryTypeModal", 2, "عرض واجهة إضافة تعديل أنواع المستفيد", "Display Create Edit Beneficiary Types page", 14 },
+                    { 65, 3, null, false, true, true, false, "Beneficiary/CreateEditBeneficiaryType", 2, "إضافة تعديل أنواع المستفيد", "Create Edit Beneficiary Types", 14 },
+                    { 66, 3, null, false, true, true, false, "Beneficiary/DeleteBeneficiaryType", 2, "حذف أنواع المستفيد", "Delete Beneficiary Types", 14 }
                 });
 
             migrationBuilder.InsertData(
@@ -710,7 +746,17 @@ namespace SubscriberManagementSystem.Data.Migrations
                     { 8, 9, 1 },
                     { 9, 10, 1 },
                     { 10, 11, 1 },
-                    { 45, 46, 1 }
+                    { 12, 13, 1 },
+                    { 13, 14, 1 },
+                    { 14, 15, 1 },
+                    { 16, 17, 1 },
+                    { 17, 18, 1 },
+                    { 18, 19, 1 },
+                    { 19, 20, 1 },
+                    { 20, 21, 1 },
+                    { 21, 22, 1 },
+                    { 22, 23, 1 },
+                    { 57, 58, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -718,20 +764,20 @@ namespace SubscriberManagementSystem.Data.Migrations
                 columns: new[] { "Id", "CategoryId", "Icon", "InMenu", "IsActive", "IsAjax", "IsDeleted", "Link", "ModuleId", "Name", "NameEn", "ParentId" },
                 values: new object[,]
                 {
-                    { 12, 3, null, false, true, true, false, "User/GetAll", 1, "عرض بيانات جدول المستخدمين", "Display User DataTable", 5 },
-                    { 13, 3, null, false, true, true, false, "User/CreateEditModal", 1, "اظهار واجهة اضافة  تعديل مستخدم", "Display Create Edit User Page", 5 },
-                    { 14, 3, null, false, true, true, false, "User/CreateEdit", 1, "اضافة تعديل مستخدم", "Create Edit User", 5 },
-                    { 15, 3, null, false, true, true, false, "User/Delete", 1, "حذف مستخدم", "Delete User", 5 },
-                    { 16, 3, null, false, true, true, false, "User/MyProfileModal", 1, "عرض واجهة ملفي الشخصي", "Display My Profile Page", 5 },
-                    { 17, 3, null, false, true, true, false, "User/MyProfile", 1, "تعديل ملفي الشخصي", "Update My Profile", 5 },
-                    { 18, 3, null, false, true, true, false, "User/ChangePasswordModal", 1, "عرض واجهة تغير كلمة المرور", "Display Change Password Page", 5 },
-                    { 19, 3, null, false, true, true, false, "User/ChangePassword", 1, "تغير كلمة المرور", "ChangePassword", 5 },
-                    { 20, 3, null, false, true, true, false, "UserType/GetAll", 1, "عرض بيانات جدول انواع المستخدين", "Display User Type DateTable", 6 },
-                    { 21, 3, null, false, true, true, false, "UserType/CreateEditModal", 1, "عرض واجهة اضافة  تعديل نوع المستخدم", "Display Create Edit User Type page", 6 },
-                    { 22, 3, null, false, true, true, false, "UserType/CreateEdit", 1, "اضافة تعديل نوع مستخدم", "Create Edit User Type ", 6 },
-                    { 23, 3, null, false, true, true, false, "UserType/Delete", 1, "حذف نوع مستخدم", "Delete User Type ", 6 },
-                    { 24, 3, null, false, true, true, false, "UserPermission/GetUserTypePermissions", 1, "عرض صلاحيات نوع المستخدم", "display User Type Permissions", 7 },
-                    { 25, 3, null, false, true, true, false, "UserPermission/SavePermissions", 1, "حفظ صلاحيات نوع المستخدم", "Save User Type Permissions", 7 }
+                    { 24, 3, null, false, true, true, false, "User/GetAll", 1, "عرض بيانات جدول المستخدمين", "Display User DataTable", 5 },
+                    { 25, 3, null, false, true, true, false, "User/CreateEditModal", 1, "اظهار واجهة اضافة  تعديل مستخدم", "Display Create Edit User Page", 5 },
+                    { 26, 3, null, false, true, true, false, "User/CreateEdit", 1, "اضافة تعديل مستخدم", "Create Edit User", 5 },
+                    { 27, 3, null, false, true, true, false, "User/Delete", 1, "حذف مستخدم", "Delete User", 5 },
+                    { 28, 3, null, false, true, true, false, "User/MyProfileModal", 1, "عرض واجهة ملفي الشخصي", "Display My Profile Page", 5 },
+                    { 29, 3, null, false, true, true, false, "User/MyProfile", 1, "تعديل ملفي الشخصي", "Update My Profile", 5 },
+                    { 30, 3, null, false, true, true, false, "User/ChangePasswordModal", 1, "عرض واجهة تغير كلمة المرور", "Display Change Password Page", 5 },
+                    { 31, 3, null, false, true, true, false, "User/ChangePassword", 1, "تغير كلمة المرور", "ChangePassword", 5 },
+                    { 32, 3, null, false, true, true, false, "UserType/GetAll", 1, "عرض بيانات جدول انواع المستخدين", "Display User Type DateTable", 6 },
+                    { 33, 3, null, false, true, true, false, "UserType/CreateEditModal", 1, "عرض واجهة اضافة  تعديل نوع المستخدم", "Display Create Edit User Type page", 6 },
+                    { 34, 3, null, false, true, true, false, "UserType/CreateEdit", 1, "اضافة تعديل نوع مستخدم", "Create Edit User Type ", 6 },
+                    { 35, 3, null, false, true, true, false, "UserType/Delete", 1, "حذف نوع مستخدم", "Delete User Type ", 6 },
+                    { 36, 3, null, false, true, true, false, "UserPermission/GetUserTypePermissions", 1, "عرض صلاحيات نوع المستخدم", "display User Type Permissions", 7 },
+                    { 37, 3, null, false, true, true, false, "UserPermission/SavePermissions", 1, "حفظ صلاحيات نوع المستخدم", "Save User Type Permissions", 7 }
                 });
 
             migrationBuilder.InsertData(
@@ -742,65 +788,6 @@ namespace SubscriberManagementSystem.Data.Migrations
                     { 5, 5, 1 },
                     { 6, 6, 1 },
                     { 7, 7, 1 },
-                    { 25, 26, 1 },
-                    { 26, 27, 1 },
-                    { 27, 28, 1 },
-                    { 28, 29, 1 },
-                    { 29, 30, 1 },
-                    { 30, 31, 1 },
-                    { 31, 32, 1 },
-                    { 32, 33, 1 },
-                    { 33, 34, 1 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Pages",
-                columns: new[] { "Id", "CategoryId", "Icon", "InMenu", "IsActive", "IsAjax", "IsDeleted", "Link", "ModuleId", "Name", "NameEn", "ParentId" },
-                values: new object[,]
-                {
-                    { 35, 3, null, false, true, true, false, "Beneficiary/GetAll", 2, "عرض بيانات جدول المستفيدين", "Display Beneficiaries DataTable", 13 },
-                    { 36, 3, null, false, true, true, false, "Beneficiary/CreateEdit", 2, "عرض واجهة إضافة تعديل المستفيدين", "Display Create Edit Beneficiaries Page", 13 },
-                    { 37, 3, null, false, true, true, false, "Beneficiary/SubmitCreateEdit", 2, "ضافة تعديل المستفيدين", "Create Edit Beneficiaries", 13 },
-                    { 38, 3, null, false, true, true, false, "Beneficiary/Delete", 2, "حذف مستفيد", "Delete Beneficiary", 13 },
-                    { 39, 3, null, false, true, true, false, "Beneficiary/GetAddresses", 2, "عرض بيانات جدول عناوين المستفيد", "Display beneficiary Addresses DataTable", 13 },
-                    { 40, 3, null, false, true, true, false, "Beneficiary/CreateEditAddressModal", 2, "عرض واجهة إضافة تعديل عناوين المستفيد", "Display Create Edit beneficiary Addresses Page", 13 },
-                    { 41, 3, null, false, true, true, false, "Beneficiary/CreateEditAddress", 2, "إضافة تعديل عناوين المستفيد", "Create Edit beneficiary Addresses", 13 },
-                    { 42, 3, null, false, true, true, false, "Beneficiary/DeleteAddress", 2, "حذف عناوين المستفيد", "Delete beneficiary Addresses", 13 },
-                    { 43, 3, null, false, true, true, false, "Beneficiary/GetContacts", 2, "عرض بيانات جدول جهات اتصال المستفيد", "Display beneficiary Addresses DataTable", 13 },
-                    { 44, 3, null, false, true, true, false, "Beneficiary/CreateEditContactModal", 2, "عرض واجهة إضافة تعديل جهات اتصال المستفيد", "Display Create Edit beneficiary Addresses Page", 13 },
-                    { 45, 3, null, false, true, true, false, "Beneficiary/CreateEditContact", 2, "إضافة تعديل جهات اتصال المستفيد", "Create Edit beneficiary Addresses", 13 },
-                    { 47, 3, null, false, true, true, false, "Beneficiary/GetAttachments", 2, "عرض المرفقات", "Display Attachments", 13 },
-                    { 48, 3, null, false, true, true, false, "Beneficiary/UploadAttachment", 2, "تحميل مرفق", "Upload Attachment", 13 },
-                    { 49, 3, null, false, true, true, false, "Beneficiary/SaveAttachment", 2, "حفظ المرفقات", "Save Attachment", 13 },
-                    { 50, 3, null, false, true, true, false, "Beneficiary/DeleteAttachment", 2, "حذف المرفقات", "Delete Attachment", 13 },
-                    { 51, 3, null, false, true, true, false, "Beneficiary/GetBeneficiaryTypes", 2, "عرض بيانات جدول أنواع المستفيد ", "Display Beneficiary Types DataTable", 14 },
-                    { 52, 3, null, false, true, true, false, "Beneficiary/CreateEditBeneficiaryTypeModal", 2, "عرض واجهة إضافة تعديل أنواع المستفيد", "Display Create Edit Beneficiary Types page", 14 },
-                    { 53, 3, null, false, true, true, false, "Beneficiary/CreateEditBeneficiaryType", 2, "إضافة تعديل أنواع المستفيد", "Create Edit Beneficiary Types", 14 },
-                    { 54, 3, null, false, true, true, false, "Beneficiary/DeleteBeneficiaryType", 2, "حذف أنواع المستفيد", "Delete Beneficiary Types", 14 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "UserPermissions",
-                columns: new[] { "Id", "PageId", "UserTypeId" },
-                values: new object[,]
-                {
-                    { 11, 12, 1 },
-                    { 12, 13, 1 },
-                    { 13, 14, 1 },
-                    { 14, 15, 1 },
-                    { 15, 16, 1 },
-                    { 16, 17, 1 },
-                    { 17, 18, 1 },
-                    { 18, 19, 1 },
-                    { 19, 20, 1 },
-                    { 20, 21, 1 },
-                    { 21, 22, 1 },
-                    { 22, 23, 1 },
-                    { 23, 24, 1 },
-                    { 24, 25, 1 },
-                    { 34, 35, 1 },
-                    { 35, 36, 1 },
-                    { 36, 37, 1 },
                     { 37, 38, 1 },
                     { 38, 39, 1 },
                     { 39, 40, 1 },
@@ -809,6 +796,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                     { 42, 43, 1 },
                     { 43, 44, 1 },
                     { 44, 45, 1 },
+                    { 45, 46, 1 },
                     { 46, 47, 1 },
                     { 47, 48, 1 },
                     { 48, 49, 1 },
@@ -816,7 +804,32 @@ namespace SubscriberManagementSystem.Data.Migrations
                     { 50, 51, 1 },
                     { 51, 52, 1 },
                     { 52, 53, 1 },
-                    { 53, 54, 1 }
+                    { 53, 54, 1 },
+                    { 54, 55, 1 },
+                    { 55, 56, 1 },
+                    { 56, 57, 1 },
+                    { 58, 59, 1 },
+                    { 59, 60, 1 },
+                    { 60, 61, 1 },
+                    { 61, 62, 1 },
+                    { 62, 63, 1 },
+                    { 63, 64, 1 },
+                    { 64, 65, 1 },
+                    { 65, 66, 1 },
+                    { 23, 24, 1 },
+                    { 24, 25, 1 },
+                    { 25, 26, 1 },
+                    { 26, 27, 1 },
+                    { 27, 28, 1 },
+                    { 28, 29, 1 },
+                    { 29, 30, 1 },
+                    { 30, 31, 1 },
+                    { 31, 32, 1 },
+                    { 32, 33, 1 },
+                    { 33, 34, 1 },
+                    { 34, 35, 1 },
+                    { 35, 36, 1 },
+                    { 36, 37, 1 }
                 });
 
             migrationBuilder.CreateIndex(

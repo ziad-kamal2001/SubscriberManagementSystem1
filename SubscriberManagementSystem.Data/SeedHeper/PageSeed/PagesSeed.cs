@@ -141,7 +141,162 @@ namespace SubscriberManagementSystem.Data.SeedHeper.PageSeed
                                     ModuleId = (int)GeneralEnums.Management,
                                     CategoryId = (int)GeneralEnums.Page
                                 },
-
+                new Page()
+                {
+                    Id = 12,
+                    Name = "إدارة العملاء",
+                    NameEn = "Beneficiaries Management",
+                    Icon = "bi bi-people",
+                    Link = null,
+                    InMenu = true,
+                    ParentId = (int)GeneralEnums.ParentPageId,
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Header
+                },
+                new Page()
+                {
+                    Id = 13,
+                    Name = "المستفيدين",
+                    NameEn = "Beneficiaries",
+                    Icon = "bi bi-people-fill",
+                    Link = "Beneficiary/Index",
+                    InMenu = true,
+                    ParentId = 12, // Beneficiaries Management
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Page
+                },
+                new Page()
+                {
+                    Id = 14,
+                    Name = "أنواع المستفيدين",
+                    NameEn = "Beneficiaries Types",
+                    Icon = "bi bi-people-fill",
+                    Link = "Beneficiary/BeneficiaryTypes",
+                    InMenu = true,
+                    ParentId = 12, // Beneficiaries Management
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Page
+                },
+                new Page()
+                {
+                    Id = 15,
+                    Name = "أنواع المرفقات",
+                    NameEn = "Attachments Types",
+                    Icon = "bi bi-bookmarks",
+                    Link = "AttachmentType/Index",
+                    InMenu = true,
+                    ParentId = 12, // Beneficiaries Management
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Page
+                },
+                new Page()
+                {
+                    Id = 16,
+                    Name = "إدارة الخدمات",
+                    NameEn = "Services Management",
+                    Icon = "bi bi-stickies-fill",
+                    Link = null,
+                    InMenu = true,
+                    ParentId = (int)GeneralEnums.ParentPageId,
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.ServicesManagement,
+                    CategoryId = (int)GeneralEnums.Header
+                },
+                new Page()
+                {
+                    Id = 17,
+                    Name = "الخدمات",
+                    NameEn = "Services",
+                    Icon = "bi bi-sticky-fill",
+                    Link = "Service/Index",
+                    InMenu = true,
+                    ParentId = 16, // Services Management
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.ServicesManagement,
+                    CategoryId = (int)GeneralEnums.Page
+                },
+                new Page()
+                {
+                    Id = 18,
+                    Name = "مجموعات الخدمات",
+                    NameEn = "Services Groups",
+                    Icon = "bi bi-stickies-fill",
+                    Link = "Service/ServiceGroups",
+                    InMenu = true,
+                    ParentId = 16, // Services Management
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.ServicesManagement,
+                    CategoryId = (int)GeneralEnums.Page
+                },
+                new Page()
+                {
+                    Id = 19,
+                    Name = "المندوبين",
+                    NameEn = "Representatives",
+                    Icon = "bi bi-person-check",
+                    Link = "Representative/Index",
+                    InMenu = true,
+                    ParentId = 16, // Services Management
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.ServicesManagement,
+                    CategoryId = (int)GeneralEnums.Page
+                },
+                new Page()
+                {
+                    Id = 20,
+                    Name = "فئات المندوب",
+                    NameEn = "Representative Categories",
+                    Icon = "bi bi-person-check",
+                    Link = "RepresentativeCategory/Index",
+                    InMenu = true,
+                    ParentId = 16, // Services Management
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.ServicesManagement,
+                    CategoryId = (int)GeneralEnums.Page
+                },
+                new Page()
+                {
+                    Id = 21,
+                    Name = " الجهات ",
+                    NameEn = "Responsible Agencies",
+                    Icon = "bi bi-person-check",
+                    Link = "ResponsibleAgency/Index",
+                    InMenu = true,
+                    ParentId = 16, // Services Management
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.ServicesManagement,
+                    CategoryId = (int)GeneralEnums.Page
+                },
+                 new Page()
+                {
+                    Id = 22,
+                    Name = " أنواع الجهات  ",
+                    NameEn = "Responsible Agencies Types",
+                    Icon = "bi bi-person-check",
+                    Link = "ResponsibleAgency/AgencyTypes",
+                    InMenu = true,
+                    ParentId = 16, // Services Management
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.ServicesManagement,
+                    CategoryId = (int)GeneralEnums.Page
+                },
+                  new Page()
+                {
+                    Id = 23,
+                    Name = " حالات الطلب ",
+                    NameEn = "Request Cases",
+                    Icon = "bi bi-person-check",
+                    Link = "RequestCase/Index",
+                    InMenu = true,
+                    ParentId = 16, // Services Management
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.ServicesManagement,
+                    CategoryId = (int)GeneralEnums.Page
+                }
 
             };
 

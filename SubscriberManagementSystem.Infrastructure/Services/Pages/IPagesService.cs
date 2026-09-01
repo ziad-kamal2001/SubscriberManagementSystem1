@@ -11,12 +11,12 @@ namespace SubscriberManagementSystem.Infrastructure.Services.Pages
     public interface IPagesService
     {
         Task<PagedResultDto<List<Page>>> GetAllAsync(PagedResultRequestDto<Page> input);
-        Task<List<Page>> GetPagesListForMenu();
         Task<Page> GetByIdOrDefaultAsync(int id);
         Task<OperationResult> CreateEditAsync(Page input);
         Task<OperationResult> DeleteAsync(int id);
         Task<List<Page>> GetParentsListAsync();
         Task<List<Module>> GetModulesListAsync();
         Task<List<PageCategory>> GetCategoriesListAsync();
+        Task<List<Page>> GetPagesListForMenu();
     }
 }

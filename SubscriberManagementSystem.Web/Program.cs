@@ -4,9 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using SubscriberManagementSystem.Data.DbContext;
 using SubscriberManagementSystem.Data.Models;
-using SubscriberManagementSystem.Web.Helper.Claims;
-using SubscriberManagementSystem.Infrastructure.Extentions;
 using SubscriberManagementSystem.Infrastructure.AutoMapper;
+using SubscriberManagementSystem.Infrastructure.Extentions;
+using SubscriberManagementSystem.Web.Helper.Claims;
+using SubscriberManagementSystem.Web.Helper.Files;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,7 +43,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 builder.Services.AddTransient<IClaimsService, ClaimsService>();
-builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
+builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddAutoMapper(cfg => { }, typeof(AutoMapperProfile).Assembly); 
 builder.Services.RegisterServices();
 
 var app = builder.Build();

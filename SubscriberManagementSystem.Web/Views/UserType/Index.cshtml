@@ -1,17 +1,16 @@
-﻿@model SubscriberManagementSystem.Web.ViewModel.Pages.IndexPageVM
-@using SubscriberManagementSystem.Web.Resources;
+﻿@using SubscriberManagementSystem.Web.Resources;
 
 @{
-    ViewData["Title"] = Global.Pages;
+    ViewData["Title"] = Global.UserTypes;
 }
 
 <div class="card card-custom">
     <div class="card-header">
         <div class="card-title fw-bolder fs-2">
             <span class="card-icon">
-                <i class="bi bi-window-stack fs-3"></i>
+                <i class="bi bi-people fs-3"></i>
             </span>
-            @Global.Pages
+            @Global.UserTypes
         </div>
     </div>
     <div class="card-body">
@@ -27,29 +26,6 @@
                         </svg>
                     </span>
                     <input id="searchInput" name="Keyword" type="text" placeholder="@Global.Search" class="form-control form-control-solid me-3 w-250px ps-15 fs-4" />
-
-                    <select name="ParentId" class="form-select w-200px fs-4 me-5" data-control="select2" data-dropdown-css-class="fs-4">
-                        <option value="" >@Global.SelectParent</option>
-                        @foreach (var item in Model.Parents)
-                        {
-                            <option value="@item.Value">@item.Text</option>
-                        }
-                    </select>
-
-                    <select name="ModuleId" class="form-select fs-4 me-5" data-control="select2" data-dropdown-css-class="fs-4">
-                        <option value="">@Global.SelectModule</option>
-                        @foreach (var item in Model.Modules)
-                        {
-                            <option value="@item.Id">@item.Name</option>
-                        }
-                    </select>
-
-                    <select name="IsActiveSearch" class="form-select fs-4 ms-5 w-150px" data-control="select2" data-dropdown-css-class="fs-4" data-hide-search="true">
-                        <option value="">@Global.Status</option>
-                        <option value="true" selected>@Global.Active</option>
-                        <option value="false">@Global.Inactive</option>
-                    </select>
-
                 </div>
                 <!--end::Search-->
                 <!--begin::Toolbar-->
@@ -72,31 +48,27 @@
         </form>
         <!--end::Wrapper-->
         <!--begin::DataTable-->
-            <table id="Pages" class="table table-hover table-striped table-rounded border gy-5 gs-5 dataTable">
-                <thead>
-                    <tr class="fw-bold fs-6 text-gray-800 border-bottom border-gray-200">
-                        <th class="fw-bolder fs-4">#</th>
-                        <th class="fw-bolder fs-4">@Global.Icon</th>
-                        <th class="fw-bolder fs-4">@Global.Name</th>
-                        <th class="fw-bolder fs-4">@Global.NameEn</th>
-                        <th class="fw-bolder fs-4">@Global.Link</th>
-                        <th class="fw-bolder fs-4">@Global.NameParent</th>
-                        <th class="fw-bolder fs-4">@Global.Status</th>
-                        <th class="fw-bolder fs-4">@Global.Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="fs-5">
-                </tbody>
-            </table>
+        <table id="UserTypes" class="table table-hover table-striped table-rounded border gy-5 gs-5 dataTable">
+            <thead>
+                <tr class="fw-bold fs-6 text-gray-800 border-bottom border-gray-200">
+                    <th class="fw-bolder fs-4">#</th>
+                    <th class="fw-bolder fs-4">@Global.Name</th>
+                    <th class="fw-bolder fs-4">@Global.Actions</th>
+                </tr>
+            </thead>
+            <tbody class="fs-5">
+            </tbody>
+        </table>
         <!--end::DataTable-->
     </div>
 </div>
 
+
 @section scripts
     {
-    <script src="~/js/Pages.js"></script>
+    <script src="~/js/UserTypes.js"></script>
 }
 
 @section onReadyScript{
-    pages.init();
+    userTypes.init();
 }

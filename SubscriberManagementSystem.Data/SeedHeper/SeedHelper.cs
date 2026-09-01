@@ -33,9 +33,10 @@ namespace SubscriberManagementSystem.Data.SeedHeper
         private static void SeedModules(ModelBuilder builder)
         {
             builder.Entity<Module>().HasData(
-                new Module { Id = 1, Name = "الادارة", Status = true },
-                new Module { Id = 2, Name = "إدارة المستفيدين", Status = true }
-                //new Module { Id = 8, Name = "التقارير", Status = false },
+                    new Module { Id = 1, Name = "الادارة", Status = true },
+                new Module { Id = 2, Name = "إدارة العملاء", Status = true },
+                new Module { Id = 3, Name = "إدارة الخدمات", Status = true },
+                new Module { Id = 4, Name = "المالية", Status = true }
             );
         }
 
