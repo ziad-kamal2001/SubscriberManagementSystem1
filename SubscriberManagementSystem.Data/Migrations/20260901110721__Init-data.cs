@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SubscriberManagementSystem.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class init_Data : Migration
+    public partial class _Initdata : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -412,6 +412,32 @@ namespace SubscriberManagementSystem.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserPermissions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserTypeId = table.Column<int>(type: "int", nullable: false),
+                    PageId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserPermissions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserPermissions_Pages_PageId",
+                        column: x => x.PageId,
+                        principalTable: "Pages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserPermissions_UserTypes_UserTypeId",
+                        column: x => x.UserTypeId,
+                        principalTable: "UserTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 columns: table => new
                 {
@@ -558,7 +584,8 @@ namespace SubscriberManagementSystem.Data.Migrations
                     { 4, null, null, "حالة السكن", null },
                     { 8, null, null, "حالة العمل", null },
                     { 11, null, null, "الحالة الصحية", null },
-                    { 14, null, null, " الاقامة مكان", null }
+                    { 14, null, null, " الاقامة مكان", null },
+                    { 17, null, null, "نوع المستفيد", null }
                 });
 
             migrationBuilder.InsertData(
@@ -581,6 +608,15 @@ namespace SubscriberManagementSystem.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "UserTypes",
+                columns: new[] { "Id", "CreatedBy", "CreatedOn", "DeletedBy", "IsDeleted", "Name", "UpdatedBy", "UpdatedOn" },
+                values: new object[,]
+                {
+                    { 1, null, new DateTime(2026, 9, 1, 14, 7, 20, 597, DateTimeKind.Local).AddTicks(8643), null, false, "مدير النظام", null, null },
+                    { 2, null, new DateTime(2026, 9, 1, 14, 7, 20, 600, DateTimeKind.Local).AddTicks(380), null, false, "مستخدم", null, null }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Constants",
                 columns: new[] { "Id", "Comment", "Icon", "Name", "ParentId" },
                 values: new object[,]
@@ -595,7 +631,192 @@ namespace SubscriberManagementSystem.Data.Migrations
                     { 12, null, null, "سليم", 11 },
                     { 13, null, null, "مصاب", 11 },
                     { 15, null, null, "داخلي", 14 },
-                    { 16, null, null, "خارجي", 14 }
+                    { 16, null, null, "خارجي", 14 },
+                    { 18, null, null, "زبون", 17 },
+                    { 19, null, null, "مورد", 17 },
+                    { 20, null, null, "مزود خدمة", 17 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Pages",
+                columns: new[] { "Id", "CategoryId", "Icon", "InMenu", "IsActive", "IsAjax", "IsDeleted", "Link", "ModuleId", "Name", "NameEn", "ParentId" },
+                values: new object[] { 1, 1, null, false, false, false, false, null, null, "الاب", "Parent Page", null });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "Avatar", "ConcurrencyStamp", "CreatedBy", "CreatedOn", "DeletedBy", "Email", "EmailConfirmed", "GenderId", "IsActive", "IsDeleted", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UpdatedBy", "UpdatedOn", "UserName", "UserTypeId" },
+                values: new object[] { "D3E20CBB-2AD1-4D55-9A1E-4CEEC5B4CDE3", 0, "default_avatar.png", "d0840ed3-4ab0-49c9-afb2-86a80f96dd86", null, new DateTime(2026, 9, 1, 14, 7, 20, 600, DateTimeKind.Local).AddTicks(1330), null, "admin@fast.com", false, 2, true, false, false, null, "Fast Admin", null, "ADMIN@FAST.COM", "AQAAAAIAAYagAAAAEALPXo0djcdEdnFUCCnSoiw/YG1jql8WNeGoa6QmIaJ7PzjIHc8Pff2UGKH3PnPa/A==", "", false, "05a46bc0-5e87-4662-ae8c-ad801e609cb8", false, null, null, "admin@fast.com", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Pages",
+                columns: new[] { "Id", "CategoryId", "Icon", "InMenu", "IsActive", "IsAjax", "IsDeleted", "Link", "ModuleId", "Name", "NameEn", "ParentId" },
+                values: new object[,]
+                {
+                    { 2, 2, "bi bi-house-fill", true, true, false, false, "Home/Index", null, "الرئيسية", "Home", 1 },
+                    { 3, 1, "bi bi-list-ul", true, true, false, false, null, 1, "الإدارة", "Management", 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserPermissions",
+                columns: new[] { "Id", "PageId", "UserTypeId" },
+                values: new object[] { 1, 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Pages",
+                columns: new[] { "Id", "CategoryId", "Icon", "InMenu", "IsActive", "IsAjax", "IsDeleted", "Link", "ModuleId", "Name", "NameEn", "ParentId" },
+                values: new object[,]
+                {
+                    { 4, 1, "bi bi-people", true, true, false, false, null, 1, "إدارة المستخدمين", "Users Management", 3 },
+                    { 9, 2, "bi bi-view-list", true, true, false, false, "Management/Modules", 1, "وحدات النظام", "Governorates and Cities", 3 },
+                    { 10, 2, "bi bi-window-stack", true, true, false, false, "Page/Index", 1, "الصفحات", "Pages", 3 },
+                    { 11, 2, "fa fa-anchor", true, true, false, false, "Constant/Index", 1, "الثوابت", "Constants", 3 },
+                    { 46, 3, null, false, true, true, false, "Beneficiary/DeleteContact", 1, "حذف جهات اتصال المستفيد", "Delete beneficiary Addresses", 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserPermissions",
+                columns: new[] { "Id", "PageId", "UserTypeId" },
+                values: new object[,]
+                {
+                    { 2, 2, 1 },
+                    { 3, 3, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Pages",
+                columns: new[] { "Id", "CategoryId", "Icon", "InMenu", "IsActive", "IsAjax", "IsDeleted", "Link", "ModuleId", "Name", "NameEn", "ParentId" },
+                values: new object[,]
+                {
+                    { 5, 2, "bi bi-person-fill", true, true, false, false, "User/Index", 1, "المستخدمين", "Users", 4 },
+                    { 6, 2, "bi bi-people", true, true, false, false, "UserType/Index", 1, "أنواع المستخدمين", "User Types", 4 },
+                    { 7, 2, "bi bi-check-lg", true, true, false, false, "UserPermission/Index", 1, "صلاحيات المستخدم", "User Permissions", 4 },
+                    { 26, 3, null, false, true, true, false, "Management/SwitchStatus", 1, "تبديل حالات وحدات النظام", "Switching states of system Modules", 9 },
+                    { 27, 3, null, false, true, true, false, "Page/GetAll", 1, "عرض بيانات جدول الصفحات", "Display Pages DataTable", 10 },
+                    { 28, 3, null, false, true, true, false, "Page/CreateEditModal", 1, "عرض واجهة إضافة  تعديل صفحة", "Display Create Edit Page interface", 10 },
+                    { 29, 3, null, false, true, true, false, "Page/CreateEdit", 1, "إضافة تعديل صفحة", "Create Edit Page", 10 },
+                    { 30, 3, null, false, true, true, false, "Page/Delete", 1, "حذف صفحة", "Delete Page", 10 },
+                    { 31, 3, null, false, true, true, false, "Constant/GetAll", 1, "عرض بيانات جدول الثوابت", "Display Constant DataTable", 11 },
+                    { 32, 3, null, false, true, true, false, "Constant/CreateEditModal", 1, "عرض واجهة إضافة تعديل ثوابت", "Display Create Edit Constant Page", 11 },
+                    { 33, 3, null, false, true, true, false, "Constant/CreateEdit", 1, "إضافة تعديل ثوابت", "Create Edit Constant", 11 },
+                    { 34, 3, null, false, true, true, false, "Constant/Delete", 1, "حذف ثابت", "Delete Constant", 11 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserPermissions",
+                columns: new[] { "Id", "PageId", "UserTypeId" },
+                values: new object[,]
+                {
+                    { 4, 4, 1 },
+                    { 8, 9, 1 },
+                    { 9, 10, 1 },
+                    { 10, 11, 1 },
+                    { 45, 46, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Pages",
+                columns: new[] { "Id", "CategoryId", "Icon", "InMenu", "IsActive", "IsAjax", "IsDeleted", "Link", "ModuleId", "Name", "NameEn", "ParentId" },
+                values: new object[,]
+                {
+                    { 12, 3, null, false, true, true, false, "User/GetAll", 1, "عرض بيانات جدول المستخدمين", "Display User DataTable", 5 },
+                    { 13, 3, null, false, true, true, false, "User/CreateEditModal", 1, "اظهار واجهة اضافة  تعديل مستخدم", "Display Create Edit User Page", 5 },
+                    { 14, 3, null, false, true, true, false, "User/CreateEdit", 1, "اضافة تعديل مستخدم", "Create Edit User", 5 },
+                    { 15, 3, null, false, true, true, false, "User/Delete", 1, "حذف مستخدم", "Delete User", 5 },
+                    { 16, 3, null, false, true, true, false, "User/MyProfileModal", 1, "عرض واجهة ملفي الشخصي", "Display My Profile Page", 5 },
+                    { 17, 3, null, false, true, true, false, "User/MyProfile", 1, "تعديل ملفي الشخصي", "Update My Profile", 5 },
+                    { 18, 3, null, false, true, true, false, "User/ChangePasswordModal", 1, "عرض واجهة تغير كلمة المرور", "Display Change Password Page", 5 },
+                    { 19, 3, null, false, true, true, false, "User/ChangePassword", 1, "تغير كلمة المرور", "ChangePassword", 5 },
+                    { 20, 3, null, false, true, true, false, "UserType/GetAll", 1, "عرض بيانات جدول انواع المستخدين", "Display User Type DateTable", 6 },
+                    { 21, 3, null, false, true, true, false, "UserType/CreateEditModal", 1, "عرض واجهة اضافة  تعديل نوع المستخدم", "Display Create Edit User Type page", 6 },
+                    { 22, 3, null, false, true, true, false, "UserType/CreateEdit", 1, "اضافة تعديل نوع مستخدم", "Create Edit User Type ", 6 },
+                    { 23, 3, null, false, true, true, false, "UserType/Delete", 1, "حذف نوع مستخدم", "Delete User Type ", 6 },
+                    { 24, 3, null, false, true, true, false, "UserPermission/GetUserTypePermissions", 1, "عرض صلاحيات نوع المستخدم", "display User Type Permissions", 7 },
+                    { 25, 3, null, false, true, true, false, "UserPermission/SavePermissions", 1, "حفظ صلاحيات نوع المستخدم", "Save User Type Permissions", 7 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserPermissions",
+                columns: new[] { "Id", "PageId", "UserTypeId" },
+                values: new object[,]
+                {
+                    { 5, 5, 1 },
+                    { 6, 6, 1 },
+                    { 7, 7, 1 },
+                    { 25, 26, 1 },
+                    { 26, 27, 1 },
+                    { 27, 28, 1 },
+                    { 28, 29, 1 },
+                    { 29, 30, 1 },
+                    { 30, 31, 1 },
+                    { 31, 32, 1 },
+                    { 32, 33, 1 },
+                    { 33, 34, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Pages",
+                columns: new[] { "Id", "CategoryId", "Icon", "InMenu", "IsActive", "IsAjax", "IsDeleted", "Link", "ModuleId", "Name", "NameEn", "ParentId" },
+                values: new object[,]
+                {
+                    { 35, 3, null, false, true, true, false, "Beneficiary/GetAll", 2, "عرض بيانات جدول المستفيدين", "Display Beneficiaries DataTable", 13 },
+                    { 36, 3, null, false, true, true, false, "Beneficiary/CreateEdit", 2, "عرض واجهة إضافة تعديل المستفيدين", "Display Create Edit Beneficiaries Page", 13 },
+                    { 37, 3, null, false, true, true, false, "Beneficiary/SubmitCreateEdit", 2, "ضافة تعديل المستفيدين", "Create Edit Beneficiaries", 13 },
+                    { 38, 3, null, false, true, true, false, "Beneficiary/Delete", 2, "حذف مستفيد", "Delete Beneficiary", 13 },
+                    { 39, 3, null, false, true, true, false, "Beneficiary/GetAddresses", 2, "عرض بيانات جدول عناوين المستفيد", "Display beneficiary Addresses DataTable", 13 },
+                    { 40, 3, null, false, true, true, false, "Beneficiary/CreateEditAddressModal", 2, "عرض واجهة إضافة تعديل عناوين المستفيد", "Display Create Edit beneficiary Addresses Page", 13 },
+                    { 41, 3, null, false, true, true, false, "Beneficiary/CreateEditAddress", 2, "إضافة تعديل عناوين المستفيد", "Create Edit beneficiary Addresses", 13 },
+                    { 42, 3, null, false, true, true, false, "Beneficiary/DeleteAddress", 2, "حذف عناوين المستفيد", "Delete beneficiary Addresses", 13 },
+                    { 43, 3, null, false, true, true, false, "Beneficiary/GetContacts", 2, "عرض بيانات جدول جهات اتصال المستفيد", "Display beneficiary Addresses DataTable", 13 },
+                    { 44, 3, null, false, true, true, false, "Beneficiary/CreateEditContactModal", 2, "عرض واجهة إضافة تعديل جهات اتصال المستفيد", "Display Create Edit beneficiary Addresses Page", 13 },
+                    { 45, 3, null, false, true, true, false, "Beneficiary/CreateEditContact", 2, "إضافة تعديل جهات اتصال المستفيد", "Create Edit beneficiary Addresses", 13 },
+                    { 47, 3, null, false, true, true, false, "Beneficiary/GetAttachments", 2, "عرض المرفقات", "Display Attachments", 13 },
+                    { 48, 3, null, false, true, true, false, "Beneficiary/UploadAttachment", 2, "تحميل مرفق", "Upload Attachment", 13 },
+                    { 49, 3, null, false, true, true, false, "Beneficiary/SaveAttachment", 2, "حفظ المرفقات", "Save Attachment", 13 },
+                    { 50, 3, null, false, true, true, false, "Beneficiary/DeleteAttachment", 2, "حذف المرفقات", "Delete Attachment", 13 },
+                    { 51, 3, null, false, true, true, false, "Beneficiary/GetBeneficiaryTypes", 2, "عرض بيانات جدول أنواع المستفيد ", "Display Beneficiary Types DataTable", 14 },
+                    { 52, 3, null, false, true, true, false, "Beneficiary/CreateEditBeneficiaryTypeModal", 2, "عرض واجهة إضافة تعديل أنواع المستفيد", "Display Create Edit Beneficiary Types page", 14 },
+                    { 53, 3, null, false, true, true, false, "Beneficiary/CreateEditBeneficiaryType", 2, "إضافة تعديل أنواع المستفيد", "Create Edit Beneficiary Types", 14 },
+                    { 54, 3, null, false, true, true, false, "Beneficiary/DeleteBeneficiaryType", 2, "حذف أنواع المستفيد", "Delete Beneficiary Types", 14 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserPermissions",
+                columns: new[] { "Id", "PageId", "UserTypeId" },
+                values: new object[,]
+                {
+                    { 11, 12, 1 },
+                    { 12, 13, 1 },
+                    { 13, 14, 1 },
+                    { 14, 15, 1 },
+                    { 15, 16, 1 },
+                    { 16, 17, 1 },
+                    { 17, 18, 1 },
+                    { 18, 19, 1 },
+                    { 19, 20, 1 },
+                    { 20, 21, 1 },
+                    { 21, 22, 1 },
+                    { 22, 23, 1 },
+                    { 23, 24, 1 },
+                    { 24, 25, 1 },
+                    { 34, 35, 1 },
+                    { 35, 36, 1 },
+                    { 36, 37, 1 },
+                    { 37, 38, 1 },
+                    { 38, 39, 1 },
+                    { 39, 40, 1 },
+                    { 40, 41, 1 },
+                    { 41, 42, 1 },
+                    { 42, 43, 1 },
+                    { 43, 44, 1 },
+                    { 44, 45, 1 },
+                    { 46, 47, 1 },
+                    { 47, 48, 1 },
+                    { 48, 49, 1 },
+                    { 49, 50, 1 },
+                    { 50, 51, 1 },
+                    { 51, 52, 1 },
+                    { 52, 53, 1 },
+                    { 53, 54, 1 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -745,6 +966,16 @@ namespace SubscriberManagementSystem.Data.Migrations
                 column: "ParentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserPermissions_PageId",
+                table: "UserPermissions",
+                column: "PageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserPermissions_UserTypeId",
+                table: "UserPermissions",
+                column: "UserTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserTypes_UniqueName",
                 table: "UserTypes",
                 column: "Name",
@@ -781,10 +1012,10 @@ namespace SubscriberManagementSystem.Data.Migrations
                 name: "Childrens");
 
             migrationBuilder.DropTable(
-                name: "Pages");
+                name: "TypesSubscriptions");
 
             migrationBuilder.DropTable(
-                name: "TypesSubscriptions");
+                name: "UserPermissions");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -808,16 +1039,19 @@ namespace SubscriberManagementSystem.Data.Migrations
                 name: "Wives");
 
             migrationBuilder.DropTable(
-                name: "Modules");
-
-            migrationBuilder.DropTable(
-                name: "PageCategories");
+                name: "Pages");
 
             migrationBuilder.DropTable(
                 name: "UserTypes");
 
             migrationBuilder.DropTable(
                 name: "Beneficiaries");
+
+            migrationBuilder.DropTable(
+                name: "Modules");
+
+            migrationBuilder.DropTable(
+                name: "PageCategories");
 
             migrationBuilder.DropTable(
                 name: "Constants");

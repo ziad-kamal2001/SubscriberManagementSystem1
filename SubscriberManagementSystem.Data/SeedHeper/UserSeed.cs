@@ -41,7 +41,7 @@ namespace SubscriberManagementSystem.Data.SeedHeper
 
 
             // set user password hash 
-            adminUser.PasswordHash = new PasswordHasher<User>().HashPassword(adminUser, "fastadmin");
+            adminUser.PasswordHash = "AQAAAAIAAYagAAAAEALPXo0djcdEdnFUCCnSoiw/YG1jql8WNeGoa6QmIaJ7PzjIHc8Pff2UGKH3PnPa/A==";
 
             // seed user
             builder.Entity<User>().HasData(adminUser);

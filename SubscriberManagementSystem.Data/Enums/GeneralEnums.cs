@@ -46,8 +46,16 @@ namespace SubscriberManagementSystem.Data.Enums
         Management = 1, //Modules
         BeneficiariesManagement = 2,
         // Parent Page Ids
-        UserPageId = 3,
-        UserTypePageId = 4,
+        UserPageId = 5,
+        UserTypePageId = 6,
+        UserPermissionsId = 7,
+        DestinationId = 8,
+        SystemModulesId = 9,
+        PageId = 10,
+        ConstantId = 11,
+
+        BeneficiaryId = 13,
+        BeneficiaryTypesId = 14,
 
     }
 }

@@ -49,110 +49,98 @@ namespace SubscriberManagementSystem.Data.SeedHeper.PageSeed
                                     ModuleId = (int)GeneralEnums.Management,
                                     CategoryId = (int)GeneralEnums.Header
                                 },
-                                //new Page()
-                                //{
-                                //    Id = 4,
-                                //    Name = "إدارة المستخدمين",
-                                //    NameEn = "Users Management",
-                                //    Icon = "bi bi-people",
-                                //    Link = null,
-                                //    InMenu = true,
-                                //    ParentId = 3, // Management
-                                //    IsActive = true,
-                                //    ModuleId = (int)GeneralEnums.Management,
-                                //    CategoryId = (int)GeneralEnums.Header
-                                //},
-                //                new Page()
-                //                {
-                //                    Id = 5,
-                //                    Name = "المستخدمين",
-                //                    NameEn = "Users",
-                //                    Icon = "bi bi-person-fill",
-                //                    Link = "User/Index",
-                //                    InMenu = true,
-                //                    ParentId = 4, //Users Management
-                //                    IsActive = true,
-                //                    ModuleId = (int)GeneralEnums.Management,
-                //                    CategoryId = (int)GeneralEnums.Page
-                //                },
-                //                new Page()
-                //                {
-                //                    Id = 6,
-                //                    Name = "أنواع المستخدمين",
-                //                    NameEn = "User Types",
-                //                    Icon = "bi bi-people",
-                //                    Link = "UserType/Index",
-                //                    InMenu = true,
-                //                    ParentId = 4, //Users Management
-                //                    IsActive = true,
-                //                    ModuleId = (int)GeneralEnums.Management,
-                //                    CategoryId = (int)GeneralEnums.Page
-                //                },
-                //                new Page()
-                //                {
-                //                    Id = 7,
-                //                    Name = "صلاحيات المستخدم",
-                //                    NameEn = "User Permissions",
-                //                    Icon = "bi bi-check-lg",
-                //                    Link = "UserPermission/Index",
-                //                    InMenu = true,
-                //                    ParentId = 4, //Users Management
-                //                    IsActive = true,
-                //                    ModuleId = (int)GeneralEnums.Management,
-                //                    CategoryId = (int)GeneralEnums.Page
-                //                },
-                //                new Page()
-                //                {
-                //                    Id = 8,
-                //                    Name = "المحافظات و المدن",
-                //                    NameEn = "Governorates and Cities",
-                //                    Icon = "bi bi-geo-alt-fill",
-                //                    Link = "Destination/Index",
-                //                    InMenu = true,
-                //                    ParentId = 3, //Management
-                //                    IsActive = true,
-                //                    ModuleId = (int)GeneralEnums.Management,
-                //                    CategoryId = (int)GeneralEnums.Page
-                //                },
-                //                new Page()
-                //                {
-                //                    Id = 9,
-                //                    Name = "وحدات النظام",
-                //                    NameEn = "Governorates and Cities",
-                //                    Icon = "bi bi-view-list",
-                //                    Link = "Management/Modules",
-                //                    InMenu = true,
-                //                    ParentId = 3, //Management
-                //                    IsActive = true,
-                //                    ModuleId = (int)GeneralEnums.Management,
-                //                    CategoryId = (int)GeneralEnums.Page
-                //                },
-                //                new Page()
-                //                {
-                //                    Id = 10,
-                //                    Name = "الصفحات",
-                //                    NameEn = "Pages",
-                //                    Icon = "bi bi-window-stack",
-                //                    Link = "Page/Index",
-                //                    InMenu = true,
-                //                    ParentId = 3, //Management
-                //                    IsActive = true,
-                //                    ModuleId = (int)GeneralEnums.Management,
-                //                    CategoryId = (int)GeneralEnums.Page
-                //                },
-                //                new Page()
-                //                {
-                //                    Id = 11,
-                //                    Name = "الثوابت",
-                //                    NameEn = "Constants",
-                //                    Icon = "fa fa-anchor",
-                //                    Link = "Constant/Index",
-                //                    InMenu = true,
-                //                    ParentId = 3, //Management
-                //                    IsActive = true,
-                //                    ModuleId = (int)GeneralEnums.Management,
-                //                    CategoryId = (int)GeneralEnums.Page
-                //                },
+                                new Page()
+                                {
+                                    Id = 4,
+                                    Name = "إدارة المستخدمين",
+                                    NameEn = "Users Management",
+                                    Icon = "bi bi-people",
+                                    Link = null,
+                                    InMenu = true,
+                                    ParentId = 3, // Management
+                                    IsActive = true,
+                                    ModuleId = (int)GeneralEnums.Management,
+                                    CategoryId = (int)GeneralEnums.Header
+                                },
+                                new Page()
+                                {
+                                    Id = 5,
+                                    Name = "المستخدمين",
+                                    NameEn = "Users",
+                                    Icon = "bi bi-person-fill",
+                                    Link = "User/Index",
+                                    InMenu = true,
+                                    ParentId = 4, //Users Management
+                                    IsActive = true,
+                                    ModuleId = (int)GeneralEnums.Management,
+                                    CategoryId = (int)GeneralEnums.Page
+                                },
+                                new Page()
+                                {
+                                    Id = 6,
+                                    Name = "أنواع المستخدمين",
+                                    NameEn = "User Types",
+                                    Icon = "bi bi-people",
+                                    Link = "UserType/Index",
+                                    InMenu = true,
+                                    ParentId = 4, //Users Management
+                                    IsActive = true,
+                                    ModuleId = (int)GeneralEnums.Management,
+                                    CategoryId = (int)GeneralEnums.Page
+                                },
+                                new Page()
+                                {
+                                    Id = 7,
+                                    Name = "صلاحيات المستخدم",
+                                    NameEn = "User Permissions",
+                                    Icon = "bi bi-check-lg",
+                                    Link = "UserPermission/Index",
+                                    InMenu = true,
+                                    ParentId = 4, //Users Management
+                                    IsActive = true,
+                                    ModuleId = (int)GeneralEnums.Management,
+                                    CategoryId = (int)GeneralEnums.Page
+                                },
+               
+                                new Page()
+                                {
+                                    Id = 9,
+                                    Name = "وحدات النظام",
+                                    NameEn = "Governorates and Cities",
+                                    Icon = "bi bi-view-list",
+                                    Link = "Management/Modules",
+                                    InMenu = true,
+                                    ParentId = 3, //Management
+                                    IsActive = true,
+                                    ModuleId = (int)GeneralEnums.Management,
+                                    CategoryId = (int)GeneralEnums.Page
+                                },
+                                new Page()
+                                {
+                                    Id = 10,
+                                    Name = "الصفحات",
+                                    NameEn = "Pages",
+                                    Icon = "bi bi-window-stack",
+                                    Link = "Page/Index",
+                                    InMenu = true,
+                                    ParentId = 3, //Management
+                                    IsActive = true,
+                                    ModuleId = (int)GeneralEnums.Management,
+                                    CategoryId = (int)GeneralEnums.Page
+                                },
+                                new Page()
+                                {
+                                    Id = 11,
+                                    Name = "الثوابت",
+                                    NameEn = "Constants",
+                                    Icon = "fa fa-anchor",
+                                    Link = "Constant/Index",
+                                    InMenu = true,
+                                    ParentId = 3, //Management
+                                    IsActive = true,
+                                    ModuleId = (int)GeneralEnums.Management,
+                                    CategoryId = (int)GeneralEnums.Page
+                                },
 
 
             };

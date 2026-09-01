@@ -42,591 +42,540 @@ namespace SubscriberManagementSystem.Data.SeedHeper.PageSeed
                     ModuleId = (int)GeneralEnums.Management,
                     CategoryId = (int)GeneralEnums.Tool
                 },
-            //    new Page()
-            //    {
-            //        Name = "اضافة تعديل مستخدم",
-            //        NameEn = "Create Edit User",
-            //        Icon = null,
-            //        Link ="User/CreateEdit",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.UserPageId, // User Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "حذف مستخدم",
-            //        NameEn = "Delete User",
-            //        Icon = null,
-            //        Link ="User/Delete",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.UserPageId, // User Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض واجهة ملفي الشخصي",
-            //        NameEn = "Display My Profile Page",
-            //        Icon = null,
-            //        Link ="User/MyProfileModal",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.UserPageId, // User Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "تعديل ملفي الشخصي",
-            //        NameEn = "Update My Profile",
-            //        Icon = null,
-            //        Link ="User/MyProfile",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.UserPageId, // User Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض واجهة تغير كلمة المرور",
-            //        NameEn = "Display Change Password Page",
-            //        Icon = null,
-            //        Link ="User/ChangePasswordModal",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.UserPageId, // User Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "تغير كلمة المرور",
-            //        NameEn = "ChangePassword",
-            //        Icon = null,
-            //        Link ="User/ChangePassword",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.UserPageId, // User Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض بيانات جدول انواع المستخدين",
-            //        NameEn = "Display User Type DateTable",
-            //        Icon = null,
-            //        Link ="UserType/GetAll",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.UserTypePageId, // UserType Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض واجهة اضافة  تعديل نوع المستخدم",
-            //        NameEn = "Display Create Edit User Type page",
-            //        Icon = null,
-            //        Link ="UserType/CreateEditModal",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.UserTypePageId, // UserType Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "اضافة تعديل نوع مستخدم",
-            //        NameEn = "Create Edit User Type ",
-            //        Icon = null,
-            //        Link ="UserType/CreateEdit",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.UserTypePageId, // UserType Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "حذف نوع مستخدم",
-            //        NameEn =  "Delete User Type ",
-            //        Icon = null,
-            //        Link ="UserType/Delete",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.UserTypePageId, // UserType Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض صلاحيات نوع المستخدم",
-            //        NameEn =  "display User Type Permissions",
-            //        Icon = null,
-            //        Link ="UserPermission/GetUserTypePermissions",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.UserPermissionsId, // User Permissions Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "حفظ صلاحيات نوع المستخدم",
-            //        NameEn =  "Save User Type Permissions",
-            //        Icon = null,
-            //        Link ="UserPermission/SavePermissions",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.UserPermissionsId, // User Permissions Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض بيانات جدول المحافظات والمدن",
-            //        NameEn =  "Display Governorates and Cities DateTable",
-            //        Icon = null,
-            //        Link ="Destination/GetAll",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.DestinationId, // Destinations Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض واجهة إضافة تعديل وجهة",
-            //        NameEn =  "Display create Edit Destination page",
-            //        Icon = null,
-            //        Link ="Destination/CreateEditModal",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.DestinationId, // Destinations Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "إضافة تعديل وجهة",
-            //        NameEn =  "create Edit Destination",
-            //        Icon = null,
-            //        Link ="Destination/CreateEdit",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.DestinationId, // Destinations Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "حذف وجهة",
-            //        NameEn =  "Delete Destination",
-            //        Icon = null,
-            //        Link ="Destination/Delete",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.DestinationId, // Destinations Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "تبديل حالات وحدات النظام",
-            //        NameEn =  "Switching states of system Modules",
-            //        Icon = null,
-            //        Link ="Management/SwitchStatus",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.SystemModulesId, // System Modules Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض بيانات جدول الصفحات",
-            //        NameEn =  "Display Pages DataTable",
-            //        Icon = null,
-            //        Link ="Page/GetAll",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.PageId, // System Modules Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض واجهة إضافة  تعديل صفحة",
-            //        NameEn =  "Display Create Edit Page interface",
-            //        Icon = null,
-            //        Link ="Page/CreateEditModal",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.PageId, // System Modules Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "إضافة تعديل صفحة",
-            //        NameEn =  "Create Edit Page",
-            //        Icon = null,
-            //        Link ="Page/CreateEdit",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.PageId, // System Modules Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "حذف صفحة",
-            //        NameEn =  "Delete Page",
-            //        Icon = null,
-            //        Link ="Page/Delete",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.PageId, // System Modules Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض بيانات جدول الثوابت",
-            //        NameEn =  "Display Constant DataTable",
-            //        Icon = null,
-            //        Link ="Constant/GetAll",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.ConstantId, // Constant Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض واجهة إضافة تعديل ثوابت",
-            //        NameEn =  "Display Create Edit Constant Page",
-            //        Icon = null,
-            //        Link ="Constant/CreateEditModal",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.ConstantId, // Constant Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "إضافة تعديل ثوابت",
-            //        NameEn =  "Create Edit Constant",
-            //        Icon = null,
-            //        Link ="Constant/CreateEdit",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.ConstantId, // Constant Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "حذف ثابت",
-            //        NameEn =  "Delete Constant",
-            //        Icon = null,
-            //        Link ="Constant/Delete",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.ConstantId, // Constant Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض بيانات جدول المستفيدين",
-            //        NameEn =  "Display Beneficiaries DataTable",
-            //        Icon = null,
-            //        Link ="Beneficiary/GetAll",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض واجهة إضافة تعديل المستفيدين",
-            //        NameEn =  "Display Create Edit Beneficiaries Page",
-            //        Icon = null,
-            //        Link ="Beneficiary/CreateEdit",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "ضافة تعديل المستفيدين",
-            //        NameEn =  "Create Edit Beneficiaries",
-            //        Icon = null,
-            //        Link ="Beneficiary/SubmitCreateEdit",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "حذف مستفيد",
-            //        NameEn =  "Delete Beneficiary",
-            //        Icon = null,
-            //        Link ="Beneficiary/Delete",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض بيانات جدول عناوين المستفيد",
-            //        NameEn =  "Display beneficiary Addresses DataTable",
-            //        Icon = null,
-            //        Link ="Beneficiary/GetAddresses",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض واجهة إضافة تعديل عناوين المستفيد",
-            //        NameEn =  "Display Create Edit beneficiary Addresses Page",
-            //        Icon = null,
-            //        Link ="Beneficiary/CreateEditAddressModal",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "إضافة تعديل عناوين المستفيد",
-            //        NameEn =  "Create Edit beneficiary Addresses",
-            //        Icon = null,
-            //        Link ="Beneficiary/CreateEditAddress",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "حذف عناوين المستفيد",
-            //        NameEn =  "Delete beneficiary Addresses",
-            //        Icon = null,
-            //        Link ="Beneficiary/DeleteAddress",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض بيانات جدول جهات اتصال المستفيد",
-            //        NameEn =  "Display beneficiary Addresses DataTable",
-            //        Icon = null,
-            //        Link ="Beneficiary/GetContacts",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض واجهة إضافة تعديل جهات اتصال المستفيد",
-            //        NameEn =  "Display Create Edit beneficiary Addresses Page",
-            //        Icon = null,
-            //        Link ="Beneficiary/CreateEditContactModal",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "إضافة تعديل جهات اتصال المستفيد",
-            //        NameEn =  "Create Edit beneficiary Addresses",
-            //        Icon = null,
-            //        Link ="Beneficiary/CreateEditContact",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "حذف جهات اتصال المستفيد",
-            //        NameEn =  "Delete beneficiary Addresses",
-            //        Icon = null,
-            //        Link ="Beneficiary/DeleteContact",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiariesManagement, // Beneficiaries Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.Management,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض المرفقات",
-            //        NameEn =  "Display Attachments",
-            //        Icon = null,
-            //        Link ="Beneficiary/GetAttachments",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "تحميل مرفق",
-            //        NameEn =  "Upload Attachment",
-            //        Icon = null,
-            //        Link ="Beneficiary/UploadAttachment",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "حفظ المرفقات",
-            //        NameEn =  "Save Attachment",
-            //        Icon = null,
-            //        Link ="Beneficiary/SaveAttachment",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "حذف المرفقات",
-            //        NameEn =  "Delete Attachment",
-            //        Icon = null,
-            //        Link ="Beneficiary/DeleteAttachment",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض بيانات جدول أنواع المستفيد ",
-            //        NameEn =  "Display Beneficiary Types DataTable",
-            //        Icon = null,
-            //        Link ="Beneficiary/GetBeneficiaryTypes",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryTypesId, // Beneficiary Types Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "عرض واجهة إضافة تعديل أنواع المستفيد",
-            //        NameEn =  "Display Create Edit Beneficiary Types page",
-            //        Icon = null,
-            //        Link ="Beneficiary/CreateEditBeneficiaryTypeModal",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryTypesId, // Beneficiary Types Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "إضافة تعديل أنواع المستفيد",
-            //        NameEn =  "Create Edit Beneficiary Types",
-            //        Icon = null,
-            //        Link ="Beneficiary/CreateEditBeneficiaryType",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryTypesId, // Beneficiary Types Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
-            //    new Page()
-            //    {
-            //        Name = "حذف أنواع المستفيد",
-            //        NameEn =  "Delete Beneficiary Types",
-            //        Icon = null,
-            //        Link ="Beneficiary/DeleteBeneficiaryType",
-            //        InMenu = false,
-            //        IsAjax = true,
-            //        ParentId = (int)GeneralEnums.BeneficiaryTypesId, // Beneficiary Types Page
-            //        IsActive = true,
-            //        ModuleId = (int)GeneralEnums.BeneficiariesManagement,
-            //        CategoryId = (int)GeneralEnums.Tool
-            //    },
+                new Page()
+                {
+                    Name = "اضافة تعديل مستخدم",
+                    NameEn = "Create Edit User",
+                    Icon = null,
+                    Link ="User/CreateEdit",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.UserPageId, // User Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "حذف مستخدم",
+                    NameEn = "Delete User",
+                    Icon = null,
+                    Link ="User/Delete",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.UserPageId, // User Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "عرض واجهة ملفي الشخصي",
+                    NameEn = "Display My Profile Page",
+                    Icon = null,
+                    Link ="User/MyProfileModal",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.UserPageId, // User Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "تعديل ملفي الشخصي",
+                    NameEn = "Update My Profile",
+                    Icon = null,
+                    Link ="User/MyProfile",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.UserPageId, // User Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "عرض واجهة تغير كلمة المرور",
+                    NameEn = "Display Change Password Page",
+                    Icon = null,
+                    Link ="User/ChangePasswordModal",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.UserPageId, // User Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "تغير كلمة المرور",
+                    NameEn = "ChangePassword",
+                    Icon = null,
+                    Link ="User/ChangePassword",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.UserPageId, // User Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "عرض بيانات جدول انواع المستخدين",
+                    NameEn = "Display User Type DateTable",
+                    Icon = null,
+                    Link ="UserType/GetAll",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.UserTypePageId, // UserType Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "عرض واجهة اضافة  تعديل نوع المستخدم",
+                    NameEn = "Display Create Edit User Type page",
+                    Icon = null,
+                    Link ="UserType/CreateEditModal",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.UserTypePageId, // UserType Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "اضافة تعديل نوع مستخدم",
+                    NameEn = "Create Edit User Type ",
+                    Icon = null,
+                    Link ="UserType/CreateEdit",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.UserTypePageId, // UserType Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "حذف نوع مستخدم",
+                    NameEn =  "Delete User Type ",
+                    Icon = null,
+                    Link ="UserType/Delete",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.UserTypePageId, // UserType Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "عرض صلاحيات نوع المستخدم",
+                    NameEn =  "display User Type Permissions",
+                    Icon = null,
+                    Link ="UserPermission/GetUserTypePermissions",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.UserPermissionsId, // User Permissions Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "حفظ صلاحيات نوع المستخدم",
+                    NameEn =  "Save User Type Permissions",
+                    Icon = null,
+                    Link ="UserPermission/SavePermissions",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.UserPermissionsId, // User Permissions Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+
+                new Page()
+                {
+                    Name = "تبديل حالات وحدات النظام",
+                    NameEn =  "Switching states of system Modules",
+                    Icon = null,
+                    Link ="Management/SwitchStatus",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.SystemModulesId, // System Modules Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "عرض بيانات جدول الصفحات",
+                    NameEn =  "Display Pages DataTable",
+                    Icon = null,
+                    Link ="Page/GetAll",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.PageId, // System Modules Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "عرض واجهة إضافة  تعديل صفحة",
+                    NameEn =  "Display Create Edit Page interface",
+                    Icon = null,
+                    Link ="Page/CreateEditModal",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.PageId, // System Modules Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "إضافة تعديل صفحة",
+                    NameEn =  "Create Edit Page",
+                    Icon = null,
+                    Link ="Page/CreateEdit",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.PageId, // System Modules Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "حذف صفحة",
+                    NameEn =  "Delete Page",
+                    Icon = null,
+                    Link ="Page/Delete",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.PageId, // System Modules Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "عرض بيانات جدول الثوابت",
+                    NameEn =  "Display Constant DataTable",
+                    Icon = null,
+                    Link ="Constant/GetAll",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.ConstantId, // Constant Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "عرض واجهة إضافة تعديل ثوابت",
+                    NameEn =  "Display Create Edit Constant Page",
+                    Icon = null,
+                    Link ="Constant/CreateEditModal",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.ConstantId, // Constant Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "إضافة تعديل ثوابت",
+                    NameEn =  "Create Edit Constant",
+                    Icon = null,
+                    Link ="Constant/CreateEdit",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.ConstantId, // Constant Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "حذف ثابت",
+                    NameEn =  "Delete Constant",
+                    Icon = null,
+                    Link ="Constant/Delete",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.ConstantId, // Constant Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "عرض بيانات جدول المستفيدين",
+                    NameEn =  "Display Beneficiaries DataTable",
+                    Icon = null,
+                    Link ="Beneficiary/GetAll",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "عرض واجهة إضافة تعديل المستفيدين",
+                    NameEn =  "Display Create Edit Beneficiaries Page",
+                    Icon = null,
+                    Link ="Beneficiary/CreateEdit",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "ضافة تعديل المستفيدين",
+                    NameEn =  "Create Edit Beneficiaries",
+                    Icon = null,
+                    Link ="Beneficiary/SubmitCreateEdit",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "حذف مستفيد",
+                    NameEn =  "Delete Beneficiary",
+                    Icon = null,
+                    Link ="Beneficiary/Delete",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "عرض بيانات جدول عناوين المستفيد",
+                    NameEn =  "Display beneficiary Addresses DataTable",
+                    Icon = null,
+                    Link ="Beneficiary/GetAddresses",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "عرض واجهة إضافة تعديل عناوين المستفيد",
+                    NameEn =  "Display Create Edit beneficiary Addresses Page",
+                    Icon = null,
+                    Link ="Beneficiary/CreateEditAddressModal",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "إضافة تعديل عناوين المستفيد",
+                    NameEn =  "Create Edit beneficiary Addresses",
+                    Icon = null,
+                    Link ="Beneficiary/CreateEditAddress",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "حذف عناوين المستفيد",
+                    NameEn =  "Delete beneficiary Addresses",
+                    Icon = null,
+                    Link ="Beneficiary/DeleteAddress",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "عرض بيانات جدول جهات اتصال المستفيد",
+                    NameEn =  "Display beneficiary Addresses DataTable",
+                    Icon = null,
+                    Link ="Beneficiary/GetContacts",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "عرض واجهة إضافة تعديل جهات اتصال المستفيد",
+                    NameEn =  "Display Create Edit beneficiary Addresses Page",
+                    Icon = null,
+                    Link ="Beneficiary/CreateEditContactModal",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "إضافة تعديل جهات اتصال المستفيد",
+                    NameEn =  "Create Edit beneficiary Addresses",
+                    Icon = null,
+                    Link ="Beneficiary/CreateEditContact",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "حذف جهات اتصال المستفيد",
+                    NameEn =  "Delete beneficiary Addresses",
+                    Icon = null,
+                    Link ="Beneficiary/DeleteContact",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiariesManagement, // Beneficiaries Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.Management,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "عرض المرفقات",
+                    NameEn =  "Display Attachments",
+                    Icon = null,
+                    Link ="Beneficiary/GetAttachments",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "تحميل مرفق",
+                    NameEn =  "Upload Attachment",
+                    Icon = null,
+                    Link ="Beneficiary/UploadAttachment",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "حفظ المرفقات",
+                    NameEn =  "Save Attachment",
+                    Icon = null,
+                    Link ="Beneficiary/SaveAttachment",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "حذف المرفقات",
+                    NameEn =  "Delete Attachment",
+                    Icon = null,
+                    Link ="Beneficiary/DeleteAttachment",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryId, // Beneficiaries Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "عرض بيانات جدول أنواع المستفيد ",
+                    NameEn =  "Display Beneficiary Types DataTable",
+                    Icon = null,
+                    Link ="Beneficiary/GetBeneficiaryTypes",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryTypesId, // Beneficiary Types Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "عرض واجهة إضافة تعديل أنواع المستفيد",
+                    NameEn =  "Display Create Edit Beneficiary Types page",
+                    Icon = null,
+                    Link ="Beneficiary/CreateEditBeneficiaryTypeModal",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryTypesId, // Beneficiary Types Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "إضافة تعديل أنواع المستفيد",
+                    NameEn =  "Create Edit Beneficiary Types",
+                    Icon = null,
+                    Link ="Beneficiary/CreateEditBeneficiaryType",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryTypesId, // Beneficiary Types Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
+                new Page()
+                {
+                    Name = "حذف أنواع المستفيد",
+                    NameEn =  "Delete Beneficiary Types",
+                    Icon = null,
+                    Link ="Beneficiary/DeleteBeneficiaryType",
+                    InMenu = false,
+                    IsAjax = true,
+                    ParentId = (int)GeneralEnums.BeneficiaryTypesId, // Beneficiary Types Page
+                    IsActive = true,
+                    ModuleId = (int)GeneralEnums.BeneficiariesManagement,
+                    CategoryId = (int)GeneralEnums.Tool
+                },
             //    new Page()
             //    {
             //        Name = "عرض بيانات جدول جوازات السفر",

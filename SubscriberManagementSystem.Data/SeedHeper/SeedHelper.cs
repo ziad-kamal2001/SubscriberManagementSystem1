@@ -17,8 +17,8 @@ namespace SubscriberManagementSystem.Data.SeedHeper
             SeedPageCategories(builder);
             SeedModules(builder);
             SeedConstants(builder);
-            //PagesSeed.Seed(builder);
-            builder.Seed(new List<Page>());
+            PagesSeed.Seed(builder);
+            
         }
 
         private static void SeedPageCategories(ModelBuilder builder)
