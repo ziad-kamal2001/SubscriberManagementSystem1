@@ -258,13 +258,7 @@
 
                                     <input name="BeneficiaryId" asp-for="Beneficiary.Id" type="hidden" />
 
-                          @*           <select name="WiveId" class="form-select w-200px fs-4 me-5" data-control="select2" data-dropdown-css-class="fs-4">
-                                <option value="">@Global.SelectType</option>
-                                        @foreach (var item in Model.Wives)
-                                {
-                                    <option value="@item.Id">@item.Name</option>
-                                }
-                            </select> *@
+                  
 
                         </div>
                         <div class="d-flex justify-content-end">
@@ -289,11 +283,7 @@
                              <th class="fs-3">@Global.Name</th>
                             <th class="fs-3">@Global.IDNumber</th>
                                     <th class="fs-3">@Global.DOB</th>
-                            <th class="fs-3">@Global.Religion</th>
-                            <th class="fs-3">@Global.IssueDate</th>
-                            <th class="fs-3">@Global.ExpiryDate</th>
-                            <th class="fs-3">@Global.Status</th>
-                            <th class="fs-3">@Global.Actions</th>
+                            
                         </tr>
                     </thead>
                     <tbody class="fs-5">

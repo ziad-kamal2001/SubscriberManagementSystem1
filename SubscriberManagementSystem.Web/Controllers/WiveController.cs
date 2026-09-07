@@ -56,7 +56,7 @@ namespace SubscriberManagementSystem.Web.Controllers
 		{
 			return PartialView("_CreateEditModal", new CreateEditWiveVM
             {
-                Wive = await _wivesService.GetByIdOrDefaultAsync(id),
+                Wives = await _wivesService.GetByIdOrDefaultAsync(id),
 
 			});
 		}

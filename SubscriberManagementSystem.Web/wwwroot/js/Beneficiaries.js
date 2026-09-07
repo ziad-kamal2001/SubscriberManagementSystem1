@@ -816,7 +816,7 @@
             serverSide: true,
             autoWidth: false,
             ajax: {
-                url: `/Identity/GetAll`,
+                url: `/Wive/GetAll`,
                 type: "POST",
                 datatype: "json",
                 data: { "search[value]": serializeArrayToObject("identitySearchForm") }
@@ -835,7 +835,7 @@
                     },
                     orderable: false
                 },
-                { data: "identityType.name", name: "identityType.name", autowidth: true },
+                { data: "WiveType.name", name: "WiveType.name", autowidth: true },
                 { data: "idNumber", name: "idNumber", autowidth: true },
                 { data: "countryOfOrigin.name", name: "countryOfOrigin.name", autowidth: true },
                 { data: "religion.name", name: "religion.name", autowidth: true },
@@ -931,7 +931,7 @@
     // get Identity modal
     var getIdentityModal = function (elementId) {
         $.ajax({
-            url: `/Identity/CreateEditModal/${elementId}`,
+            url: `/Wive/CreateEditModal/${elementId}`,
             type: 'GET',
             success: function (result) {
                 $('#modal .modal-content').html(result);
@@ -941,7 +941,7 @@
                 });
                 KTApp.init(); // to init all functions including select2
 
-                $("#identityBeneficiaryId").val($("#beneficiaryId").val())
+                $("#wiveBeneficiaryId").val($("#beneficiaryId").val())
                 uploadAttachment('uploadFileInput', '/File/UploadFile', 'Attachments', "input[name='AttachmentAttachmentName']", "input[name='AttachmentIcon']");
                 submitIdentityForm();
             }
@@ -956,7 +956,7 @@
 
             const data = form.serialize();
 
-            saveOrUpdate(`/Identity/CreateEdit/`, data, form)
+            saveOrUpdate(`/Wive/CreateEdit/`, data, form)
                 .then(function () {
                     $('#modal').modal('hide');
                     dtIdentities.destroy();

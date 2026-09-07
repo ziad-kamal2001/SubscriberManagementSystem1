@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using SubscriberManagementSystem.Data.DbContext;
@@ -8,6 +10,9 @@ using SubscriberManagementSystem.Infrastructure.AutoMapper;
 using SubscriberManagementSystem.Infrastructure.Extentions;
 using SubscriberManagementSystem.Web.Helper.Claims;
 using SubscriberManagementSystem.Web.Helper.Files;
+using SubscriberManagementSystem.Web.Resources;
+using System.Globalization;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +39,30 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 
 builder.Services.AddControllersWithViews();
 
+// Localization.
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+builder.Services.AddMvc()
+    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+    .AddDataAnnotationsLocalization();
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[]
+    {
+       new CultureInfo("ar-kw"),
+       new CultureInfo("en")
+    };
+
+    options.DefaultRequestCulture = new RequestCulture(supportedCultures.FirstOrDefault());
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+
+    options.RequestCultureProviders.Insert(0, new UrlRequestCultureProvider()
+    {
+        Options = options
+    });
+});
 // Must be configured before Build()
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -64,6 +93,9 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+
+var localizationOptions = app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value;
+app.UseRequestLocalization(localizationOptions);
 
 app.UseAuthentication();
 app.UseAuthorization();

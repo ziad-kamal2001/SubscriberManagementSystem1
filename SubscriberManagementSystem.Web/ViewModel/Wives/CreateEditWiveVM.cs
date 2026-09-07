@@ -4,7 +4,7 @@ namespace SubscriberManagementSystem.Web.ViewModel.Wives
 {
 	public class CreateEditWiveVM
     {
-        public Wive Wive { get; set; }
+        public Wive Wives { get; set; }
 
 	}
 }
