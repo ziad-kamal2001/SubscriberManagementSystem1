@@ -5,9 +5,9 @@
 @{
     var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
     var isRelative = Model.Beneficiary.ParentId != null;
-    
+
     var title = Global.BeneficiaryData;
-    
+
     if (isRelative)
         title = Global.RelativeData;
 
@@ -22,7 +22,7 @@
 <div class="card card-custom">
     <div class="card-header">
         <div class="card-title fw-bolder fs-2">
-           <span class="card-icon me-2">
+            <span class="card-icon me-2">
                 <i class="bi bi-people-fill fs-3"></i>
             </span>
             <span class="span-title">
@@ -34,6 +34,9 @@
         <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-2">
             <li class="nav-item">
                 <a class="nav-link text-dark active" data-bs-toggle="tab" href="#BasicDataTab">@Global.BasicData</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" data-bs-toggle="tab" href="#BeneficiaryInformationTab">@Global.Addresses</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark passports-tab" data-bs-toggle="tab" href="#PassportsTab">@Global.Passports</a>
@@ -52,6 +55,8 @@
             </li>
         </ul>
         <div class="tab-content">
+
+            <!--begin::Basic Data Tab-->
             <div class="tab-pane fade show active" id="BasicDataTab" role="tabpanel">
                 <form id="createEditForm">
                     <!--begin::Validation Alert-->
@@ -59,192 +64,264 @@
                     <!--end::Validation Alert-->
 
                     <input id="beneficiaryId" type="hidden" asp-for="Beneficiary.Id" name="Id" />
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="row form-group mb-5">
-                                <div class="col-md-4 text-center">
-                                    <label class="control-label mt-2 fs-4">@Global.FName</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <input name="FName" asp-for="Beneficiary.FName" type="text" placeholder="@Global.FName" class="form-control form-control-solid" />
-                                </div>
-                            </div>
 
-                            <div class="row form-group mb-5">
-                                <div class="col-md-4 text-center">
-                                    <label class="control-label mt-2 fs-4">@Global.SName</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <input name="SName" asp-for="Beneficiary.SName" type="text" placeholder="@Global.SName" class="form-control form-control-solid" />
-                                </div>
-                            </div>
-
-                            <div class="row form-group mb-5">
-                                <div class="col-md-4 text-center">
-                                    <label class="control-label mt-2 fs-4">@Global.TName</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <input name="TName" asp-for="Beneficiary.TName" type="text" placeholder="@Global.TName" class="form-control form-control-solid" />
-                                </div>
-                            </div>
-
-                            <div class="row form-group mb-5">
-                                <div class="col-md-4 text-center">
-                                    <label class="control-label mt-2 fs-4">@Global.LName</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <input name="LName" asp-for="Beneficiary.LName" type="text" placeholder="@Global.LName" class="form-control form-control-solid" />
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row form-group mb-5">
-                                    <div class="col-md-4 text-center">
-                                        <label class="control-label mt-2 fs-4">@Global.IDNumber</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <input name="IDNumber" asp-for="Beneficiary.IDNumber" type="text" placeholder="@Global.IDNumber" class="form-control form-control-solid" />
-                                    </div>
-                                </div>
-                            <div class="row form-group mb-5">
-                                <div class="col-md-4 text-center">
-                                    <label class="control-label mt-2 fs-4">@Global.DOB</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <input name="DOB" asp-for="Beneficiary.DOB" type="date" class="form-control form-control-solid" />
-                                </div>
-                            </div>
-
-                            <div class="row form-group mb-5">
-                                <div class="col-md-4 text-center">
-                                    <label class="control-label mt-2 fs-4">@Global.Gender</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="form-group fs-4 d-flex mt-2">
-                                        @foreach (var item in Model.Genders)
-                                        {
-                                            <div class="form-check form-check-custom form-check-solid form-check-sm me-3">
-                                                <label class="form-check-label ms-0" for="radio_@item.Id">
-                                                    <input name="GenderId" asp-for="Beneficiary.GenderId" type="radio" value="@item.Id" id="radio_@item.Id" class="form-check-input me-1" />
-                                                    @item.Name
-                                                </label>
-                                            </div>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-
+                    <!-- رقم هوية المواطن -->
+                    <div class="row form-group mb-5">
+                        <div class="col-md-2 text-center">
+                            <label class="control-label mt-2 fs-4">@Global.IDNumber</label>
                         </div>
                         <div class="col-md-4">
-                            <div class="row form-group mb-5">
-                                <div class="col-md-4 text-center">
-                                    <label class="control-label mt-2 fs-4">@Global.PhoneNumber</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <input name="PhoneNumber" asp-for="Beneficiary.PhoneNumber" type="text" placeholder="@Global.PhoneNumber" class="form-control form-control-solid" />
-                                </div>
-                            </div>
+                            <input name="IDNumber" asp-for="Beneficiary.IDNumber" type="text" placeholder="@Global.IDNumber" class="form-control form-control-solid" />
+                        </div>
+                    </div>
 
-                         
-                           
+                    <!-- الاسم الأول / اسم الأب / اسم الجد / اسم العائلة -->
+                    <div class="row form-group mb-5">
+                        <div class="col-md-3">
+                            <label class="control-label mt-2 fs-4">@Global.FName</label>
+                            <input name="FName" asp-for="Beneficiary.FName" type="text" placeholder="@Global.FName" class="form-control form-control-solid" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label mt-2 fs-4">@Global.SName</label>
+                            <input name="SName" asp-for="Beneficiary.SName" type="text" placeholder="@Global.SName" class="form-control form-control-solid" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label mt-2 fs-4">@Global.TName</label>
+                            <input name="TName" asp-for="Beneficiary.TName" type="text" placeholder="@Global.TName" class="form-control form-control-solid" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label mt-2 fs-4">@Global.LName</label>
+                            <input name="LName" asp-for="Beneficiary.LName" type="text" placeholder="@Global.LName" class="form-control form-control-solid" />
+                        </div>
+                    </div>
 
-                            
-
-                            <div class="row form-group mb-5">
-                                <div class="col-md-4 text-center">
-                                    <label class="control-label mt-2 fs-4">@Global.Status</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="form-check form-check-custom form-check-solid form-check-sm mt-2">
-                                        <input name="IsActive" asp-for="Beneficiary.IsActive" class="form-check-input" type="checkbox" id="IsActive" />
-
-                                        <label class="form-check-label fs-4" for="IsActive">
-                                            @Global.IsActive
+                    <!-- تاريخ الميلاد / الحالة الاجتماعية / المحافظة الأصلية / الجنس -->
+                    <div class="row form-group mb-5">
+                        <div class="col-md-3">
+                            <label class="control-label mt-2 fs-4">@Global.DOB</label>
+                            <input name="DOB" asp-for="Beneficiary.DOB" type="date" class="form-control form-control-solid" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label mt-2 fs-4">@Global.MaritalStatus</label>
+                            <select name="MaritalStatusId" asp-for="Beneficiary.MaritalStatusId" class="form-select form-select-solid" data-control="select2" data-dropdown-css-class="fs-4">
+                                <option value="" disabled selected>@Global.MaritalStatus</option>
+                                @foreach (var item in Model.MaritalStatuses)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label mt-2 fs-4">@Global.OriginalGovernorate</label>
+                            <select name="OriginalGovernorateCityId" asp-for="Beneficiary.OriginalGovernorateCityId" class="form-select form-select-solid" data-control="select2" data-dropdown-css-class="fs-4">
+                                <option value="" disabled selected>@Global.OriginalGovernorate</option>
+                                @foreach (var item in Model.Cities)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label mt-2 fs-4 d-block">@Global.Gender</label>
+                            <div class="form-group fs-4 d-flex mt-2">
+                                @foreach (var item in Model.Genders)
+                                {
+                                    <div class="form-check form-check-custom form-check-solid form-check-sm me-3">
+                                        <label class="form-check-label ms-0" for="radio_@item.Id">
+                                            <input name="GenderId" asp-for="Beneficiary.GenderId" type="radio" value="@item.Id" id="radio_@item.Id" class="form-check-input me-1" />
+                                            @item.Name
                                         </label>
                                     </div>
-                                </div>
+                                }
                             </div>
-                                <div class="row form-group mb-5">
-                                    <div class="col-md-4 text-center">
-                                        <label class="control-label mt-2 fs-4">@Global.BeneficiaryType</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <select name="BeneficiaryTypeId" asp-for="Beneficiary.BeneficiaryTypeId" class="form-select form-select-solid me-3 " data-control="select2" data-dropdown-css-class="fs-4">
-                                            <option value="" disabled selected>@Global.BeneficiaryType</option>
-                                            @foreach (var item in Model.BeneficiaryTypes)
-                                            {
-                                                <option value="@item.Id">@item.Name</option>
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-@*                         </div>
- *@                        
-
+                        </div>
                     </div>
+
+                    <!-- رقم الجوال / الجوال البديل -->
+                    <div class="row form-group mb-5">
+                        <div class="col-md-6">
+                            <label class="control-label mt-2 fs-4">@Global.MobileNumber</label>
+                            <input name="PhoneNumber" asp-for="Beneficiary.PhoneNumber" type="text" placeholder="رقم فلسطيني (056 أو 059)" class="form-control form-control-solid" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label mt-2 fs-4">@Global.AlternateMobileNumber</label>
+                            <input name="AlternatePhoneNumber" asp-for="Beneficiary.AlternatePhoneNumber" type="text" placeholder="رقم فلسطيني (056 أو 059)" class="form-control form-control-solid" />
+                        </div>
+                    </div>
+
+                    <!-- المحافظة الحالية / المدينة الحالية / الحي / أقرب معلم (default BeneficiaryInformation record) -->
+                    <div class="row form-group mb-5">
+                        <div class="col-md-3">
+                            <label class="control-label mt-2 fs-4">@Global.CurrentGovernorate</label>
+                            <select id="CurrentGovernorateCityId" name="CurrentGovernorateCityId" class="form-select form-select-solid" data-control="select2" data-dropdown-css-class="fs-4">
+                                <option value="" disabled selected>@Global.CurrentGovernorate</option>
+                                @foreach (var item in Model.Cities)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label mt-2 fs-4">@Global.CurrentCity</label>
+                            <select id="CurrentCityId" name="CurrentCityId" class="form-select form-select-solid" data-control="select2" data-dropdown-css-class="fs-4">
+                                <option value="" disabled selected>@Global.CurrentCity</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label mt-2 fs-4">@Global.Neighborhood</label>
+                            <input id="Neighborhood" name="Neighborhood" type="text" placeholder="@Global.Neighborhood" class="form-control form-control-solid" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label mt-2 fs-4">@Global.NearestLandmark</label>
+                            <input id="NearestLandmark" name="NearestLandmark" type="text" placeholder="@Global.NearestLandmark" class="form-control form-control-solid" />
+                        </div>
+                    </div>
+
+                    <!-- عدد الأفراد الإناث (computed, read-only) -->
+                    <h4 class="fw-bolder mb-3">@Global.FemaleMembersCount</h4>
+                    <div class="row form-group mb-5">
+                        <div class="col-md-2"><label class="fs-5">0-2</label><input readonly class="form-control form-control-solid" value="@Model.FamilyMembersCount.Female0To2" /></div>
+                        <div class="col-md-2"><label class="fs-5">3-5</label><input readonly class="form-control form-control-solid" value="@Model.FamilyMembersCount.Female3To5" /></div>
+                        <div class="col-md-2"><label class="fs-5">6-18</label><input readonly class="form-control form-control-solid" value="@Model.FamilyMembersCount.Female6To18" /></div>
+                        <div class="col-md-2"><label class="fs-5">19-59</label><input readonly class="form-control form-control-solid" value="@Model.FamilyMembersCount.Female19To59" /></div>
+                        <div class="col-md-2"><label class="fs-5">60+</label><input readonly class="form-control form-control-solid" value="@Model.FamilyMembersCount.Female60Plus" /></div>
+                    </div>
+
+                    <!-- عدد الأفراد الذكور (computed, read-only) -->
+                    <h4 class="fw-bolder mb-3">@Global.MaleMembersCount</h4>
+                    <div class="row form-group mb-5">
+                        <div class="col-md-2"><label class="fs-5">0-2</label><input readonly class="form-control form-control-solid" value="@Model.FamilyMembersCount.Male0To2" /></div>
+                        <div class="col-md-2"><label class="fs-5">3-5</label><input readonly class="form-control form-control-solid" value="@Model.FamilyMembersCount.Male3To5" /></div>
+                        <div class="col-md-2"><label class="fs-5">6-18</label><input readonly class="form-control form-control-solid" value="@Model.FamilyMembersCount.Male6To18" /></div>
+                        <div class="col-md-2"><label class="fs-5">19-59</label><input readonly class="form-control form-control-solid" value="@Model.FamilyMembersCount.Male19To59" /></div>
+                        <div class="col-md-2"><label class="fs-5">60+</label><input readonly class="form-control form-control-solid" value="@Model.FamilyMembersCount.Male60Plus" /></div>
+                    </div>
+
+                    <!-- عدد ذوي الأمراض المزمنة / الشهداء / الجرحى -->
+                    <div class="row form-group mb-5">
+                        <div class="col-md-4">
+                            <label class="fs-4">@Global.ChronicIllnessCount</label>
+                            <input readonly class="form-control form-control-solid" value="@Model.FamilyMembersCount.ChronicIllnessCount" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="fs-4">@Global.MartyrsCount</label>
+                            <input readonly class="form-control form-control-solid" value="@Model.FamilyMembersCount.MartyrsCount" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="fs-4">@Global.InjuredCount</label>
+                            <input readonly class="form-control form-control-solid" value="@Model.FamilyMembersCount.InjuredCount" />
+                        </div>
+                    </div>
+
+                    <!-- معيل الأسرة / حالة المسكن / حالة الزوجة -->
+                    <div class="row form-group mb-5">
+                        <div class="col-md-4">
+                            <label class="control-label mt-2 fs-4">@Global.Breadwinner</label>
+                            <select name="BreadwinnerStatusId" asp-for="Beneficiary.BreadwinnerStatusId" class="form-select form-select-solid" data-control="select2" data-dropdown-css-class="fs-4">
+                                <option value="" disabled selected>@Global.Breadwinner</option>
+                                @foreach (var item in Model.BreadwinnerStatuses)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="control-label mt-2 fs-4">@Global.ResidenceStatus</label>
+                            <select id="ResidenceStatusId" name="ResidenceStatusId" class="form-select form-select-solid" data-control="select2" data-dropdown-css-class="fs-4">
+                                <option value="" disabled selected>@Global.ResidenceStatus</option>
+                                @foreach (var item in Model.ResidenceStatuses)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="control-label mt-2 fs-4">@Global.WifeStatus</label>
+                            <select name="WifeStatusId" asp-for="Beneficiary.WifeStatusId" class="form-select form-select-solid" data-control="select2" data-dropdown-css-class="fs-4">
+                                <option value="" disabled selected>@Global.WifeStatus</option>
+                                @foreach (var item in Model.WifeStatuses)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- الحالة / نوع المستفيد -->
+                    <div class="row form-group mb-5">
+                        <div class="col-md-6">
+                            <div class="form-check form-check-custom form-check-solid form-check-sm mt-2">
+                                <input name="IsActive" asp-for="Beneficiary.IsActive" class="form-check-input" type="checkbox" id="IsActive" />
+                                <label class="form-check-label fs-4" for="IsActive">@Global.IsActive</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label mt-2 fs-4">@Global.BeneficiaryType</label>
+                            <select name="BeneficiaryTypeId" asp-for="Beneficiary.BeneficiaryTypeId" class="form-select form-select-solid" data-control="select2" data-dropdown-css-class="fs-4">
+                                <option value="" disabled selected>@Global.BeneficiaryType</option>
+                                @foreach (var item in Model.BeneficiaryTypes)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group text-end mt-5">
                         <a class="btn btn-secondary fw-bolder fs-5" asp-action="Index">@Global.Back</a>
                         <button type="submit" class="btn btn-primary btnSubmitBeneficiary fw-bolder fs-5">@Global.Save</button>
                     </div>
                 </form>
-                
-           
-                        <div id="BeneficiaryInformationTab" class="tab-pane fade" role="tabpanel">
-                             <div>
-                                <form id="BeneficiaryInformationSearchForm" onsubmit="return(false);">
-                         <div class="d-flex flex-stack mb-5">
-                                       <div class="d-flex align-items-center position-relative my-1">
-                                <span class="svg-icon svg-icon-2 position-absolute ms-6">
+            </div>
+            <!--end::Basic Data Tab-->
+            <!--begin::Addresses Tab (moved out of BasicDataTab - was incorrectly nested before)-->
+            <div id="BeneficiaryInformationTab" class="tab-pane fade" role="tabpanel">
+                <form id="BeneficiaryInformationSearchForm" onsubmit="return(false);">
+                    <div class="d-flex flex-stack mb-5">
+                        <div class="d-flex align-items-center position-relative my-1">
+                            <span class="svg-icon svg-icon-2 position-absolute ms-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
+                                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
+                                </svg>
+                            </span>
+                            <input name="Keyword" type="text" placeholder="@Global.Search" class="form-control form-control-solid me-3 w-250px ps-15 fs-4" />
+                            <input name="BeneficiaryId" asp-for="Beneficiary.Id" type="hidden" />
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btnAddressSearch btn btn-sm btn-icon btn-success me-1">
+                                <span class="svg-icon svg-icon-2 fs-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                         <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
                                         <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
                                     </svg>
                                 </span>
-                                <input name="Keyword" type="text" placeholder="@Global.Search" class="form-control form-control-solid me-3 w-250px ps-15 fs-4" />
-                                
-                                <input name="BeneficiaryId" asp-for="Beneficiary.Id" type="hidden" />
-
-                     
-
-                         
-
-                            </div> 
-                            <div class="d-flex justify-content-end">
-                                <button type="submit" class="btnPassportSearch btn btn-sm btn-icon btn-success me-1">
-                                    <span class="svg-icon svg-icon-2 fs-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
-                                            <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
-                                        </svg>
-                                    </span>
-                                </button>
-                                <button type="button" class="openPassportModal btn btn-sm btn-icon btn-primary">
-                                    <i class="bi bi-plus fs-1"></i>
-                                </button>
-                            </div>
+                            </button>
+                            <button type="button" class="openAddressModal btn btn-sm btn-icon btn-primary">
+                                <i class="bi bi-plus fs-1"></i>
+                            </button>
                         </div>
-                    </form>
-                            <table id="BeneficiaryInformations" class="table table-hover table-striped table-rounded border gy-5 gs-5 dataTable">
-                        <thead>
-                            <tr class="fw-bold fs-6 text-gray-800 border-bottom border-gray-200">
-                                <th class="fs-3">#</th>
-                                        <th class="fs-3">@Global.NumberofIndividuals</th>
-                                        <th class="fs-3">@Global.OriginalCity</th>
-                                        <th class="fs-3">@Global.CurrentCity</th>
-                                        <th class="fs-3">@Global.TotalAid</th>
-                                        <th class="fs-3">@Global.HousingStatus</th>
-                                        <th class="fs-3">@Global.WorkStatus</th>
-                                        <th class="fs-3">@Global.TheHealthCondition</th>
-                                        <th class="fs-3">@Global.Accommodation</th>
-                                <th class="fs-3">@Global.Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody class="fs-5">
-                        </tbody>
-                    </table>
-                </div>
-
+                    </div>
+                </form>
+                <table id="Addresses" class="table table-hover table-striped table-rounded border gy-5 gs-5 dataTable">
+                    <thead>
+                        <tr class="fw-bold fs-6 text-gray-800 border-bottom border-gray-200">
+                            <th class="fs-3">#</th>
+                            <th class="fs-3">@Global.CurrentGovernorate</th>
+                            <th class="fs-3">@Global.CurrentCity</th>
+                            <th class="fs-3">@Global.Neighborhood</th>
+                            <th class="fs-3">@Global.ResidenceStatus</th>
+                            <th class="fs-3">@Global.Default</th>
+                            <th class="fs-3">@Global.Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="fs-5">
+                    </tbody>
+                </table>
             </div>
-            <div id="IdentitiesTab" class="tab-pane fade" role="tabpanel" >
+            <!--end::Addresses Tab-->
+            <!--begin::Identities Tab (fixed: table id was "Wives", now correctly "Identities")-->
+            <div id="IdentitiesTab" class="tab-pane fade" role="tabpanel">
                 <form id="identitySearchForm" onsubmit="return(false);">
                     <div class="d-flex flex-stack mb-5">
                         <div class="d-flex align-items-center position-relative my-1">
@@ -255,11 +332,7 @@
                                 </svg>
                             </span>
                             <input name="Keyword" type="text" placeholder="@Global.Search" class="form-control form-control-solid me-3 w-250px ps-15 fs-4" />
-
-                                    <input name="BeneficiaryId" asp-for="Beneficiary.Id" type="hidden" />
-
-                  
-
+                            <input name="BeneficiaryId" asp-for="Beneficiary.Id" type="hidden" />
                         </div>
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btnIdentitySearch btn btn-sm btn-icon btn-success me-1">
@@ -276,21 +349,31 @@
                         </div>
                     </div>
                 </form>
-                        <table id="Wives" class="table table-hover table-striped table-rounded border gy-5 gs-5 dataTable">
+                <table id="Identities" class="table table-hover table-striped table-rounded border gy-5 gs-5 dataTable">
                     <thead>
                         <tr class="fw-bold fs-6 text-gray-800 border-bottom border-gray-200">
                             <th class="fs-3">#</th>
-                             <th class="fs-3">@Global.Name</th>
+                            <th class="fs-3">@Global.IdentityType</th>
                             <th class="fs-3">@Global.IDNumber</th>
-                                    <th class="fs-3">@Global.DOB</th>
-                            
+                            <th class="fs-3">@Global.CountryOfOrigin</th>
+                            <th class="fs-3">@Global.Religion</th>
+                            <th class="fs-3">@Global.IssueDate</th>
+                            <th class="fs-3">@Global.ExpiryDate</th>
+                            <th class="fs-3">@Global.Status</th>
+                            <th class="fs-3">@Global.Actions</th>
                         </tr>
                     </thead>
                     <tbody class="fs-5">
                     </tbody>
                 </table>
             </div>
-            <div id="RelativesTab" class="tab-pane fade" role="tabpanel" >
+            <!--end::Identities Tab-->
+
+            <div id="PassportsTab" class="tab-pane fade" role="tabpanel">
+                <!-- unchanged - Passports markup kept as-is -->
+            </div>
+
+            <div id="RelativesTab" class="tab-pane fade" role="tabpanel">
                 <form id="relativeSearchForm" onsubmit="return(false);">
                     <div class="d-flex flex-stack mb-5">
                         <div class="d-flex align-items-center position-relative my-1">
@@ -301,9 +384,7 @@
                                 </svg>
                             </span>
                             <input name="Keyword" type="text" placeholder="@Global.Search" class="form-control form-control-solid me-3 w-250px ps-15 fs-4" />
-
                             <input name="ParentId" value="@Model.Beneficiary.Id" type="hidden" />
-                            
                             <select name="IsActiveSearch" class="form-select fs-4 me-5 w-150px" data-control="select2" data-dropdown-css-class="fs-4" data-hide-search="true">
                                 <option value="">@Global.Status</option>
                                 <option value="true" selected>@Global.Active</option>
@@ -347,10 +428,10 @@
     </div>
 </div>
 @section scripts
-    {
+{
     <script src="~/js/Beneficiaries.js"></script>
 }
 
-@section onReadyScript{
+@section onReadyScript {
     beneficiaries.init();
 }

@@ -453,4 +453,7 @@
   <data name="Accommodation" xml:space="preserve">
     <value>Accommodation</value>
   </data>
+  <data name="AlternatePhoneNumber" xml:space="preserve">
+    <value>Alternate Phone Number</value>
+  </data>
 </root>

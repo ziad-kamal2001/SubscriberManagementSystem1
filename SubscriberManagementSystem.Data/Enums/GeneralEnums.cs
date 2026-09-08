@@ -17,14 +17,14 @@ namespace SubscriberManagementSystem.Data.Enums
         BeneficiaryType = 17,
 
         // Gender
-        Male = 2,   
+        Male = 2,
         Female = 3,
 
         // HousingStatus
         TotalDestruction = 5,
         PartialDestruction = 6,
         Intact = 7,
-        
+
         // WorkStatus
         Unemployed = 9,
         Working = 10,
@@ -59,5 +59,33 @@ namespace SubscriberManagementSystem.Data.Enums
         BeneficiaryId = 13,
         BeneficiaryTypesId = 14,
 
+        // ---- New Constant groups for the extended Beneficiary CreateEdit form ----
+        // Main (parent, ParentId == null) constants
+        MaritalStatus = 21,
+        BreadwinnerStatus = 27,
+        WifeStatus = 31,
+        ResidenceStatus = 35,
+
+        // MaritalStatus values (ParentId = 21)
+        Married = 22,
+        Widowed = 23,
+        Divorced = 24,
+        Separated = 25,
+        Polygamous = 26,
+
+        // BreadwinnerStatus values (ParentId = 27)
+        Father = 28,
+        Mother = 29,
+        Other = 30,
+
+        // WifeStatus values (ParentId = 31)
+        NoWife = 32,
+        WifeAlive = 33,
+        WifeDeceased = 34,
+
+        // ResidenceStatus values (ParentId = 35)
+        Owned = 36,
+        Rented = 37,
+        WithoutResidence = 38,
     }
 }

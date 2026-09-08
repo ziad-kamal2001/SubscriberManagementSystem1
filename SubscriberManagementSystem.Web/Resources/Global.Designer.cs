@@ -2563,5 +2563,155 @@ namespace SubscriberManagementSystem.Web.Resources {
                 return ResourceManager.GetString("ZipCode", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to الحالة الاجتماعية.
+        /// </summary>
+        public static string MaritalStatus
+        {
+            get
+            {
+                return ResourceManager.GetString("MaritalStatus", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to المحافظة الأصلية.
+        /// </summary>
+        public static string OriginalGovernorate
+        {
+            get
+            {
+                return ResourceManager.GetString("OriginalGovernorate", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to المحافظة الحالية.
+        /// </summary>
+        public static string CurrentGovernorate
+        {
+            get
+            {
+                return ResourceManager.GetString("CurrentGovernorate", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to الجوال البديل.
+        /// </summary>
+        public static string AlternateMobileNumber
+        {
+            get
+            {
+                return ResourceManager.GetString("AlternateMobileNumber", resourceCulture);
+            }
+        }
+
+   
+
+        /// <summary>
+        ///   Looks up a localized string similar to أقرب معلم.
+        /// </summary>
+        public static string NearestLandmark
+        {
+            get
+            {
+                return ResourceManager.GetString("NearestLandmark", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to معيل الأسرة.
+        /// </summary>
+        public static string Breadwinner
+        {
+            get
+            {
+                return ResourceManager.GetString("Breadwinner", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to حالة المسكن.
+        /// </summary>
+        public static string ResidenceStatus
+        {
+            get
+            {
+                return ResourceManager.GetString("ResidenceStatus", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to حالة الزوجة.
+        /// </summary>
+        public static string WifeStatus
+        {
+            get
+            {
+                return ResourceManager.GetString("WifeStatus", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to عدد الأفراد الإناث.
+        /// </summary>
+        public static string FemaleMembersCount
+        {
+            get
+            {
+                return ResourceManager.GetString("FemaleMembersCount", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to عدد الأفراد الذكور.
+        /// </summary>
+        public static string MaleMembersCount
+        {
+            get
+            {
+                return ResourceManager.GetString("MaleMembersCount", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to عدد الأفراد ذوي الأمراض المزمنة.
+        /// </summary>
+        public static string ChronicIllnessCount
+        {
+            get
+            {
+                return ResourceManager.GetString("ChronicIllnessCount", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to عدد الشهداء في العائلة.
+        /// </summary>
+        public static string MartyrsCount
+        {
+            get
+            {
+                return ResourceManager.GetString("MartyrsCount", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to عدد الجرحى في العائلة.
+        /// </summary>
+        public static string InjuredCount
+        {
+            get
+            {
+                return ResourceManager.GetString("InjuredCount", resourceCulture);
+            }
+        }
+
+    
+
+    
+     
     }
 }

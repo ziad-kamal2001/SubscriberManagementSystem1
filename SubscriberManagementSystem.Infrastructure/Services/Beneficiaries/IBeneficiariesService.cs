@@ -17,5 +17,14 @@ namespace SubscriberManagementSystem.Infrastructure.Services.Beneficiaries
         Task<List<Constant>> GetGendersAsync();
         Task<List<Constant>> GetBeneficiaryTypesAsync();
 
+        // New lookups for the extended CreateEdit form
+        Task<List<Constant>> GetMaritalStatusesAsync();
+        Task<List<Constant>> GetBreadwinnerStatusesAsync();
+        Task<List<Constant>> GetWifeStatusesAsync();
+        Task<List<Constant>> GetResidenceStatusesAsync();
+        Task<List<City>> GetCitiesListAsync();
+
+        // Family member counters, computed from Beneficiary/Wive/Children relations
+        Task<FamilyMembersCountDto> GetFamilyMembersCountAsync(int beneficiaryId);
     }
 }

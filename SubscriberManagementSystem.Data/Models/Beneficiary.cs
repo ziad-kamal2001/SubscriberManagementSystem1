@@ -48,7 +48,7 @@ namespace SubscriberManagementSystem.Data.Models
                 return $"{FName} {SName} {TName} {LName}";
             }
         }
-    
+
 
         [Display(Name = "DOB", ResourceType = typeof(Messages))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Messages))]
@@ -65,6 +65,11 @@ namespace SubscriberManagementSystem.Data.Models
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Messages))]
         [Phone(ErrorMessageResourceName = "InvalidNumber", ErrorMessageResourceType = typeof(Messages))]
         public string PhoneNumber { get; set; }
+
+        [Display(Name = "AlternatePhoneNumber", ResourceType = typeof(Messages))]
+        [Phone(ErrorMessageResourceName = "InvalidNumber", ErrorMessageResourceType = typeof(Messages))]
+        public string? AlternatePhoneNumber { get; set; }
+
         public int? BeneficiaryTypeId { get; set; }
         public Constant? BeneficiaryType { get; set; }
         public bool IsReceivingMessages { get; set; }
@@ -75,6 +80,23 @@ namespace SubscriberManagementSystem.Data.Models
         public string? CampName { get; set; }
         public bool IsActive { get; set; }
 
+        // ---- New extended-form fields ----
+
+        [Display(Name = "MaritalStatus", ResourceType = typeof(Messages))]
+        public int? MaritalStatusId { get; set; }
+        public Constant? MaritalStatus { get; set; }
+
+        [Display(Name = "BreadwinnerStatus", ResourceType = typeof(Messages))]
+        public int? BreadwinnerStatusId { get; set; }
+        public Constant? BreadwinnerStatus { get; set; }
+
+        [Display(Name = "WifeStatus", ResourceType = typeof(Messages))]
+        public int? WifeStatusId { get; set; }
+        public Constant? WifeStatus { get; set; }
+
+        [Display(Name = "OriginalGovernorate", ResourceType = typeof(Messages))]
+        public int? OriginalGovernorateCityId { get; set; }
+        public City? OriginalGovernorateCity { get; set; }
 
     }
 }

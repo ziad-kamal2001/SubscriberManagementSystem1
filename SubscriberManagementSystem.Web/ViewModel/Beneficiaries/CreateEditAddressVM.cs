@@ -5,10 +5,14 @@ namespace SubscriberManagementSystem.Web.ViewModel.Beneficiaries
     public class CreateEditAddressVM
     {
         public BeneficiaryInformation BeneficiaryInformation { get; set; }
-  
+
         public List<Constant> AddressTypes { get; set; }
 
         public Wive Wives { get; set; }
         public List<Constant> BeneficiaryTypes { get; internal set; }
+
+        // New lookups
+        public List<City> Cities { get; set; }
+        public List<Constant> ResidenceStatuses { get; set; }
     }
 }

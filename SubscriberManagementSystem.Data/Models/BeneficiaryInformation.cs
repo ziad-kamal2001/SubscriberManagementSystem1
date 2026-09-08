@@ -19,12 +19,10 @@ namespace SubscriberManagementSystem.Data.Models
         [Display(Name = "NumberofIndividuals", ResourceType = typeof(Messages))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Messages))]
         public int? NumberofIndividuals { get; set; }
-        [Display(Name = "OriginalCity", ResourceType = typeof(Messages))]
-        [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Messages))]
-        public string OriginalCity { get; set; }
-        [Display(Name = "CurrentCity", ResourceType = typeof(Messages))]
-        [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Messages))]
-        public string CurrentCity { get; set; }
+
+        // NOTE: OriginalCity (free text) removed — original governorate now lives on
+        // Beneficiary.OriginalGovernorateCityId (FK to City), per the extended survey form.
+
         [Display(Name = "Camp", ResourceType = typeof(Messages))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Messages))]
         public string Camp { get; set; }
@@ -42,7 +40,7 @@ namespace SubscriberManagementSystem.Data.Models
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Messages))]
         public int? WorkStatusId { get; set; }
         public WorkStatus? WorkStatus { get; set; }
-        
+
 
         [Display(Name = "TheHealthCondition", ResourceType = typeof(Messages))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Messages))]
@@ -54,6 +52,26 @@ namespace SubscriberManagementSystem.Data.Models
         public int? AccommodationId { get; set; }
         public Accommodation? Accommodation { get; set; }
         public bool IsDefaultAddress { get; set; }
+
+        // ---- New extended-form fields ----
+
+        [Display(Name = "CurrentGovernorate", ResourceType = typeof(Messages))]
+        public int? CurrentGovernorateCityId { get; set; }
+        public City? CurrentGovernorateCity { get; set; }
+
+        [Display(Name = "CurrentCity", ResourceType = typeof(Messages))]
+        public int? CurrentCityId { get; set; }
+        public City? CurrentCity { get; set; }
+
+        [Display(Name = "Neighborhood", ResourceType = typeof(Messages))]
+        public string? Neighborhood { get; set; }
+
+        [Display(Name = "NearestLandmark", ResourceType = typeof(Messages))]
+        public string? NearestLandmark { get; set; }
+
+        [Display(Name = "ResidenceStatus", ResourceType = typeof(Messages))]
+        public int? ResidenceStatusId { get; set; }
+        public Constant? ResidenceStatus { get; set; }
 
     }
 }

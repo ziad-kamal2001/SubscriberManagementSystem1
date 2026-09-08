@@ -459,4 +459,7 @@
   <data name="Accommodation" xml:space="preserve">
     <value>مكان الاقامة</value>
   </data>
+  <data name="AlternatePhoneNumber" xml:space="preserve">
+    <value>رقم الجوال البديل</value>
+  </data>
 </root>

@@ -34,15 +34,13 @@ namespace SubscriberManagementSystem.Infrastructure.Services.Beneficiaries
                     LName = b.LName,
                     DOB = b.DOB,
                     IsActive = b.IsActive,
-                    IDNumber=b.IDNumber,
-                    PhoneNumber=b.PhoneNumber,
+                    IDNumber = b.IDNumber,
+                    PhoneNumber = b.PhoneNumber,
                     ParentId = b.ParentId,
                     CampName = _context.BeneficiaryInformations
                         .Where(ba => ba.BeneficiaryId == b.Id && ba.IsDefaultAddress)
                         .Select(ba => ba.Camp)
                         .FirstOrDefault(),
-
-
                 })
                 .Where(b => b.ParentId == input.SearchValue.ParentId)
                 .Where(x => string.IsNullOrEmpty(input.SearchValue.Keyword)
@@ -83,7 +81,16 @@ namespace SubscriberManagementSystem.Infrastructure.Services.Beneficiaries
 
         public async Task<Beneficiary> GetByIdOrDefaultAsync(int id)
         {
-            var beneficiary = await _context.Beneficiaries.Include(x => x.Parent).SingleOrDefaultAsync(x => x.Id == id);
+            var beneficiary = await _context.Beneficiaries
+                .Include(x => x.Parent)
+                .Include(x => x.Gender)
+                .Include(x => x.BeneficiaryType)
+                .Include(x => x.MaritalStatus)
+                .Include(x => x.BreadwinnerStatus)
+                .Include(x => x.WifeStatus)
+                .Include(x => x.OriginalGovernorateCity)
+                .SingleOrDefaultAsync(x => x.Id == id);
+
             if (beneficiary != null)
                 return beneficiary;
 
@@ -112,7 +119,6 @@ namespace SubscriberManagementSystem.Infrastructure.Services.Beneficiaries
 
                     await _context.SaveChangesAsync();
                     result.ReturnId = updatedBeneficiary.Entity.Id;
-
                 }
 
                 result.Success = true;
@@ -124,11 +130,13 @@ namespace SubscriberManagementSystem.Infrastructure.Services.Beneficiaries
             }
             return result;
         }
+
         public async Task<List<Constant>> GetBeneficiaryTypesAsync()
         {
             return await _context.Constants.Where(c => c.ParentId == (int)GeneralEnums.BeneficiaryType)
                 .Select(c => new Constant { Id = c.Id, Name = c.Name }).ToListAsync();
         }
+
         public async Task<OperationResult> DeleteAsync(int id)
         {
             var result = new OperationResult();
@@ -153,13 +161,103 @@ namespace SubscriberManagementSystem.Infrastructure.Services.Beneficiaries
                 .Select(c => new Constant { Id = c.Id, Name = c.Name }).ToListAsync();
         }
 
-        //public async Task<List<Constant>> GetCategoriesAsync()
-        //{
-        //    return await _context.Constants.Where(c => c.ParentId == (int)GeneralEnums.BeneficiaryCategory)
-        //        .Select(c => new Constant { Id = c.Id, Name = c.Name }).ToListAsync();
-        //}
+        // ---- New lookups for the extended CreateEdit form ----
 
+        public async Task<List<Constant>> GetMaritalStatusesAsync()
+        {
+            return await _context.Constants.Where(c => c.ParentId == (int)GeneralEnums.MaritalStatus)
+                .Select(c => new Constant { Id = c.Id, Name = c.Name }).ToListAsync();
+        }
 
+        public async Task<List<Constant>> GetBreadwinnerStatusesAsync()
+        {
+            return await _context.Constants.Where(c => c.ParentId == (int)GeneralEnums.BreadwinnerStatus)
+                .Select(c => new Constant { Id = c.Id, Name = c.Name }).ToListAsync();
+        }
 
+        public async Task<List<Constant>> GetWifeStatusesAsync()
+        {
+            return await _context.Constants.Where(c => c.ParentId == (int)GeneralEnums.WifeStatus)
+                .Select(c => new Constant { Id = c.Id, Name = c.Name }).ToListAsync();
+        }
+
+        public async Task<List<Constant>> GetResidenceStatusesAsync()
+        {
+            return await _context.Constants.Where(c => c.ParentId == (int)GeneralEnums.ResidenceStatus)
+                .Select(c => new Constant { Id = c.Id, Name = c.Name }).ToListAsync();
+        }
+
+        public async Task<List<City>> GetCitiesListAsync()
+        {
+            return await _context.Cities
+                .Select(c => new City { Id = c.Id, Name = c.Name }).ToListAsync();
+        }
+
+        // ---- Computed family member counters ----
+        // NOTE: Disabled/Martyrs/Injured counters require new boolean flags
+        // (e.g. IsDisabled, IsMartyr, IsInjured) to be added to Beneficiary/Wive/Children.
+        // Those columns don't exist yet, so those three counters return 0 for now.
+        public async Task<FamilyMembersCountDto> GetFamilyMembersCountAsync(int beneficiaryId)
+        {
+            var result = new FamilyMembersCountDto();
+            var today = DateTime.Today;
+
+            // Relatives (children/other dependents modeled as Beneficiary rows with ParentId)
+            var relatives = await _context.Beneficiaries
+                .Where(b => b.ParentId == beneficiaryId)
+                .Select(b => new { b.DOB, b.GenderId })
+                .ToListAsync();
+
+            // Wives
+            var wives = await _context.Wives
+                .Where(w => w.BeneficiaryId == beneficiaryId)
+                .Select(w => new { w.DOB })
+                .ToListAsync();
+
+            // Children
+            var children = await _context.Childrens
+                .Where(c => c.BeneficiaryId == beneficiaryId)
+                .Select(c => new { c.DOB, c.GenderId, c.TheHealthConditionId })
+                .ToListAsync();
+
+            void Accumulate(DateTime? dob, bool isFemale)
+            {
+                if (!dob.HasValue) return;
+                var age = today.Year - dob.Value.Year;
+                if (dob.Value.Date > today.AddYears(-age)) age--;
+
+                if (isFemale)
+                {
+                    if (age <= 2) result.Female0To2++;
+                    else if (age <= 5) result.Female3To5++;
+                    else if (age <= 18) result.Female6To18++;
+                    else if (age <= 59) result.Female19To59++;
+                    else result.Female60Plus++;
+                }
+                else
+                {
+                    if (age <= 2) result.Male0To2++;
+                    else if (age <= 5) result.Male3To5++;
+                    else if (age <= 18) result.Male6To18++;
+                    else if (age <= 59) result.Male19To59++;
+                    else result.Male60Plus++;
+                }
+            }
+
+            foreach (var r in relatives)
+                Accumulate(r.DOB, r.GenderId == (int)GeneralEnums.Female);
+
+            foreach (var w in wives)
+                Accumulate(w.DOB, true);
+
+            foreach (var c in children)
+            {
+                Accumulate(c.DOB, c.GenderId == (int)GeneralEnums.Female);
+                if (c.TheHealthConditionId == (int)GeneralEnums.Negative)
+                    result.ChronicIllnessCount++;
+            }
+
+            return result;
+        }
     }
 }

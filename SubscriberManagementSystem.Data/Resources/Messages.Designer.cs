@@ -133,6 +133,15 @@ namespace SubscriberManagementSystem.Data.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to رقم الجوال البديل.
+        /// </summary>
+        public static string AlternatePhoneNumber {
+            get {
+                return ResourceManager.GetString("AlternatePhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to مرفق.
         /// </summary>
         public static string Attachment {
@@ -1083,6 +1092,85 @@ namespace SubscriberManagementSystem.Data.Resources {
         public static string WorkStatus {
             get {
                 return ResourceManager.GetString("WorkStatus", resourceCulture);
+            }
+        }
+       
+        /// <summary>
+        ///   Looks up a localized string similar to الحالة الاجتماعية.
+        /// </summary>
+        public static string MaritalStatus
+        {
+            get
+            {
+                return ResourceManager.GetString("MaritalStatus", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to معيل الأسرة.
+        /// </summary>
+        public static string BreadwinnerStatus
+        {
+            get
+            {
+                return ResourceManager.GetString("BreadwinnerStatus", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to حالة الزوجة.
+        /// </summary>
+        public static string WifeStatus
+        {
+            get
+            {
+                return ResourceManager.GetString("WifeStatus", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to المحافظة الأصلية.
+        /// </summary>
+        public static string OriginalGovernorate
+        {
+            get
+            {
+                return ResourceManager.GetString("OriginalGovernorate", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to المحافظة الحالية.
+        /// </summary>
+        public static string CurrentGovernorate
+        {
+            get
+            {
+                return ResourceManager.GetString("CurrentGovernorate", resourceCulture);
+            }
+        }
+
+    
+
+        /// <summary>
+        ///   Looks up a localized string similar to أقرب معلم.
+        /// </summary>
+        public static string NearestLandmark
+        {
+            get
+            {
+                return ResourceManager.GetString("NearestLandmark", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to حالة المسكن.
+        /// </summary>
+        public static string ResidenceStatus
+        {
+            get
+            {
+                return ResourceManager.GetString("ResidenceStatus", resourceCulture);
             }
         }
     }

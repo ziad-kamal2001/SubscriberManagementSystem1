@@ -9,115 +9,117 @@ using System.Linq.Dynamic.Core;
 
 namespace SubscriberManagementSystem.Infrastructure.Services.BeneficiaryInformations
 {
-	public class BeneficiaryInformationsService : BaseService, IBeneficiaryInformationsService
+    public class BeneficiaryInformationsService : BaseService, IBeneficiaryInformationsService
     {
-		public BeneficiaryInformationsService(ApplicationDbContext context, UserManager<User> userManager, IHttpContextAccessor httpContextAccessor)
-			: base(context, userManager, httpContextAccessor)
-		{
-		}
+        public BeneficiaryInformationsService(ApplicationDbContext context, UserManager<User> userManager, IHttpContextAccessor httpContextAccessor)
+            : base(context, userManager, httpContextAccessor)
+        {
+        }
 
-		public async Task<PagedResultDto<List<BeneficiaryInformation>>> GetAllAsync(PagedResultRequestDto<BeneficiaryInformation> input)
-		{
-			IQueryable<BeneficiaryInformation> beneficiaryInformations = _context.BeneficiaryInformations
-				.Include(a => a.Beneficiary)
-				.Where(a => a.BeneficiaryId == input.SearchValue.BeneficiaryId);
+        public async Task<PagedResultDto<List<BeneficiaryInformation>>> GetAllAsync(PagedResultRequestDto<BeneficiaryInformation> input)
+        {
+            IQueryable<BeneficiaryInformation> beneficiaryInformations = _context.BeneficiaryInformations
+                .Include(a => a.Beneficiary)
+                .Include(a => a.CurrentGovernorateCity)
+                .Include(a => a.CurrentCity)
+                .Include(a => a.ResidenceStatus)
+                .Where(a => a.BeneficiaryId == input.SearchValue.BeneficiaryId);
 
-			if (!(string.IsNullOrEmpty(input.SortColumn) && string.IsNullOrEmpty(input.SortColumnDirection)))
+            if (!(string.IsNullOrEmpty(input.SortColumn) && string.IsNullOrEmpty(input.SortColumnDirection)))
                 beneficiaryInformations = beneficiaryInformations.OrderBy(string.Concat(input.SortColumn, " ", input.SortColumnDirection));
 
-			return new PagedResultDto<List<BeneficiaryInformation>>()
-			{
-				Data = await beneficiaryInformations.Skip(input.Skip).Take(input.PageSize).ToListAsync(),
-				TotalCount = await beneficiaryInformations.CountAsync()
-			};
-		}
+            return new PagedResultDto<List<BeneficiaryInformation>>()
+            {
+                Data = await beneficiaryInformations.Skip(input.Skip).Take(input.PageSize).ToListAsync(),
+                TotalCount = await beneficiaryInformations.CountAsync()
+            };
+        }
 
-		//public async Task<List<Constant>> GetAddressTypeAsync()
-		//{
-		//	return await _context.Constants.Where(c => c.ParentId == (int)GeneralEnums.AddressType)
-		//		.Select(c => new Constant { Id = c.Id, Name = c.Name }).ToListAsync();
-		//}
+        public async Task<BeneficiaryInformation> GetByIdOrDefaultAsync(int id)
+        {
+            var beneficiaryInformation = await _context.BeneficiaryInformations
+                .Include(a => a.CurrentGovernorateCity)
+                .Include(a => a.CurrentCity)
+                .Include(a => a.ResidenceStatus)
+                .SingleOrDefaultAsync(x => x.Id == id);
 
-		public async Task<BeneficiaryInformation> GetByIdOrDefaultAsync(int id)
-		{
-			var beneficiaryInformation = await _context.BeneficiaryInformations.SingleOrDefaultAsync(x => x.Id == id);
-			if (beneficiaryInformation != null)
-				return beneficiaryInformation;
+            if (beneficiaryInformation != null)
+                return beneficiaryInformation;
 
-			return new BeneficiaryInformation();
-		}
+            return new BeneficiaryInformation();
+        }
 
-		public async Task<OperationResult> CreateEditAsync(BeneficiaryInformation input)
-		{
-			var result = new OperationResult();
-			try
-			{
-				if (input.IsDefaultAddress && await HasDefaultAddress(input.BeneficiaryId, input.Id))
-				{
-					result.Message = Messages.HasDefaultAddress;
-				}
-				else
-				{
-					var currentUserId = await GetCurrentUserIdAsync();
+        public async Task<OperationResult> CreateEditAsync(BeneficiaryInformation input)
+        {
+            var result = new OperationResult();
+            try
+            {
+                if (input.IsDefaultAddress && await HasDefaultAddress(input.BeneficiaryId, input.Id))
+                {
+                    result.Message = Messages.HasDefaultAddress;
+                }
+                else
+                {
+                    var currentUserId = await GetCurrentUserIdAsync();
 
-					if (input.Id == 0)
-					{
-						SetCreatedFields(input, currentUserId);
-						await _context.BeneficiaryInformations.AddAsync(input);
-					}
-					else
-					{
-						SetUpdatedFields(input, currentUserId);
+                    if (input.Id == 0)
+                    {
+                        SetCreatedFields(input, currentUserId);
+                        await _context.BeneficiaryInformations.AddAsync(input);
+                    }
+                    else
+                    {
+                        SetUpdatedFields(input, currentUserId);
 
-						_context.BeneficiaryInformations.Update(input);
-						SetEntityModifiedFields(input);
-					}
+                        _context.BeneficiaryInformations.Update(input);
+                        SetEntityModifiedFields(input);
+                    }
 
-					await _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
 
-					result.Success = true;
-					result.Message = Messages.Success;
-				}
+                    result.Success = true;
+                    result.Message = Messages.Success;
+                }
 
-			}
-			catch (Exception ex)
-			{
-				result.Message = Messages.Failed;
-			}
+            }
+            catch (Exception ex)
+            {
+                result.Message = Messages.Failed;
+            }
 
-			return result;
-		}
+            return result;
+        }
 
-		public async Task<OperationResult> DeleteAsync(int id)
-		{
-			var result = new OperationResult();
+        public async Task<OperationResult> DeleteAsync(int id)
+        {
+            var result = new OperationResult();
 
-			var BeneficiaryInformation = await _context.BeneficiaryInformations.SingleOrDefaultAsync(x => x.Id == id);
-			if (BeneficiaryInformation != null)
-			{
-				BeneficiaryInformation.IsDeleted = true;
-				BeneficiaryInformation.DeletedBy = await GetCurrentUserIdAsync();
+            var beneficiaryInformation = await _context.BeneficiaryInformations.SingleOrDefaultAsync(x => x.Id == id);
+            if (beneficiaryInformation != null)
+            {
+                beneficiaryInformation.IsDeleted = true;
+                beneficiaryInformation.DeletedBy = await GetCurrentUserIdAsync();
 
-				_context.BeneficiaryInformations.Update(BeneficiaryInformation);
-				await _context.SaveChangesAsync();
+                _context.BeneficiaryInformations.Update(beneficiaryInformation);
+                await _context.SaveChangesAsync();
 
-				result.Success = true;
-				result.Message = Messages.Success;
-			}
-			return result;
-		}
+                result.Success = true;
+                result.Message = Messages.Success;
+            }
+            return result;
+        }
 
-		private async Task<bool> HasDefaultAddress(int beneficiaryId, int addressId)
-		{
-			var defaultAddress = await _context.BeneficiaryInformations
+        private async Task<bool> HasDefaultAddress(int beneficiaryId, int addressId)
+        {
+            var defaultAddress = await _context.BeneficiaryInformations
                 .SingleOrDefaultAsync(ba => ba.BeneficiaryId == beneficiaryId
-				&& ba.IsDefaultAddress
-				&& ba.Id != addressId);
+                && ba.IsDefaultAddress
+                && ba.Id != addressId);
 
-			if (defaultAddress != null)
-				return true;
+            if (defaultAddress != null)
+                return true;
 
-			return false;
-		}
-	}
+            return false;
+        }
+    }
 }

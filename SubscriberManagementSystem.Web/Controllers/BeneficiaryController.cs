@@ -78,8 +78,27 @@ namespace SubscriberManagementSystem.Web.Controllers
             {
                 Beneficiary = beneficiary,
                 BeneficiaryTypes = await _beneficiariesService.GetBeneficiaryTypesAsync(),
-                Genders = await _beneficiariesService.GetGendersAsync()
+                Genders = await _beneficiariesService.GetGendersAsync(),
+
+                // New lookups
+                MaritalStatuses = await _beneficiariesService.GetMaritalStatusesAsync(),
+                BreadwinnerStatuses = await _beneficiariesService.GetBreadwinnerStatusesAsync(),
+                WifeStatuses = await _beneficiariesService.GetWifeStatusesAsync(),
+                ResidenceStatuses = await _beneficiariesService.GetResidenceStatusesAsync(),
+                Cities = await _beneficiariesService.GetCitiesListAsync(),
+
+                // Computed family counters (0s for a brand-new beneficiary)
+                FamilyMembersCount = id > 0
+                    ? await _beneficiariesService.GetFamilyMembersCountAsync(id)
+                    : new Infrastructure.Services.Beneficiaries.FamilyMembersCountDto()
             });
+        }
+
+        [HttpGet] // Refresh the computed family member counters (called after adding/removing a wife/child/relative)
+        public async Task<IActionResult> GetFamilyMembersCount(int beneficiaryId)
+        {
+            var counts = await _beneficiariesService.GetFamilyMembersCountAsync(beneficiaryId);
+            return Ok(counts);
         }
 
         [HttpPost] // Create Edit Beneficiaries
@@ -89,11 +108,11 @@ namespace SubscriberManagementSystem.Web.Controllers
 
             if (input.ParentId.HasValue)
             {
-               
+
             }
             else
             {
-                
+
 
                 if (!input.BeneficiaryTypeId.HasValue)
                     ModelState.AddModelError("RequiredBeneficiaryType", Messages.RequiredBeneficiaryType);
@@ -148,9 +167,9 @@ namespace SubscriberManagementSystem.Web.Controllers
             return PartialView("_CreateEditAddressModal", new CreateEditAddressVM
             {
                 BeneficiaryTypes = await _beneficiariesService.GetBeneficiaryTypesAsync(),
-
                 BeneficiaryInformation = await _beneficiaryInformationsService.GetByIdOrDefaultAsync(id),
-                //AddressTypes = await _beneficiaryInformationsService.GetAddressTypeAsync()
+                Cities = await _beneficiariesService.GetCitiesListAsync(),
+                ResidenceStatuses = await _beneficiariesService.GetResidenceStatusesAsync(),
             });
         }
 
