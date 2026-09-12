@@ -28,9 +28,9 @@
                     orderable: false
                 },
                 { data: "fullName", name: "fullName", autowidth: true, orderable: false, orderable: false },
-                { data: "beneficiaryType.name", name: "beneficiaryType.name", autowidth: true},
+                { data: "beneficiaryType.name", name: "beneficiaryType.name", autowidth: true },
                 { data: "iDNumber", name: "IDNumber", autowidth: true, orderable: false },
-                { data: "phoneNumber", name: "PhoneNumber", autowidth: true, orderable: false }, 
+                { data: "phoneNumber", name: "PhoneNumber", autowidth: true, orderable: false },
                 { data: "dOB", name: "DOB", autowidth: true, orderable: false },
                 {
                     data: "isActive", name: "isActive",
@@ -81,10 +81,10 @@
             const elementId = $(this).attr("element-id");
 
             deleteFunction(`/Beneficiary/Delete/${elementId}`)
-            .then(function () {
-                dtBeneficiaries.destroy();
-                initBeneficiariesDataTable();
-            });
+                .then(function () {
+                    dtBeneficiaries.destroy();
+                    initBeneficiariesDataTable();
+                });
         });
     };
 
@@ -121,7 +121,7 @@
                         const isRelative = form.find('[name="ParentId"]').val();
                         if (isRelative) {
                             $(".span-title").text(`${Messages.RelativeData} : ${form.find('[name="FName"]').val()} ${form.find('[name="SName"]').val()} ${form.find('[name="TName"]').val()} ${form.find('[name="LName"]').val()}`);
-                        }else {
+                        } else {
                             $(".span-title").text(`${Messages.BeneficiaryData} : ${form.find('[name="FName"]').val()} ${form.find('[name="SName"]').val()} ${form.find('[name="TName"]').val()} ${form.find('[name="LName"]').val()}`);
                         }
                     }
@@ -278,7 +278,7 @@
                 datatype: "json",
                 data: {
                     "search[value]": serializeArrayToObject("SearchForm"),
-                    "beneficiaryId": $("#beneficiaryId").val() 
+                    "beneficiaryId": $("#beneficiaryId").val()
                 }
             },
             order: [[7, 'desc']],
@@ -382,7 +382,7 @@
                     $('input[type="text"]:first', this).focus();
                 });
                 KTApp.init(); // to init all functions including select2
-                
+
                 $("#addressBeneficiaryId").val($("#beneficiaryId").val())
 
                 submitAddressForm();
@@ -391,7 +391,7 @@
             }
         });
     }
-   
+
     // submit create or edit Address form
     var submitAddressForm = function () {
         $("#form").on("submit", function (e) {
@@ -606,7 +606,7 @@
             }
         });
     }
-    
+
     // submit create or edit Contact form
     var submitContactForm = function () {
         $("#form").on("submit", function (e) {
@@ -666,7 +666,7 @@
                 { data: "passportNumber", name: "PassportNumber", autowidth: true },
                 { data: "type.name", name: "type.name", autowidth: true },
                 {
-                    data: "nationality",name: "nationality",
+                    data: "nationality", name: "nationality",
                     autowidth: true,
                     render: function (data, type, row) {
                         const lang = $("html").attr("lang");
@@ -743,7 +743,7 @@
                 });
         });
     };
-   
+
     // open create or edit Passport modal
     var openPassportModal = function () {
         $(".openPassportModal, .btnEditPassport").off("click").click(function () {
@@ -796,7 +796,7 @@
                 .catch(function () {
                     return;
                 });
-        });        
+        });
     }
 
     // search Passport function
@@ -816,7 +816,7 @@
             serverSide: true,
             autoWidth: false,
             ajax: {
-                url: `/Wive/GetAll`,
+                url: `/Identity/GetAll`,
                 type: "POST",
                 datatype: "json",
                 data: { "search[value]": serializeArrayToObject("identitySearchForm") }
@@ -835,7 +835,7 @@
                     },
                     orderable: false
                 },
-                { data: "WiveType.name", name: "WiveType.name", autowidth: true },
+                { data: "identityType.name", name: "identityType.name", autowidth: true },
                 { data: "idNumber", name: "idNumber", autowidth: true },
                 { data: "countryOfOrigin.name", name: "countryOfOrigin.name", autowidth: true },
                 { data: "religion.name", name: "religion.name", autowidth: true },
@@ -931,7 +931,7 @@
     // get Identity modal
     var getIdentityModal = function (elementId) {
         $.ajax({
-            url: `/Wive/CreateEditModal/${elementId}`,
+            url: `/Identity/CreateEditModal/${elementId}`,
             type: 'GET',
             success: function (result) {
                 $('#modal .modal-content').html(result);
@@ -941,7 +941,7 @@
                 });
                 KTApp.init(); // to init all functions including select2
 
-                $("#wiveBeneficiaryId").val($("#beneficiaryId").val())
+                $("#identityBeneficiaryId").val($("#beneficiaryId").val())
                 uploadAttachment('uploadFileInput', '/File/UploadFile', 'Attachments', "input[name='AttachmentAttachmentName']", "input[name='AttachmentIcon']");
                 submitIdentityForm();
             }
@@ -956,7 +956,7 @@
 
             const data = form.serialize();
 
-            saveOrUpdate(`/Wive/CreateEdit/`, data, form)
+            saveOrUpdate(`/Identity/CreateEdit/`, data, form)
                 .then(function () {
                     $('#modal').modal('hide');
                     dtIdentities.destroy();
@@ -976,6 +976,157 @@
             initIdentitiesDataTable();
         });
     };
+
+
+    // Wives functions
+    var dtWives;
+    var initWivesDataTable = function () {
+        dtWives = $('#Wives').DataTable({
+            processing: true,
+            serverSide: true,
+            autoWidth: false,
+            ajax: {
+                url: `/Wive/GetAll`,
+                type: "POST",
+                datatype: "json",
+                data: { "search[value]": serializeArrayToObject("wiveSearchForm") }
+            },
+            order: [[3, 'desc']],
+            columnDefs: [{
+                targets: [0],
+                visible: true,
+                searchable: false
+            }],
+            columns: [
+                {
+                    width: "5%",
+                    render: function (data, type, row, meta) {
+                        return meta.settings._iDisplayStart + meta.row + 1;
+                    },
+                    orderable: false
+                },
+                { data: "name", name: "Name", autowidth: true },
+                { data: "iDNumber", name: "IDNumber", autowidth: true },
+                {
+                    data: "dob", name: "DOB", autowidth: true,
+                    render: function (data, type, row) {
+                        if (data) {
+                            return '<span>' + data.split('T')[0] + '</span>';
+                        }
+                        return '';
+                    }
+                },
+                {
+                    data: "isActive", name: "isActive", autowidth: true,
+                    render: function (data, type, row) {
+                        return data ? `<u class="text-success">${Messages.Active}</u>` : `<u class="text-danger">${Messages.Expired}</u>`;
+                    }
+                },
+                {
+                    width: "6%",
+                    render: function (data, type, row) {
+                        return `<div class="dropdown">
+                                    <button class="btn btn-secondary btn-icon btn-sm" type="button" id="dropdownActions" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-gear-fill fs-4"></i>
+                                    </button>
+                                    <ul class="dropdown-menu fs-4" aria-labelledby="dropdownActions">
+                                        <li><a class="dropdown-item btn btnEditWive" element-id="${row.id}"><i class="bi bi-pencil-square"></i>${Messages.Edit}</a></li>
+                                        <li><a class="dropdown-item btn btnDeleteWive" element-id="${row.id}"><i class="bi bi-trash-fill"></i>${Messages.Delete}</a></li>
+                                    </ul>
+                                </div>`
+                    },
+                    orderable: false
+                }
+            ],
+            rowCallback: function (row, data, index) {
+                $(row).on('dblclick', function () {
+                    getWiveModal(data.id);
+                });
+            },
+            language: Language
+        });
+
+        dtWives.on('draw', function () {
+            deleteWive();
+            openWiveModal();
+        });
+    }
+
+    // delete Wive function
+    var deleteWive = function () {
+        $(".btnDeleteWive").off("click").click(function () {
+            const elementId = $(this).attr("element-id");
+
+            deleteFunction(`/Wive/Delete/${elementId}`)
+                .then(function () {
+                    dtWives.destroy();
+                    initWivesDataTable();
+                });
+        });
+    };
+
+    // open create or edit Wive modal
+    var openWiveModal = function () {
+        $(".openWiveModal, .btnEditWive").off("click").click(function () {
+
+            var beneficiaryId = $("#beneficiaryId").val();
+            if (/^[1-9]\d*$/.test(beneficiaryId) && beneficiaryId !== 0) {
+
+                const elementId = $(this).attr("element-id") || 0;
+                getWiveModal(elementId);
+            } else {
+                toastr.warning(Messages.AlertMessage, Messages.AddBeneficiaryBeforeAddIdentity);
+            }
+        });
+    }
+
+    // get Wive modal
+    var getWiveModal = function (elementId) {
+        $.ajax({
+            url: `/Wive/CreateEditModal/${elementId}`,
+            type: 'GET',
+            success: function (result) {
+                $('#modal .modal-content').html(result);
+                $('#modal').modal('show');
+                $('#modal').on('shown.bs.modal', function () {
+                    $('input[type="text"]:first', this).focus();
+                });
+                KTApp.init(); // to init all functions including select2
+
+                $("#wiveBeneficiaryId").val($("#beneficiaryId").val())
+                submitWiveForm();
+            }
+        });
+    }
+
+    // submit create or edit Wive form
+    var submitWiveForm = function () {
+        $("#form").on("submit", function (e) {
+            e.preventDefault();
+            const form = $(this);
+
+            const data = form.serialize();
+
+            saveOrUpdate(`/Wive/CreateEdit/`, data, form)
+                .then(function () {
+                    $('#modal').modal('hide');
+                    dtWives.destroy();
+                    initWivesDataTable();
+                })
+                .catch(function () {
+                    return;
+                });
+        });
+    }
+
+    // search Wive function
+    var searchWiveForm = function () {
+        $(".btnWiveSearch").off("click").click(function () {
+            dtWives.destroy();
+            initWivesDataTable();
+        });
+    };
+
 
     // Attachments functions
     // get Attachments Partial By Record
@@ -1086,6 +1237,11 @@
             initIdentitiesDataTable();
             openIdentityModal();
             searchIdentityForm();
+
+            // init Wives functions
+            initWivesDataTable();
+            openWiveModal();
+            searchWiveForm();
 
             // init Relatives functions
             initRelativesDataTable();

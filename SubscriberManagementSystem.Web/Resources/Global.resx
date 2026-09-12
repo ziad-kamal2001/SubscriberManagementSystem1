@@ -957,4 +957,43 @@
   <data name="Wives" xml:space="preserve">
     <value>الزوجة</value>
   </data>
+  <data name="AlternateMobileNumber" xml:space="preserve">
+    <value>الجوال البديل</value>
+  </data>
+  <data name="CurrentGovernorate" xml:space="preserve">
+    <value>المحافظة الحالية</value>
+  </data>
+  <data name="MaritalStatus" xml:space="preserve">
+    <value>الحالة الاجتماعية</value>
+  </data>
+  <data name="OriginalGovernorate" xml:space="preserve">
+    <value>المحافظة الأصلية</value>
+  </data>
+  <data name="NearestLandmark" xml:space="preserve">
+    <value>أقرب معلم</value>
+  </data>
+  <data name="Breadwinner" xml:space="preserve">
+    <value>معيل الأسرة</value>
+  </data>
+  <data name="ResidenceStatus" xml:space="preserve">
+    <value>حالة المسكن</value>
+  </data>
+  <data name="WifeStatus" xml:space="preserve">
+    <value>حالة الزوجة</value>
+  </data>
+  <data name="FemaleMembersCount" xml:space="preserve">
+    <value>عدد الأفراد الإناث</value>
+  </data>
+  <data name="MaleMembersCount" xml:space="preserve">
+    <value>عدد الأفراد الذكور</value>
+  </data>
+  <data name="ChronicIllnessCount" xml:space="preserve">
+    <value>عدد الأفراد ذوي الأمراض المزمنة</value>
+  </data>
+  <data name="MartyrsCount" xml:space="preserve">
+    <value>عدد الشهداء في العائلة</value>
+  </data>
+  <data name="InjuredCount" xml:space="preserve">
+    <value>عدد الجرحى في العائلة</value>
+  </data>
 </root>

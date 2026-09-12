@@ -958,4 +958,43 @@
   <data name="Wives" xml:space="preserve">
     <value>Wives</value>
   </data>
+  <data name="AlternateMobileNumber" xml:space="preserve">
+    <value>Alternate Mobile Number</value>
+  </data>
+  <data name="CurrentGovernorate" xml:space="preserve">
+    <value>Current Governorate</value>
+  </data>
+  <data name="MaritalStatus" xml:space="preserve">
+    <value>MaritalStatus</value>
+  </data>
+  <data name="OriginalGovernorate" xml:space="preserve">
+    <value>المحافظة الأصلية</value>
+  </data>
+  <data name="NearestLandmark" xml:space="preserve">
+    <value>NearestLandmark</value>
+  </data>
+  <data name="Breadwinner" xml:space="preserve">
+    <value>Breadwinner</value>
+  </data>
+  <data name="ResidenceStatus" xml:space="preserve">
+    <value>ResidenceStatus</value>
+  </data>
+  <data name="WifeStatus" xml:space="preserve">
+    <value>WifeStatus</value>
+  </data>
+  <data name="FemaleMembersCount" xml:space="preserve">
+    <value>FemaleMembersCount</value>
+  </data>
+  <data name="MaleMembersCount" xml:space="preserve">
+    <value>MaleMembersCount</value>
+  </data>
+  <data name="ChronicIllnessCount" xml:space="preserve">
+    <value>ChronicIllnessCount</value>
+  </data>
+  <data name="MartyrsCount" xml:space="preserve">
+    <value>MartyrsCount</value>
+  </data>
+  <data name="InjuredCount" xml:space="preserve">
+    <value>InjuredCount</value>
+  </data>
 </root>

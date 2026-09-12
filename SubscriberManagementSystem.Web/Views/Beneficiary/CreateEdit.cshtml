@@ -42,7 +42,7 @@
                 <a class="nav-link text-dark passports-tab" data-bs-toggle="tab" href="#PassportsTab">@Global.Passports</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" data-bs-toggle="tab" href="#IdentitiesTab">@Global.Identities</a>
+                <a class="nav-link text-dark" data-bs-toggle="tab" href="#WivesTab">@Global.Wives</a>
             </li>
             @if (!isRelative)
             {
@@ -320,9 +320,9 @@
                 </table>
             </div>
             <!--end::Addresses Tab-->
-            <!--begin::Identities Tab (fixed: table id was "Wives", now correctly "Identities")-->
-            <div id="IdentitiesTab" class="tab-pane fade" role="tabpanel">
-                <form id="identitySearchForm" onsubmit="return(false);">
+            <!--begin::Wives -->
+            <div id="WivesTab" class="tab-pane fade" role="tabpanel">
+                <form id="wiveSearchForm" onsubmit="return(false);">
                     <div class="d-flex flex-stack mb-5">
                         <div class="d-flex align-items-center position-relative my-1">
                             <span class="svg-icon svg-icon-2 position-absolute ms-6">
@@ -332,10 +332,10 @@
                                 </svg>
                             </span>
                             <input name="Keyword" type="text" placeholder="@Global.Search" class="form-control form-control-solid me-3 w-250px ps-15 fs-4" />
-                            <input name="BeneficiaryId" asp-for="Beneficiary.Id" type="hidden" />
+                            <input id="wiveBeneficiaryId" name="BeneficiaryId" asp-for="Beneficiary.Id" type="hidden" />
                         </div>
                         <div class="d-flex justify-content-end">
-                            <button type="submit" class="btnIdentitySearch btn btn-sm btn-icon btn-success me-1">
+                            <button type="submit" class="btnWiveSearch btn btn-sm btn-icon btn-success me-1">
                                 <span class="svg-icon svg-icon-2 fs-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                         <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
@@ -343,22 +343,19 @@
                                     </svg>
                                 </span>
                             </button>
-                            <button type="button" class="openIdentityModal btn btn-sm btn-icon btn-primary">
+                            <button type="button" class="openWiveModal btn btn-sm btn-icon btn-primary">
                                 <i class="bi bi-plus fs-1"></i>
                             </button>
                         </div>
                     </div>
                 </form>
-                <table id="Identities" class="table table-hover table-striped table-rounded border gy-5 gs-5 dataTable">
+                <table id="Wives" class="table table-hover table-striped table-rounded border gy-5 gs-5 dataTable">
                     <thead>
                         <tr class="fw-bold fs-6 text-gray-800 border-bottom border-gray-200">
                             <th class="fs-3">#</th>
-                            <th class="fs-3">@Global.IdentityType</th>
+                            <th class="fs-3">@Global.Name</th>
                             <th class="fs-3">@Global.IDNumber</th>
-                            <th class="fs-3">@Global.CountryOfOrigin</th>
-                            <th class="fs-3">@Global.Religion</th>
-                            <th class="fs-3">@Global.IssueDate</th>
-                            <th class="fs-3">@Global.ExpiryDate</th>
+                            <th class="fs-3">@Global.DOB</th>
                             <th class="fs-3">@Global.Status</th>
                             <th class="fs-3">@Global.Actions</th>
                         </tr>
@@ -367,7 +364,7 @@
                     </tbody>
                 </table>
             </div>
-            <!--end::Identities Tab-->
+            <!--end::Wives Tab-->
 
             <div id="PassportsTab" class="tab-pane fade" role="tabpanel">
                 <!-- unchanged - Passports markup kept as-is -->
