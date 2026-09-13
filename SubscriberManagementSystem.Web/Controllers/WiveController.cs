@@ -51,33 +51,43 @@ namespace SubscriberManagementSystem.Web.Controllers
 			});
 		}
 
-		[HttpGet] // Display Create Edit Account Page
-        public async Task<IActionResult> CreateEditModal(int id)
-		{
-			return PartialView("_CreateEditModal", new CreateEditWiveVM
+        [HttpGet] // Display Create Edit Account Page
+        public async Task<IActionResult> CreateEditModal(int id, int beneficiaryId)
+        {
+            var wive = await _wivesService.GetByIdOrDefaultAsync(id);
+
+            if (wive.Id == 0) // new wife -> stamp the parent beneficiary id
+                wive.BeneficiaryId = beneficiaryId;
+
+            return PartialView("_CreateEditModal", new CreateEditWiveVM
             {
-                Wives = await _wivesService.GetByIdOrDefaultAsync(id),
+                Wives = wive
+            });
+        }
 
-			});
-		}
-
-		[HttpPost] // Create Edit Wive
+        [HttpPost] // Create Edit Wive
         public async Task<OperationResult> CreateEdit(Wive input)
-		{
-			var result = new OperationResult(false, Messages.Invalid);
-			if (!ModelState.IsValid)
-			{
-				var message = string.Join("<br>  ", ModelState.Values
-					.SelectMany(v => v.Errors)
-					.Select(e => e.ErrorMessage));
-				result.Message = message;
-				return result;
-			}
+        {
+            var result = new OperationResult(false, Messages.Invalid);
+            if (!ModelState.IsValid)
+            {
+                var message = string.Join("<br>  ", ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage));
+                result.Message = message;
+                return result;
+            }
 
-			return await _wivesService.CreateEditAsync(input);
-		}
+            if (input.BeneficiaryId <= 0)
+            {
+                result.Message = Messages.RequiredBeneficiaryForWive;
+                return result;
+            }
 
-		[HttpDelete] // Delete Account
+            return await _wivesService.CreateEditAsync(input);
+        }
+
+        [HttpDelete] // Delete Account
         public async Task<OperationResult> Delete(int id)
 		{
 			return await _wivesService.DeleteAsync(id);
