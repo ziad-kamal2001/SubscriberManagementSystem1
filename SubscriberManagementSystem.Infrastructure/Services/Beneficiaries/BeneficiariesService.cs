@@ -79,53 +79,127 @@ namespace SubscriberManagementSystem.Infrastructure.Services.Beneficiaries
             };
         }
 
-        public async Task<Beneficiary> GetByIdOrDefaultAsync(int id)
-        {
-            var beneficiary = await _context.Beneficiaries
-                .Include(x => x.Parent)
-                .Include(x => x.Gender)
-                .Include(x => x.BeneficiaryType)
-                .Include(x => x.MaritalStatus)
-                .Include(x => x.BreadwinnerStatus)
-                .Include(x => x.WifeStatus)
-                .Include(x => x.OriginalGovernorateCity)
-                .SingleOrDefaultAsync(x => x.Id == id);
 
-            if (beneficiary != null)
-                return beneficiary;
-
-            return new Beneficiary();
-        }
 
         public async Task<OperationResult> CreateEditAsync(Beneficiary input)
         {
             var result = new OperationResult();
+            using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
                 var currentUserId = await GetCurrentUserIdAsync();
 
+                // فصل الزوجات والأبناء عن الكائن الأساسي قبل الحفظ لتفادي تعارض EF Tracking
+                var wives = input.Wives != null ? input.Wives : new List<Wive>();
+                var children = input.ChildrenList != null ? input.ChildrenList : new List<Children>();
+                input.Wives = null;
+                input.ChildrenList = null;
+
                 if (input.Id == 0)
                 {
                     SetCreatedFields(input, currentUserId);
-                    var addedBeneficiary = await _context.Beneficiaries.AddAsync(input);
-                    await _context.SaveChangesAsync();
-                    result.ReturnId = addedBeneficiary.Entity.Id;
+                    var added = await _context.Beneficiaries.AddAsync(input);
+                    await _context.SaveChangesAsync(); // للحصول على Id الجديد
+                    result.ReturnId = added.Entity.Id;
                 }
                 else
                 {
                     SetUpdatedFields(input, currentUserId);
-                    var updatedBeneficiary = _context.Beneficiaries.Update(input);
+                    _context.Beneficiaries.Update(input);
                     SetEntityModifiedFields(input);
-
                     await _context.SaveChangesAsync();
-                    result.ReturnId = updatedBeneficiary.Entity.Id;
+                    result.ReturnId = input.Id;
                 }
+
+                var beneficiaryId = result.ReturnId;
+
+                // ---- حفظ الزوجات ----
+                foreach (var wive in wives)
+                {
+                    wive.BeneficiaryId = beneficiaryId;
+
+                    if (wive.Id == 0)
+                    {
+                        SetCreatedFields(wive, currentUserId);
+                        await _context.Wives.AddAsync(wive);
+                    }
+                    else
+                    {
+                        var existingWive = await _context.Wives.FindAsync(wive.Id);
+                        if (existingWive != null)
+                        {
+                            existingWive.Name = wive.Name;
+                            existingWive.IDNumber = wive.IDNumber;
+                            existingWive.DOB = wive.DOB;
+                            existingWive.IsActive = wive.IsActive;
+                            existingWive.BeneficiaryId = beneficiaryId;
+                            SetUpdatedFields(existingWive, currentUserId);
+                        }
+                    }
+                }
+
+                // ---- حفظ الأبناء ----
+                foreach (var child in children)
+                {
+                    child.BeneficiaryId = beneficiaryId;
+
+                    if (child.Id == 0)
+                    {
+                        SetCreatedFields(child, currentUserId);
+                        await _context.Childrens.AddAsync(child);
+                    }
+                    else
+                    {
+                        var existingChild = await _context.Childrens.FindAsync(child.Id);
+                        if (existingChild != null)
+                        {
+                            existingChild.Name = child.Name;
+                            existingChild.IDNumber = child.IDNumber;
+                            existingChild.DOB = child.DOB;
+                            existingChild.GenderId = child.GenderId;
+                            existingChild.TheHealthConditionId = child.TheHealthConditionId;
+                            existingChild.WiveId = child.WiveId;
+                            existingChild.BeneficiaryId = beneficiaryId;
+                            SetUpdatedFields(existingChild, currentUserId);
+                        }
+                    }
+                }
+
+                // ---- حذف الزوجات المحذوفة من الواجهة (Soft Delete) ----
+                if (input.DeletedWiveIds != null && input.DeletedWiveIds.Any())
+                {
+                    var wivesToDelete = await _context.Wives
+                        .Where(w => input.DeletedWiveIds.Contains(w.Id))
+                        .ToListAsync();
+                    foreach (var w in wivesToDelete)
+                    {
+                        w.IsDeleted = true;
+                        w.DeletedBy = currentUserId;
+                    }
+                }
+
+                // ---- حذف الأبناء المحذوفين من الواجهة (Soft Delete) ----
+                if (input.DeletedChildrenIds != null && input.DeletedChildrenIds.Any())
+                {
+                    var childrenToDelete = await _context.Childrens
+                        .Where(c => input.DeletedChildrenIds.Contains(c.Id))
+                        .ToListAsync();
+                    foreach (var c in childrenToDelete)
+                    {
+                        c.IsDeleted = true;
+                        c.DeletedBy = currentUserId;
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
 
                 result.Success = true;
                 result.Message = Messages.Success;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
+                await transaction.RollbackAsync();
                 result.Message = Messages.Failed;
             }
             return result;
@@ -258,6 +332,32 @@ namespace SubscriberManagementSystem.Infrastructure.Services.Beneficiaries
             }
 
             return result;
+        }
+
+        public async Task<Beneficiary> GetByIdOrDefaultAsync(int id)
+        {
+            var beneficiary = await _context.Beneficiaries
+                .Include(x => x.Parent)
+                .Include(x => x.Gender)
+                .Include(x => x.BeneficiaryType)
+                .Include(x => x.MaritalStatus)
+                .Include(x => x.BreadwinnerStatus)
+                .Include(x => x.WifeStatus)
+                .Include(x => x.OriginalGovernorateCity)
+                .Include(x => x.Wives.Where(w => !w.IsDeleted))
+                .Include(x => x.ChildrenList.Where(c => !c.IsDeleted))
+                .SingleOrDefaultAsync(x => x.Id == id);
+
+            if (beneficiary != null)
+                return beneficiary;
+
+            return new Beneficiary();
+        }
+        public async Task<List<TheHealthCondition>> GetHealthConditionsAsync()
+        {
+            return await _context.TheHealthConditions
+                .Where(h => !h.IsDeleted)
+                .ToListAsync();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿@model SubscriberManagementSystem.Web.ViewModel.Beneficiaries.CreateEditBeneficiaryVM
 @using SubscriberManagementSystem.Web.Resources;
+@using SubscriberManagementSystem.Data.Models;
 @using System.Globalization
 
 @{
@@ -43,6 +44,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark" data-bs-toggle="tab" href="#WivesTab">@Global.Wives</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" data-bs-toggle="tab" href="#ChildrenTab">@Global.Relatives</a>
             </li>
             @if (!isRelative)
             {
@@ -320,51 +324,110 @@
                 </table>
             </div>
             <!--end::Addresses Tab-->
-            <!--begin::Wives -->
+            <!--begin::Wives Tab (inline editable)-->
             <div id="WivesTab" class="tab-pane fade" role="tabpanel">
-                <form id="wiveSearchForm" onsubmit="return(false);">
-                    <div class="d-flex flex-stack mb-5">
-                        <div class="d-flex align-items-center position-relative my-1">
-                            <span class="svg-icon svg-icon-2 position-absolute ms-6">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
-                                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
-                                </svg>
-                            </span>
-                            <input name="Keyword" type="text" placeholder="@Global.Search" class="form-control form-control-solid me-3 w-250px ps-15 fs-4" />
-                            <input id="wiveBeneficiaryId" name="BeneficiaryId" asp-for="Beneficiary.Id" type="hidden" />
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btnWiveSearch btn btn-sm btn-icon btn-success me-1">
-                                <span class="svg-icon svg-icon-2 fs-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
-                                        <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
-                                    </svg>
-                                </span>
-                            </button>
-                            <button type="button" class="openWiveModal btn btn-sm btn-icon btn-primary">
-                                <i class="bi bi-plus fs-1"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                <table id="Wives" class="table table-hover table-striped table-rounded border gy-5 gs-5 dataTable">
+                <table class="table table-bordered" id="wivesTable">
                     <thead>
-                        <tr class="fw-bold fs-6 text-gray-800 border-bottom border-gray-200">
-                            <th class="fs-3">#</th>
-                            <th class="fs-3">@Global.Name</th>
-                            <th class="fs-3">@Global.IDNumber</th>
-                            <th class="fs-3">@Global.DOB</th>
-                            <th class="fs-3">@Global.Status</th>
-                            <th class="fs-3">@Global.Actions</th>
+                        <tr>
+                            <th>@Global.Name</th>
+                            <th>@Global.IDNumber</th>
+                            <th>@Global.DOB</th>
+                            <th>@Global.IsActive</th>
+                            <th></th>
                         </tr>
                     </thead>
-                    <tbody class="fs-5">
+                    <tbody id="wivesTableBody">
+                        @{
+                            int wIndex = 0;
+                        }
+                        @foreach (var wive in (Model.Beneficiary.Wives ?? new List<Wive>()))
+                        {
+                            <tr class="wive-row">
+                                <td>
+                                    <input type="hidden" name="Wives[@wIndex].Id" value="@wive.Id" />
+                                    <input type="text" name="Wives[@wIndex].Name" value="@wive.Name" class="form-control" />
+                                </td>
+                                <td><input type="text" name="Wives[@wIndex].IDNumber" value="@wive.IDNumber" class="form-control" /></td>
+                                <td><input type="date" name="Wives[@wIndex].DOB" value="@wive.DOB?.ToString("yyyy-MM-dd")" class="form-control" /></td>
+                                <td class="text-center">
+                                    <input type="checkbox" name="Wives[@wIndex].IsActive" value="true" @(wive.IsActive ? "checked" : "") />
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-danger btnRemoveWiveRow" data-id="@wive.Id">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            wIndex++;
+                        }
                     </tbody>
                 </table>
+                <button type="button" id="btnAddWiveRow" class="btn btn-sm btn-primary">
+                    <i class="bi bi-plus"></i> @Global.AddLine
+                </button>
+                <div id="deletedWivesContainer"></div>
             </div>
             <!--end::Wives Tab-->
+            <!--begin::Children Tab (inline editable)-->
+            <div id="ChildrenTab" class="tab-pane fade" role="tabpanel">
+                <table class="table table-bordered" id="childrenTable">
+                    <thead>
+                        <tr>
+                            <th>@Global.Name</th>
+                            <th>@Global.IDNumber</th>
+                            <th>@Global.DOB</th>
+                            <th>@Global.Gender</th>
+                            <th>@Global.TheHealthCondition</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="childrenTableBody">
+                        @{
+                            int cIndex = 0;
+                        }
+                        @foreach (var child in (Model.Beneficiary.ChildrenList ?? new List<Children>()))
+                        {
+                            <tr class="child-row">
+                                <td>
+                                    <input type="hidden" name="ChildrenList[@cIndex].Id" value="@child.Id" />
+                                    <input type="text" name="ChildrenList[@cIndex].Name" value="@child.Name" class="form-control" />
+                                </td>
+                                <td><input type="text" name="ChildrenList[@cIndex].IDNumber" value="@child.IDNumber" class="form-control" /></td>
+                                <td><input type="date" name="ChildrenList[@cIndex].DOB" value="@child.DOB?.ToString("yyyy-MM-dd")" class="form-control" /></td>
+                                <td>
+                                    <select name="ChildrenList[@cIndex].GenderId" class="form-select">
+                                        <option value="">@Global.Gender</option>
+                                        @foreach (var g in Model.Genders)
+                                        {
+                                            <option value="@g.Id" selected="@(g.Id == child.GenderId)">@g.Name</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="ChildrenList[@cIndex].TheHealthConditionId" class="form-select">
+                                        <option value="">@Global.TheHealthCondition</option>
+                                        @foreach (var h in Model.HealthConditions)
+                                        {
+                                            <option value="@h.Id" selected="@(h.Id == child.TheHealthConditionId)">@h.Name</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-danger btnRemoveChildRow" data-id="@child.Id">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            cIndex++;
+                        }
+                    </tbody>
+                </table>
+                <button type="button" id="btnAddChildRow" class="btn btn-sm btn-primary">
+                    <i class="bi bi-plus"></i> @Global.AddLine
+                </button>
+                <div id="deletedChildrenContainer"></div>
+            </div>
+            <!--end::Children Tab-->
 
             <div id="PassportsTab" class="tab-pane fade" role="tabpanel">
                 <!-- unchanged - Passports markup kept as-is -->
@@ -427,8 +490,17 @@
 @section scripts
 {
     <script src="~/js/Beneficiaries.js"></script>
+    <script src="~/js/BeneficiaryFamily.js"></script>
 }
 
 @section onReadyScript {
     beneficiaries.init();
+
+    beneficiaryFamily.init({
+    wiveIndex: @wIndex,
+    childIndex: @cIndex,
+    genderOptionsHtml: '@Html.Raw(string.Join("", Model.Genders.Select(g => $"<option value='{g.Id}'>{g.Name}</option>")).Replace("'", "\\'"))',
+    healthOptionsHtml: '@Html.Raw(string.Join("", Model.HealthConditions.Select(h => $"<option value='{h.Id}'>{h.Name}</option>")).Replace("'", "\\'"))'
+    });
 }
+

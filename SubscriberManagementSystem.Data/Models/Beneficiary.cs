@@ -39,8 +39,6 @@ namespace SubscriberManagementSystem.Data.Models
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Messages))]
         public string LName { get; set; }
 
-
-
         public string FullName
         {
             get
@@ -48,7 +46,6 @@ namespace SubscriberManagementSystem.Data.Models
                 return $"{FName} {SName} {TName} {LName}";
             }
         }
-
 
         [Display(Name = "DOB", ResourceType = typeof(Messages))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Messages))]
@@ -98,5 +95,14 @@ namespace SubscriberManagementSystem.Data.Models
         public int? OriginalGovernorateCityId { get; set; }
         public City? OriginalGovernorateCity { get; set; }
 
+        // ---- خصائص جديدة لإضافة الزوجات والأبناء ضمن نفس صفحة المستفيد ----
+        public List<Wive>? Wives { get; set; }
+        public List<Children>? ChildrenList { get; set; }
+
+        [NotMapped]
+        public List<int>? DeletedWiveIds { get; set; }
+
+        [NotMapped]
+        public List<int>? DeletedChildrenIds { get; set; }
     }
 }

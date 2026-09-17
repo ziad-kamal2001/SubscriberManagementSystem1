@@ -23,6 +23,7 @@ namespace SubscriberManagementSystem.Infrastructure.Services.Beneficiaries
         Task<List<Constant>> GetWifeStatusesAsync();
         Task<List<Constant>> GetResidenceStatusesAsync();
         Task<List<City>> GetCitiesListAsync();
+        Task<List<TheHealthCondition>> GetHealthConditionsAsync();
 
         // Family member counters, computed from Beneficiary/Wive/Children relations
         Task<FamilyMembersCountDto> GetFamilyMembersCountAsync(int beneficiaryId);

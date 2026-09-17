@@ -1082,6 +1082,7 @@
 
     // get Wive modal
     var getWiveModal = function (elementId) {
+        var beneficiaryId = $("#beneficiaryId").val();
         $.ajax({
             url: `/Wive/CreateEditModal/${elementId}`,
             type: 'GET',

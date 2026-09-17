@@ -64,7 +64,7 @@ namespace SubscriberManagementSystem.Web.Controllers
             });
         }
 
-        [HttpGet] // Display Create Edit Beneficiaries Page
+        [HttpGet]
         public async Task<IActionResult> CreateEdit(int id, int? parentId)
         {
             var beneficiary = await _beneficiariesService.GetByIdOrDefaultAsync(id);
@@ -79,15 +79,12 @@ namespace SubscriberManagementSystem.Web.Controllers
                 Beneficiary = beneficiary,
                 BeneficiaryTypes = await _beneficiariesService.GetBeneficiaryTypesAsync(),
                 Genders = await _beneficiariesService.GetGendersAsync(),
-
-                // New lookups
                 MaritalStatuses = await _beneficiariesService.GetMaritalStatusesAsync(),
                 BreadwinnerStatuses = await _beneficiariesService.GetBreadwinnerStatusesAsync(),
                 WifeStatuses = await _beneficiariesService.GetWifeStatusesAsync(),
                 ResidenceStatuses = await _beneficiariesService.GetResidenceStatusesAsync(),
                 Cities = await _beneficiariesService.GetCitiesListAsync(),
-
-                // Computed family counters (0s for a brand-new beneficiary)
+                HealthConditions = await _beneficiariesService.GetHealthConditionsAsync(), // جديد
                 FamilyMembersCount = id > 0
                     ? await _beneficiariesService.GetFamilyMembersCountAsync(id)
                     : new Infrastructure.Services.Beneficiaries.FamilyMembersCountDto()

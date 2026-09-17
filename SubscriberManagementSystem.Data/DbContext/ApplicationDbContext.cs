@@ -25,6 +25,38 @@ namespace SubscriberManagementSystem.Data.DbContext
             builder.Entity<Children>().HasQueryFilter(x => !x.IsDeleted);
             builder.Entity<Beneficiary>().HasQueryFilter(x => !x.IsDeleted);
             builder.Entity<Wive>().HasQueryFilter(x => !x.IsDeleted);
+
+            builder.Entity<User>()
+               .HasOne(u => u.UserType)
+               .WithMany()
+               .HasForeignKey(u => u.UserTypeId)
+               .IsRequired(false);
+
+            builder.Entity<Children>()
+               .HasOne(c => c.Gender)
+               .WithMany()
+               .HasForeignKey(c => c.GenderId)
+               .OnDelete(DeleteBehavior.NoAction);
+
+            // ---- تحديد العلاقة الصريحة بين Beneficiary والـ Wives/ChildrenList ----
+            builder.Entity<Beneficiary>()
+                .HasMany(b => b.ChildrenList)
+                .WithOne(c => c.Beneficiary)
+                .HasForeignKey(c => c.BeneficiaryId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Beneficiary>()
+                .HasMany(b => b.Wives)
+                .WithOne(w => w.Beneficiary)
+                .HasForeignKey(w => w.BeneficiaryId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // ---- New relations for the extended Beneficiary CreateEdit form ----
+            builder.Entity<Beneficiary>()
+               .HasOne(b => b.MaritalStatus)
+               .WithMany()
+               .HasForeignKey(b => b.MaritalStatusId)
+               .OnDelete(DeleteBehavior.Restrict);
             // Restrict cascade delete for all Constants-based FKs on BeneficiaryInformation
             builder.Entity<User>()
                .HasOne(u => u.UserType)

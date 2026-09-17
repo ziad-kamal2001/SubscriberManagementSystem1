@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SubscriberManagementSystem.Data.DbContext;
 
@@ -11,9 +12,11 @@ using SubscriberManagementSystem.Data.DbContext;
 namespace SubscriberManagementSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260915121252_ConfigureBeneficiaryChildrenWivesRelations")]
+    partial class ConfigureBeneficiaryChildrenWivesRelations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2739,7 +2742,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                     b.HasOne("SubscriberManagementSystem.Data.Models.Beneficiary", "Beneficiary")
                         .WithMany("ChildrenList")
                         .HasForeignKey("BeneficiaryId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SubscriberManagementSystem.Data.Models.Constant", "Gender")
@@ -2846,7 +2849,7 @@ namespace SubscriberManagementSystem.Data.Migrations
                     b.HasOne("SubscriberManagementSystem.Data.Models.Beneficiary", "Beneficiary")
                         .WithMany("Wives")
                         .HasForeignKey("BeneficiaryId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Beneficiary");
