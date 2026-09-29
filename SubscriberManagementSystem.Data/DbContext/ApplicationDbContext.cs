@@ -18,56 +18,53 @@ namespace SubscriberManagementSystem.Data.DbContext
         {
             SeedHelper.Seed(builder);
             base.OnModelCreating(builder);
+
+            // ---- Query Filters (Soft Delete) ----
             builder.Entity<UserType>().HasQueryFilter(x => !x.IsDeleted);
             builder.Entity<Page>().HasQueryFilter(x => !x.IsDeleted);
             builder.Entity<Beneficiary>().HasQueryFilter(x => !x.IsDeleted);
             builder.Entity<BeneficiaryInformation>().HasQueryFilter(x => !x.IsDeleted);
             builder.Entity<Children>().HasQueryFilter(x => !x.IsDeleted);
-            builder.Entity<Beneficiary>().HasQueryFilter(x => !x.IsDeleted);
             builder.Entity<Wive>().HasQueryFilter(x => !x.IsDeleted);
 
+            // ---- User / UserType ----
             builder.Entity<User>()
                .HasOne(u => u.UserType)
                .WithMany()
                .HasForeignKey(u => u.UserTypeId)
                .IsRequired(false);
 
+            // ---- Children.GenderId ----
             builder.Entity<Children>()
                .HasOne(c => c.Gender)
                .WithMany()
                .HasForeignKey(c => c.GenderId)
                .OnDelete(DeleteBehavior.NoAction);
 
-            // ---- تحديد العلاقة الصريحة بين Beneficiary والـ Wives/ChildrenList ----
+            // ---- تحديد صريح وكامل لكل علاقات Children/Wives مع Beneficiary ----
+            // Children له علاقتان مع Beneficiary (BeneficiaryId و ParentId)، لذلك
+            // يجب تحديد كلتيهما صراحة لإزالة الغموض عند EF Core.
+
+            // العلاقة الأساسية: المستفيد المالك للابن (Beneficiary -> ChildrenList)
             builder.Entity<Beneficiary>()
                 .HasMany(b => b.ChildrenList)
                 .WithOne(c => c.Beneficiary)
                 .HasForeignKey(c => c.BeneficiaryId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
+            // العلاقة الثانوية: Parent (بدون Collection مقابلة في Beneficiary)
+            builder.Entity<Children>()
+                .HasOne(c => c.Parent)
+                .WithMany()
+                .HasForeignKey(c => c.ParentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // علاقة الزوجات: Beneficiary -> Wives
             builder.Entity<Beneficiary>()
                 .HasMany(b => b.Wives)
                 .WithOne(w => w.Beneficiary)
                 .HasForeignKey(w => w.BeneficiaryId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            // ---- New relations for the extended Beneficiary CreateEdit form ----
-            builder.Entity<Beneficiary>()
-               .HasOne(b => b.MaritalStatus)
-               .WithMany()
-               .HasForeignKey(b => b.MaritalStatusId)
-               .OnDelete(DeleteBehavior.Restrict);
-            // Restrict cascade delete for all Constants-based FKs on BeneficiaryInformation
-            builder.Entity<User>()
-               .HasOne(u => u.UserType)
-               .WithMany()
-               .HasForeignKey(u => u.UserTypeId)
-               .IsRequired(false);
-            builder.Entity<Children>()
-               .HasOne(c => c.Gender)
-               .WithMany()
-               .HasForeignKey(c => c.GenderId)
-               .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Restrict);
 
             // ---- New relations for the extended Beneficiary CreateEdit form ----
             // Use Restrict/NoAction on every new City/Constant FK below to avoid
@@ -134,13 +131,6 @@ namespace SubscriberManagementSystem.Data.DbContext
         public DbSet<PageCategory> PageCategories { get; set; }
         public DbSet<Beneficiary> Beneficiaries { get; set; }
         public DbSet<BeneficiaryInformation> BeneficiaryInformations { get; set; }
-
-        // NOTE: add this DbSet only if it isn't already declared elsewhere for the
-        // existing Country/City/Province address feature (Beneficiaries.js /
-        // _CreateEditAddressModal.cshtml already reference a City lookup).
         public DbSet<City> Cities { get; set; }
-
-
     }
-
 }

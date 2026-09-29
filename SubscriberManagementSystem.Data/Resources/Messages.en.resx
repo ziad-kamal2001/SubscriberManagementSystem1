@@ -489,4 +489,7 @@
   <data name="ResidenceStatus" xml:space="preserve">
     <value>Residence Status</value>
   </data>
+  <data name="Wive" xml:space="preserve">
+    <value>Wive</value>
+  </data>
 </root>

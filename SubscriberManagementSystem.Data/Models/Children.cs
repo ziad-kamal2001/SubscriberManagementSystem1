@@ -34,7 +34,7 @@ namespace SubscriberManagementSystem.Data.Models
         public Constant? Gender { get; set; }
 
         [Display(Name = "Wive", ResourceType = typeof(Messages))]
-        [StringLength(ApplicationConstant.MaxStringName, MinimumLength = ApplicationConstant.MinStringName, ErrorMessageResourceName = "StringLengthValidation", ErrorMessageResourceType = typeof(Messages))]
+        [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Messages))]
         public int? WiveId { get; set; }
         public Wive? Wive { get; set; }
 

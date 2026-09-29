@@ -492,4 +492,7 @@
   <data name="ResidenceStatus" xml:space="preserve">
     <value>حالة المسكن</value>
   </data>
+  <data name="Wive" xml:space="preserve">
+    <value>الزوجة</value>
+  </data>
 </root>

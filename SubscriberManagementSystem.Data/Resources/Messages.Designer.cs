@@ -1177,6 +1177,15 @@ namespace SubscriberManagementSystem.Data.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to الزوجة.
+        /// </summary>
+        public static string Wive {
+            get {
+                return ResourceManager.GetString("Wive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to حالة العمل.
         /// </summary>
         public static string WorkStatus {

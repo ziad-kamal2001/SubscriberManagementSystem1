@@ -103,13 +103,28 @@
         });
     }
 
-    // submit create or edit Beneficiary form
+    var reindexFamilyRows = function () {
+        $("#wivesTableBody tr.wive-row").each(function (i) {
+            $(this).find(":input").each(function () {
+                this.name = this.name.replace(/Wives\[\d+\]/, "Wives[" + i + "]");
+            });
+        });
+        $("#childrenTableBody tr.child-row").each(function (i) {
+            $(this).find(":input").each(function () {
+                this.name = this.name.replace(/ChildrenList\[\d+\]/, "ChildrenList[" + i + "]");
+            });
+        });
+    };
+
     var submitBeneficiaryForm = function () {
         $("#createEditForm").on("submit", function (e) {
             e.preventDefault();
             const form = $(this);
             var beneficiaryId = form.find('[name="Id"]').val();
-            const data = form.serialize();
+
+            reindexFamilyRows();
+            const data = form.serialize() + "&" +
+                $("#WivesTab :input, #ChildrenTab :input").serialize();
 
             saveOrUpdate(`/Beneficiary/SubmitCreateEdit/`, data, form)
                 .then(function (result) {
@@ -118,19 +133,13 @@
                             window.open(`${window.location.origin}/Beneficiary/CreateEdit/${result.returnId}`, '_self');
                         }, 500);
                     } else {
-                        const isRelative = form.find('[name="ParentId"]').val();
-                        if (isRelative) {
-                            $(".span-title").text(`${Messages.RelativeData} : ${form.find('[name="FName"]').val()} ${form.find('[name="SName"]').val()} ${form.find('[name="TName"]').val()} ${form.find('[name="LName"]').val()}`);
-                        } else {
-                            $(".span-title").text(`${Messages.BeneficiaryData} : ${form.find('[name="FName"]').val()} ${form.find('[name="SName"]').val()} ${form.find('[name="TName"]').val()} ${form.find('[name="LName"]').val()}`);
-                        }
+                        // إعادة تحميل الصفحة ليأخذ الصف الجديد Id حقيقي (وإلا سيتكرر عند الحفظ التالي)
+                        setTimeout(function () { location.reload(); }, 500);
                     }
                 })
-                .catch(function () {
-                    return;
-                });
+                .catch(function () { return; });
         });
-    }
+    };
 
     // search Beneficiary function
     var searchBeneficiaryForm = function () {
